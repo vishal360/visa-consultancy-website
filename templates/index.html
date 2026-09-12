@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ brand_name }} — Ukraine Visa & Immigration Consultants</title>
+<meta name="description" content="Expert help with Ukrainian visas: short-stay, student, work, business, family reunification and residence permits. Book a consultation with a licensed adviser.">
+<meta name="theme-color" content="#0b1f4d">
+<meta property="og:title" content="{{ brand_name }} — Ukraine Visa Specialists">
+<meta property="og:description" content="{{ brand_tagline }}. Book a consultation online in under two minutes.">
+<meta property="og:type" content="website">
+<link rel="preload" href="/static/css/styles.css" as="style">
+<link rel="stylesheet" href="/static/css/styles.css">
+<link rel="icon" href="/static/img/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to main content</a>
+
+<!-- ================= HEADER ================= -->
+<header class="site-header" id="siteHeader">
+  <div class="shell site-header__inner">
+    <a class="logo" href="#top" aria-label="{{ brand_name }} home">
+      <span class="logo__mark" aria-hidden="true">
+        <svg viewBox="0 0 32 32" width="32" height="32" role="presentation">
+          <rect width="32" height="32" rx="9" fill="url(#lg)"/>
+          <path d="M8 19.5h16M8 19.5c0-5 3.6-9 8-9s8 4 8 9" stroke="#0b1f4d"
+                stroke-width="2.1" stroke-linecap="round" fill="none"/>
+          <circle cx="16" cy="9" r="2.1" fill="#0b1f4d"/>
+          <defs>
+            <linearGradient id="lg" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#ffd700"/>
+              <stop offset="1" stop-color="#4d9fff"/>
+            </linearGradient>
+          </defs>
+        </svg>
+      </span>
+      <span class="logo__text">
+        <strong>{{ brand_name }}</strong>
+        <small>{{ brand_tagline }}</small>
+      </span>
+    </a>
+
+    <nav class="nav" id="primaryNav" aria-label="Main navigation">
+      <a href="#visas">Visa types</a>
+      <a href="#checker">Eligibility check</a>
+      <a href="#process">Process</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <div class="site-header__actions">
+      <button class="icon-btn" id="themeToggle" type="button"
+              aria-label="Switch colour theme" title="Switch colour theme">
+        <span class="icon-btn__sun" aria-hidden="true">☀</span>
+        <span class="icon-btn__moon" aria-hidden="true">☾</span>
+      </button>
+      <a class="btn btn--primary btn--sm" href="#booking">Book a consultation</a>
+      <button class="burger" id="burger" type="button" aria-expanded="false"
+              aria-controls="primaryNav" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+</header>
+
+<main id="main">
+<span id="top"></span>
+
+<!-- ================= HERO ================= -->
+<section class="hero">
+  <div class="hero__bg" aria-hidden="true">
+    <span class="hero__orb hero__orb--1"></span>
+    <span class="hero__orb hero__orb--2"></span>
+    <span class="hero__orb hero__orb--3"></span>
+    <div class="hero__grid"></div>
+  </div>
+
+  <div class="shell hero__inner">
+    <div class="hero__content">
+      <p class="hero__eyebrow">
+        <span class="flag" aria-hidden="true"><i></i><i></i></span>
+        Ukraine visa &amp; immigration specialists
+      </p>
+      <h1 class="hero__title">
+        Your route to Ukraine,
+        <span class="hero__title-accent">mapped out properly.</span>
+      </h1>
+      <p class="hero__lede">
+        Short-stay, student, work, business, family or residence — we tell you
+        exactly which visa you need, what documents to gather, and how long it
+        will really take. No guesswork, no surprises.
+      </p>
+
+      <div class="hero__actions">
+        <a class="btn btn--primary btn--lg" href="#booking">
+          Book a consultation
+          <span aria-hidden="true">→</span>
+        </a>
+        <a class="btn btn--outline btn--lg" href="#checker">
+          Check my eligibility — free
+        </a>
+      </div>
+
+      <ul class="hero__badges">
+        <li><span aria-hidden="true">⚖️</span> Licensed advisers</li>
+        <li><span aria-hidden="true">📄</span> Fixed fees, quoted upfront</li>
+        <li><span aria-hidden="true">🔒</span> GDPR-compliant</li>
+        <li><span aria-hidden="true">💬</span> 6 languages</li>
+      </ul>
+    </div>
+
+    <!-- Floating booking teaser card -->
+    <aside class="hero__card" aria-label="Next available consultation slots">
+      <div class="hero__card-head">
+        <h2>Next available slots</h2>
+        <span class="dot-live" aria-hidden="true"></span>
+      </div>
+      <p class="hero__card-note">
+        Times shown in {{ timezone_label }}
+      </p>
+      <div class="quick-slots" id="quickSlots" data-loading="true">
+        <div class="quick-slots__skeleton"></div>
+        <div class="quick-slots__skeleton"></div>
+        <div class="quick-slots__skeleton"></div>
+      </div>
+      <button class="btn btn--primary btn--block" type="button" id="quickSlotsCta">
+        Choose a time
+      </button>
+      <p class="hero__card-foot">
+        Free 30-minute orientation call available
+      </p>
+    </aside>
+  </div>
+
+  <div class="shell">
+    <div class="stats" id="stats">
+      {{ raw_stats }}
+    </div>
+  </div>
+</section>
+
+<!-- ================= VISA TYPES ================= -->
+<section class="section" id="visas">
+  <div class="shell">
+    <header class="section__head reveal">
+      <p class="section__eyebrow">What we handle</p>
+      <h2 class="section__title">Every Ukrainian visa route, in plain English</h2>
+      <p class="section__lede">
+        Pick the one that sounds like you — or run the eligibility check below and
+        we'll narrow it down for you.
+      </p>
+    </header>
+
+    <div class="visa-grid">
+      {{ raw_visa_cards }}
+    </div>
+
+    <p class="section__disclaimer reveal">
+      Processing times and document lists are indicative and change with consular
+      policy. We confirm the current requirements for your nationality during your
+      consultation.
+    </p>
+  </div>
+</section>
+
+<!-- ================= ELIGIBILITY CHECKER ================= -->
+<section class="section section--tint" id="checker">
+  <div class="shell">
+    <header class="section__head reveal">
+      <p class="section__eyebrow">Free tool</p>
+      <h2 class="section__title">Which visa do I need?</h2>
+      <p class="section__lede" id="wizardIntro"></p>
+    </header>
+
+    <div class="wizard reveal" id="wizard">
+      <div class="wizard__progress" aria-hidden="true">
+        <div class="wizard__progress-bar" id="wizardBar"></div>
+      </div>
+      <p class="wizard__counter" id="wizardCounter" aria-live="polite"></p>
+
+      <div class="wizard__stage" id="wizardStage">
+        <!-- questions injected by JS -->
+      </div>
+
+      <div class="wizard__nav">
+        <button class="btn btn--ghost" type="button" id="wizardBack" hidden>
+          ← Back
+        </button>
+        <button class="btn btn--ghost" type="button" id="wizardRestart" hidden>
+          Start again
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PROCESS ================= -->
+<section class="section" id="process">
+  <div class="shell">
+    <header class="section__head reveal">
+      <p class="section__eyebrow">How it works</p>
+      <h2 class="section__title">From first question to landing in Kyiv</h2>
+      <p class="section__lede">
+        Five stages. You always know which one you're in and what happens next.
+      </p>
+    </header>
+    <ol class="steps">
+      {{ raw_process_steps }}
+    </ol>
+  </div>
+</section>
+
+<!-- ================= BOOKING ================= -->
+<section class="section section--tint" id="booking">
+  <div class="shell">
+    <header class="section__head reveal">
+      <p class="section__eyebrow">Book a consultation</p>
+      <h2 class="section__title">Reserve your slot in three steps</h2>
+      <p class="section__lede">
+        Choose a service, pick a time that suits you, and tell us a little about
+        your case. You'll get an email confirmation immediately.
+      </p>
+    </header>
+
+    <div class="booking reveal">
+      <!-- Step indicator -->
+      <ol class="booking__steps" id="bookingSteps" aria-label="Booking progress">
+        <li class="is-active" data-step="1"><span>1</span> Service</li>
+        <li data-step="2"><span>2</span> Date &amp; time</li>
+        <li data-step="3"><span>3</span> Your details</li>
+      </ol>
+
+      <form class="booking__form" id="bookingForm" novalidate>
+        <!-- Honeypot: hidden from humans, catches bots -->
+        <div class="honeypot" aria-hidden="true">
+          <label for="hp_website">Website</label>
+          <input type="text" id="hp_website" name="website" tabindex="-1"
+                 autocomplete="off">
+        </div>
+
+        <!-- ---------- STEP 1: SERVICE ---------- -->
+        <fieldset class="booking__panel is-active" data-panel="1">
+          <legend class="booking__legend">What do you need help with?</legend>
+          <div class="option-grid" id="serviceOptions">
+            {{ raw_service_options }}
+          </div>
+          <p class="field-error" data-error-for="service_id"></p>
+
+          <div class="booking__panel-foot">
+            <button class="btn btn--primary" type="button" data-next="2">
+              Continue <span aria-hidden="true">→</span>
+            </button>
+          </div>
+        </fieldset>
+
+        <!-- ---------- STEP 2: DATE & TIME ---------- -->
+        <fieldset class="booking__panel" data-panel="2">
+          <legend class="booking__legend">Pick a date and time</legend>
+
+          <div class="scheduler">
+            <div class="calendar" id="calendar">
+              <div class="calendar__head">
+                <button class="calendar__nav" type="button" id="calPrev"
+                        aria-label="Previous month">‹</button>
+                <p class="calendar__title" id="calTitle" aria-live="polite">Loading…</p>
+                <button class="calendar__nav" type="button" id="calNext"
+                        aria-label="Next month">›</button>
+              </div>
+              <div class="calendar__weekdays" aria-hidden="true">
+                <span>Mo</span><span>Tu</span><span>We</span><span>Th</span>
+                <span>Fr</span><span>Sa</span><span>Su</span>
+              </div>
+              <div class="calendar__grid" id="calGrid" role="grid"
+                   aria-label="Choose a consultation date"></div>
+              <ul class="calendar__key" aria-hidden="true">
+                <li><span class="key key--open"></span> Available</li>
+                <li><span class="key key--limited"></span> Few left</li>
+                <li><span class="key key--full"></span> Full</li>
+                <li><span class="key key--closed"></span> Closed</li>
+              </ul>
+            </div>
+
+            <div class="slots">
+              <p class="slots__head">
+                <span id="slotsTitle">Select a date first</span>
+                <small id="slotsTz">{{ timezone_label }}</small>
+              </p>
+              <div class="slots__list" id="slotsList" role="group"
+                   aria-label="Available times">
+                <p class="slots__placeholder">
+                  Choose a highlighted date on the calendar to see open times.
+                </p>
+              </div>
+              <p class="field-error" data-error-for="slot_time"></p>
+              <p class="field-error" data-error-for="slot_date"></p>
+            </div>
+          </div>
+
+          <div class="booking__panel-foot">
+            <button class="btn btn--ghost" type="button" data-prev="1">← Back</button>
+            <button class="btn btn--primary" type="button" data-next="3">
+              Continue <span aria-hidden="true">→</span>
+            </button>
+          </div>
+        </fieldset>
+
+        <!-- ---------- STEP 3: DETAILS ---------- -->
+        <fieldset class="booking__panel" data-panel="3">
+          <legend class="booking__legend">Your details</legend>
+
+          <div class="summary-strip" id="summaryStrip" aria-live="polite"></div>
+
+          <div class="field-grid">
+            <div class="field">
+              <label for="full_name">Full name <span class="req">*</span></label>
+              <input type="text" id="full_name" name="full_name" required
+                     autocomplete="name" placeholder="As shown in your passport">
+              <p class="field-error" data-error-for="full_name"></p>
+            </div>
+
+            <div class="field">
+              <label for="email">Email address <span class="req">*</span></label>
+              <input type="email" id="email" name="email" required
+                     autocomplete="email" placeholder="you@example.com"
+                     inputmode="email">
+              <p class="field-hint">Your confirmation goes here.</p>
+              <p class="field-error" data-error-for="email"></p>
+            </div>
+
+            <div class="field">
+              <label for="phone">Phone number <span class="req">*</span></label>
+              <input type="tel" id="phone" name="phone" required
+                     autocomplete="tel" placeholder="+380 44 123 4567"
+                     inputmode="tel">
+              <p class="field-hint">Include your country code.</p>
+              <p class="field-error" data-error-for="phone"></p>
+            </div>
+
+            <div class="field">
+              <label for="nationality">Nationality</label>
+              <input type="text" id="nationality" name="nationality"
+                     autocomplete="country-name" placeholder="e.g. Nigerian"
+                     list="nationalityList">
+              <datalist id="nationalityList"></datalist>
+              <p class="field-error" data-error-for="nationality"></p>
+            </div>
+
+            <div class="field">
+              <label for="applicants">How many applicants?</label>
+              <input type="number" id="applicants" name="applicants" value="1"
+                     min="1" max="20" inputmode="numeric">
+              <p class="field-error" data-error-for="applicants"></p>
+            </div>
+
+            <div class="field">
+              <label for="travel_timeline">When do you need to travel?</label>
+              <select id="travel_timeline" name="travel_timeline">
+                {{ raw_timeline_options }}
+              </select>
+              <p class="field-error" data-error-for="travel_timeline"></p>
+            </div>
+          </div>
+
+          <div class="field">
+            <span class="field__label">How would you like to meet?</span>
+            <div class="pill-group">
+              {{ raw_mode_options }}
+            </div>
+            <p class="field-error" data-error-for="mode_id"></p>
+          </div>
+
+          <div class="field">
+            <label for="message">Tell us about your case</label>
+            <textarea id="message" name="message" rows="4"
+                      placeholder="Previous refusals, deadlines, employer or university details — anything that helps us prepare."></textarea>
+            <p class="field-hint">
+              <span id="messageCount">0</span>/4000 characters
+            </p>
+            <p class="field-error" data-error-for="message"></p>
+          </div>
+
+          <label class="checkbox">
+            <input type="checkbox" id="consent" name="consent" required>
+            <span>
+              I agree that {{ brand_name }} may store these details in order to
+              contact me about my consultation.
+              <a href="/privacy" target="_blank" rel="noopener">Privacy notice</a>
+              <span class="req">*</span>
+            </span>
+          </label>
+          <p class="field-error" data-error-for="consent"></p>
+
+          <div class="booking__panel-foot">
+            <button class="btn btn--ghost" type="button" data-prev="2">← Back</button>
+            <button class="btn btn--primary btn--lg" type="submit" id="bookingSubmit">
+              <span class="btn__label">Confirm booking</span>
+              <span class="btn__spinner" aria-hidden="true"></span>
+            </button>
+          </div>
+          <p class="form-error" id="bookingFormError" role="alert"></p>
+        </fieldset>
+      </form>
+
+      <!-- ---------- SUCCESS ---------- -->
+      <div class="booking__success" id="bookingSuccess" hidden>
+        <div class="booking__success-icon" aria-hidden="true">
+          <svg viewBox="0 0 52 52" width="64" height="64">
+            <circle class="tick__circle" cx="26" cy="26" r="24" fill="none"
+                    stroke="currentColor" stroke-width="2.5"/>
+            <path class="tick__check" fill="none" stroke="currentColor"
+                  stroke-width="4" stroke-linecap="round"
+                  d="M14 27l8.5 8.5L38 19"/>
+          </svg>
+        </div>
+        <h3>You're booked in</h3>
+        <p class="booking__success-ref">
+          Reference <strong id="successRef">—</strong>
+        </p>
+        <dl class="booking__success-detail" id="successDetail"></dl>
+        <p class="booking__success-note" id="successNote"></p>
+        <div class="booking__success-actions">
+          <a class="btn btn--primary" id="successThanksLink" href="/thanks">
+            View confirmation
+          </a>
+          <button class="btn btn--ghost" type="button" id="bookAnother">
+            Book another consultation
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= TESTIMONIALS ================= -->
+<section class="section" id="testimonials">
+  <div class="shell">
+    <header class="section__head reveal">
+      <p class="section__eyebrow">Client stories</p>
+      <h2 class="section__title">People we've helped get there</h2>
+    </header>
+
+    <div class="carousel reveal" id="carousel">
+      <div class="carousel__viewport" id="carouselViewport"
+           aria-live="off" aria-roledescription="carousel">
+        <div class="carousel__track" id="carouselTrack">
+          {{ raw_testimonials }}
+        </div>
+      </div>
+      <div class="carousel__controls">
+        <button class="carousel__btn" type="button" id="carouselPrev"
+                aria-label="Previous testimonial">‹</button>
+        <div class="carousel__dots" id="carouselDots" role="tablist"
+             aria-label="Choose testimonial"></div>
+        <button class="carousel__btn" type="button" id="carouselNext"
+                aria-label="Next testimonial">›</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FAQ ================= -->
+<section class="section section--tint" id="faq">
+  <div class="shell shell--narrow">
+    <header class="section__head reveal">
+      <p class="section__eyebrow">Questions</p>
+      <h2 class="section__title">Things people ask us first</h2>
+    </header>
+    <div class="faqs">
+      {{ raw_faqs }}
+    </div>
+  </div>
+</section>
+
+<!-- ================= CONTACT / ENQUIRY ================= -->
+<section class="section" id="contact">
+  <div class="shell">
+    <div class="contact">
+      <div class="contact__intro reveal">
+        <p class="section__eyebrow">Get in touch</p>
+        <h2 class="section__title">Not ready to book? Just ask.</h2>
+        <p class="section__lede">
+          Send us a question and a consultant will reply within one business day.
+          No obligation, no sales pressure.
+        </p>
+
+        <ul class="contact__list">
+          <li>
+            <span class="contact__icon" aria-hidden="true">✉</span>
+            <span>
+              <small>Email</small>
+              <a href="mailto:{{ contact_email }}">{{ contact_email }}</a>
+            </span>
+          </li>
+          <li>
+            <span class="contact__icon" aria-hidden="true">☎</span>
+            <span>
+              <small>Phone</small>
+              <a href="tel:{{ contact_phone_href }}">{{ contact_phone }}</a>
+            </span>
+          </li>
+          <li>
+            <span class="contact__icon" aria-hidden="true">⌖</span>
+            <span>
+              <small>Office</small>
+              {{ office_address }}
+            </span>
+          </li>
+        </ul>
+
+        <div class="hours">
+          <p class="hours__title">Opening hours <small>{{ timezone_label }}</small></p>
+          {{ raw_opening_hours }}
+        </div>
+      </div>
+
+      <form class="contact__form reveal" id="enquiryForm" novalidate>
+        <h3 class="contact__form-title">Send an enquiry</h3>
+
+        <div class="honeypot" aria-hidden="true">
+          <label for="hp_website2">Website</label>
+          <input type="text" id="hp_website2" name="website" tabindex="-1"
+                 autocomplete="off">
+        </div>
+
+        <div class="field">
+          <label for="eq_name">Your name <span class="req">*</span></label>
+          <input type="text" id="eq_name" name="full_name" required
+                 autocomplete="name">
+          <p class="field-error" data-error-for="full_name"></p>
+        </div>
+
+        <div class="field">
+          <label for="eq_email">Email <span class="req">*</span></label>
+          <input type="email" id="eq_email" name="email" required
+                 autocomplete="email" inputmode="email">
+          <p class="field-error" data-error-for="email"></p>
+        </div>
+
+        <div class="field">
+          <label for="eq_phone">Phone <small>(optional)</small></label>
+          <input type="tel" id="eq_phone" name="phone" autocomplete="tel"
+                 inputmode="tel">
+          <p class="field-error" data-error-for="phone"></p>
+        </div>
+
+        <div class="field">
+          <label for="eq_topic">Topic</label>
+          <select id="eq_topic" name="topic">
+            {{ raw_topic_options }}
+          </select>
+          <p class="field-error" data-error-for="topic"></p>
+        </div>
+
+        <div class="field">
+          <label for="eq_message">Your question <span class="req">*</span></label>
+          <textarea id="eq_message" name="message" rows="5" required
+                    placeholder="Tell us what you'd like to know…"></textarea>
+          <p class="field-error" data-error-for="message"></p>
+        </div>
+
+        <button class="btn btn--primary btn--block btn--lg" type="submit"
+                id="enquirySubmit">
+          <span class="btn__label">Send message</span>
+          <span class="btn__spinner" aria-hidden="true"></span>
+        </button>
+        <p class="form-error" id="enquiryFormError" role="alert"></p>
+        <p class="contact__form-note">
+          We reply within one business day. Your details stay private.
+        </p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ================= BOOKING LOOKUP ================= -->
+<section class="section section--tint" id="lookup">
+  <div class="shell shell--narrow">
+    <div class="lookup reveal">
+      <div>
+        <h2 class="lookup__title">Already booked with us?</h2>
+        <p class="lookup__text">
+          Enter your reference to check the status of your appointment.
+        </p>
+      </div>
+      <form class="lookup__form" id="lookupForm" novalidate>
+        <label class="sr-only" for="lookupRef">Booking reference</label>
+        <input type="text" id="lookupRef" name="reference" placeholder="VC-XXXX-XXXX"
+               autocomplete="off" spellcheck="false">
+        <button class="btn btn--primary" type="submit">Check status</button>
+      </form>
+      <div class="lookup__result" id="lookupResult" aria-live="polite"></div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer class="site-footer">
+  <div class="shell site-footer__inner">
+    <div class="site-footer__brand">
+      <strong>{{ brand_name }}</strong>
+      <p>{{ brand_tagline }}</p>
+      <p class="site-footer__address">{{ office_address }}</p>
+    </div>
+    <nav class="site-footer__nav" aria-label="Footer navigation">
+      <a href="#visas">Visa types</a>
+      <a href="#checker">Eligibility check</a>
+      <a href="#process">Our process</a>
+      <a href="#booking">Book a consultation</a>
+      <a href="#faq">FAQ</a>
+      <a href="/privacy">Privacy notice</a>
+    </nav>
+    <div class="site-footer__contact">
+      <a href="mailto:{{ contact_email }}">{{ contact_email }}</a>
+      <a href="tel:{{ contact_phone_href }}">{{ contact_phone }}</a>
+      <a class="site-footer__admin" href="/admin">Consultant login</a>
+    </div>
+  </div>
+  <div class="shell site-footer__legal">
+    <p>© {{ year }} {{ brand_name }}. Immigration advice only; we are not a
+       government body and cannot guarantee visa outcomes.</p>
+    <p>Processing times and requirements shown on this site are indicative and
+       subject to change by the Ukrainian authorities.</p>
+  </div>
+</footer>
+
+<!-- Toast host -->
+<div class="toasts" id="toasts" role="status" aria-live="polite"></div>
+
+<script id="bootData" type="application/json">{{ raw_boot }}</script>
+<script src="/static/js/app.js" defer></script>
+</body>
+</html>

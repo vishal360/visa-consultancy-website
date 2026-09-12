@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Enquiries — {{ brand_name }} dashboard</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="stylesheet" href="/static/css/styles.css">
+<link rel="stylesheet" href="/static/css/admin.css">
+<link rel="icon" href="/static/img/favicon.svg" type="image/svg+xml">
+</head>
+<body class="admin-body">
+
+<header class="admin-top">
+  <a class="admin-top__logo" href="/admin">
+    <img src="/static/img/favicon.svg" width="30" height="30" alt="">
+    <span>
+      <strong>{{ brand_name }}</strong>
+      <small>Consultant dashboard</small>
+    </span>
+  </a>
+  <nav class="admin-nav" aria-label="Dashboard sections">
+    <a href="/admin">Overview</a>
+    <a href="/admin/bookings">Bookings</a>
+    <a href="/admin/enquiries" class="is-current">Enquiries</a>
+    <a href="/" target="_blank" rel="noopener">View site ↗</a>
+  </nav>
+  <div class="admin-top__actions">
+    <button class="icon-btn" id="themeToggle" type="button"
+            aria-label="Switch colour theme">
+      <span class="icon-btn__sun" aria-hidden="true">☀</span>
+      <span class="icon-btn__moon" aria-hidden="true">☾</span>
+    </button>
+    <div class="admin-user">
+      <span class="admin-user__avatar" aria-hidden="true">{{ user_initial }}</span>
+      <span class="admin-user__meta">
+        <strong>{{ user_name }}</strong>
+        <small>{{ user_email }}</small>
+      </span>
+    </div>
+    <a class="btn btn--ghost btn--sm" href="/admin/logout">Sign out</a>
+  </div>
+</header>
+
+<main class="admin-main">
+  <div class="admin-head">
+    <div>
+      <h1 class="admin-title">Enquiries</h1>
+      <p class="admin-subtitle" id="resultCount">Loading…</p>
+    </div>
+  </div>
+
+  <section class="card">
+    <form class="filters" id="filters">
+      <div class="filters__search">
+        <label class="sr-only" for="q">Search enquiries</label>
+        <input type="search" id="q" name="q"
+               placeholder="Search name, email, message or reference…"
+               autocomplete="off">
+      </div>
+      <div class="filters__row">
+        <div class="field">
+          <label for="statusFilter">Status</label>
+          <select id="statusFilter" name="status">
+            <option value="all">All</option>
+            <option value="new">New</option>
+            <option value="in-progress">In progress</option>
+            <option value="answered">Answered</option>
+            <option value="closed">Closed</option>
+          </select>
+        </div>
+        <button class="btn btn--ghost btn--sm" type="reset" id="clearFilters">
+          Clear
+        </button>
+      </div>
+    </form>
+
+    <div id="enquiryList" class="enquiry-list">
+      <p class="table__loading">Loading enquiries…</p>
+    </div>
+
+    <nav class="pager" id="pager" aria-label="Pagination"></nav>
+  </section>
+</main>
+
+<div class="toasts" id="toasts" role="status" aria-live="polite"></div>
+
+<script id="bootData" type="application/json">{{ raw_boot }}</script>
+<script src="/static/js/admin.js" defer></script>
+</body>
+</html>

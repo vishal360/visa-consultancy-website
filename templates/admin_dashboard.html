@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Overview — {{ brand_name }} dashboard</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="stylesheet" href="/static/css/styles.css">
+<link rel="stylesheet" href="/static/css/admin.css">
+<link rel="icon" href="/static/img/favicon.svg" type="image/svg+xml">
+</head>
+<body class="admin-body">
+
+<header class="admin-top">
+  <a class="admin-top__logo" href="/admin">
+    <img src="/static/img/favicon.svg" width="30" height="30" alt="">
+    <span>
+      <strong>{{ brand_name }}</strong>
+      <small>Consultant dashboard</small>
+    </span>
+  </a>
+
+  <nav class="admin-nav" aria-label="Dashboard sections">
+    <a href="/admin" class="is-current">Overview</a>
+    <a href="/admin/bookings">Bookings</a>
+    <a href="/admin/enquiries">Enquiries</a>
+    <a href="/" target="_blank" rel="noopener">View site ↗</a>
+  </nav>
+
+  <div class="admin-top__actions">
+    <button class="icon-btn" id="themeToggle" type="button"
+            aria-label="Switch colour theme">
+      <span class="icon-btn__sun" aria-hidden="true">☀</span>
+      <span class="icon-btn__moon" aria-hidden="true">☾</span>
+    </button>
+    <div class="admin-user">
+      <span class="admin-user__avatar" aria-hidden="true">{{ user_initial }}</span>
+      <span class="admin-user__meta">
+        <strong>{{ user_name }}</strong>
+        <small>{{ user_email }}</small>
+      </span>
+    </div>
+    <a class="btn btn--ghost btn--sm" href="/admin/logout">Sign out</a>
+  </div>
+</header>
+
+<main class="admin-main">
+
+  <div class="admin-head">
+    <div>
+      <h1 class="admin-title">Overview</h1>
+      <p class="admin-subtitle">
+        Times shown in {{ timezone_label }} · booking notifications go to your inbox
+      </p>
+    </div>
+    <div class="admin-head__actions">
+      <button class="btn btn--ghost btn--sm" type="button" id="testEmailBtn">
+        Send test email
+      </button>
+      <a class="btn btn--primary btn--sm" href="/admin/export.csv">
+        Export CSV
+      </a>
+    </div>
+  </div>
+
+  <!-- Stat cards -->
+  <section class="stat-grid" aria-label="Key numbers">
+    {{ raw_stat_cards }}
+  </section>
+
+  <div class="admin-cols">
+    <!-- Upcoming consultations -->
+    <section class="card">
+      <header class="card__head">
+        <h2 class="card__title">Next consultations</h2>
+        <a class="card__link" href="/admin/bookings?status=live">View all →</a>
+      </header>
+      <div class="table-wrap">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">When</th>
+              <th scope="col">Client</th>
+              <th scope="col">Service</th>
+              <th scope="col">Status</th>
+              <th scope="col"><span class="sr-only">Actions</span></th>
+            </tr>
+          </thead>
+          <tbody>
+            {{ raw_upcoming }}
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Side column -->
+    <div class="admin-side">
+      <section class="card">
+        <header class="card__head">
+          <h2 class="card__title">Email delivery</h2>
+        </header>
+        <div class="card__body">
+          <p class="mail-mode">{{ mail_mode }}</p>
+          <div class="mail-stats">
+            <div><span>{{ emails_sent }}</span><small>Sent</small></div>
+            <div><span>{{ emails_queued }}</span><small>Queued</small></div>
+            <div><span>{{ emails_failed }}</span><small>Failed</small></div>
+          </div>
+          <p class="card__note" id="mailNote">
+            Queued messages are written to <code>data/outbox/</code> as .eml
+            files. Set <code>SMTP_HOST</code> in <code>.env</code> to send real
+            email.
+          </p>
+        </div>
+      </section>
+
+      <section class="card">
+        <header class="card__head">
+          <h2 class="card__title">Most requested</h2>
+        </header>
+        <div class="card__body">
+          {{ raw_service_breakdown }}
+        </div>
+      </section>
+
+      <section class="card">
+        <header class="card__head">
+          <h2 class="card__title">Recent activity</h2>
+        </header>
+        <div class="card__body">
+          <ul class="feed">
+            {{ raw_activity }}
+          </ul>
+        </div>
+      </section>
+
+      <section class="card">
+        <header class="card__head">
+          <h2 class="card__title">Block time off</h2>
+        </header>
+        <div class="card__body">
+          <p class="card__note">
+            Close a whole day, or a single slot, so the website stops offering it.
+          </p>
+          <form class="block-form" id="blockForm">
+            <div class="field">
+              <label for="blockDate">Date</label>
+              <input type="date" id="blockDate" name="date" required>
+            </div>
+            <div class="field">
+              <label for="blockTime">Time <small>(blank = whole day)</small></label>
+              <input type="time" id="blockTime" name="time" step="900">
+            </div>
+            <div class="field">
+              <label for="blockReason">Reason</label>
+              <input type="text" id="blockReason" name="reason"
+                     placeholder="e.g. Annual leave" maxlength="200">
+            </div>
+            <button class="btn btn--ghost btn--sm btn--block" type="submit">
+              Block this time
+            </button>
+          </form>
+          <ul class="blocked-list" id="blockedList"></ul>
+        </div>
+      </section>
+    </div>
+  </div>
+</main>
+
+<!-- Booking detail drawer -->
+<div class="drawer" id="drawer" hidden>
+  <div class="drawer__backdrop" data-close-drawer></div>
+  <aside class="drawer__panel" role="dialog" aria-modal="true"
+         aria-labelledby="drawerTitle" tabindex="-1">
+    <header class="drawer__head">
+      <div>
+        <p class="drawer__eyebrow" id="drawerRef">—</p>
+        <h2 class="drawer__title" id="drawerTitle">Booking</h2>
+      </div>
+      <button class="drawer__close" type="button" data-close-drawer
+              aria-label="Close">✕</button>
+    </header>
+    <div class="drawer__body" id="drawerBody"></div>
+  </aside>
+</div>
+
+<div class="toasts" id="toasts" role="status" aria-live="polite"></div>
+
+<script id="bootData" type="application/json">{{ raw_boot }}</script>
+<script src="/static/js/admin.js" defer></script>
+</body>
+</html>

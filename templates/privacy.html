@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy notice — {{ brand_name }}</title>
+<link rel="stylesheet" href="/static/css/styles.css">
+<link rel="icon" href="/static/img/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="shell site-header__inner">
+    <a class="logo" href="/" aria-label="{{ brand_name }} home">
+      <span class="logo__mark" aria-hidden="true">
+        <img src="/static/img/favicon.svg" width="32" height="32" alt="">
+      </span>
+      <span class="logo__text">
+        <strong>{{ brand_name }}</strong>
+        <small>{{ brand_tagline }}</small>
+      </span>
+    </a>
+    <div class="site-header__actions">
+      <a class="btn btn--ghost btn--sm" href="/">Back to site</a>
+    </div>
+  </div>
+</header>
+
+<main class="section">
+  <div class="shell shell--narrow">
+    <header class="section__head">
+      <p class="section__eyebrow">Legal</p>
+      <h1 class="section__title">Privacy notice</h1>
+      <p class="section__lede">
+        How {{ brand_name }} collects, uses and protects your personal data.
+      </p>
+    </header>
+
+    <div class="faqs">
+      <details class="faq" open>
+        <summary><span>What we collect</span><span class="faq__sign" aria-hidden="true"></span></summary>
+        <div class="faq__body"><p>
+          When you book a consultation or send an enquiry we collect your name,
+          email address, phone number, nationality, the service you selected,
+          your chosen appointment slot and anything you write in the message
+          field. We also record the IP address the submission came from, purely
+          to detect abuse of the booking form.
+        </p></div>
+      </details>
+
+      <details class="faq">
+        <summary><span>Why we collect it</span><span class="faq__sign" aria-hidden="true"></span></summary>
+        <div class="faq__body"><p>
+          We use your details solely to arrange and deliver the consultation you
+          requested, to contact you about your appointment, and to advise on your
+          visa application. We do not use your data for advertising, we do not
+          sell it, and we do not share it with third parties beyond the
+          authorities directly handling your application.
+        </p></div>
+      </details>
+
+      <details class="faq">
+        <summary><span>How long we keep it</span><span class="faq__sign" aria-hidden="true"></span></summary>
+        <div class="faq__body"><p>
+          Booking and enquiry records are retained for as long as needed to
+          provide the service and to meet our professional record-keeping
+          obligations, after which they are deleted. You may request earlier
+          deletion at any time.
+        </p></div>
+      </details>
+
+      <details class="faq">
+        <summary><span>Where it is stored</span><span class="faq__sign" aria-hidden="true"></span></summary>
+        <div class="faq__body"><p>
+          Submissions are stored in our own database on infrastructure we
+          control, and notification emails are delivered through our mail
+          provider. Access to the consultant dashboard is restricted to
+          authenticated staff accounts.
+        </p></div>
+      </details>
+
+      <details class="faq">
+        <summary><span>Your rights</span><span class="faq__sign" aria-hidden="true"></span></summary>
+        <div class="faq__body"><p>
+          You have the right to ask for a copy of the data we hold about you, to
+          have inaccurate details corrected, to withdraw your consent, and to
+          request erasure of your record. To exercise any of these, email
+          <a href="mailto:{{ contact_email }}">{{ contact_email }}</a> and we
+          will respond within 30 days.
+        </p></div>
+      </details>
+
+      <details class="faq">
+        <summary><span>Cookies</span><span class="faq__sign" aria-hidden="true"></span></summary>
+        <div class="faq__body"><p>
+          The public website sets no tracking or advertising cookies. Your theme
+          preference is saved in your browser's local storage, which never leaves
+          your device. A single session cookie is used only on the staff
+          dashboard, to keep consultants signed in.
+        </p></div>
+      </details>
+
+      <details class="faq">
+        <summary><span>Contact</span><span class="faq__sign" aria-hidden="true"></span></summary>
+        <div class="faq__body"><p>
+          Questions about this notice can be sent to
+          <a href="mailto:{{ contact_email }}">{{ contact_email }}</a>, by phone
+          on <a href="tel:{{ contact_phone_href }}">{{ contact_phone }}</a>, or
+          by post to {{ office_address }}.
+        </p></div>
+      </details>
+    </div>
+
+    <p class="section__disclaimer">
+      This notice is a template provided as part of the website and is not legal
+      advice. Have it reviewed against the data-protection law that applies to
+      your business before publishing.
+    </p>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="shell site-footer__legal" style="border-top:0">
+    <p>© {{ year }} {{ brand_name }} · {{ office_address }}</p>
+  </div>
+</footer>
+
+</body>
+</html>

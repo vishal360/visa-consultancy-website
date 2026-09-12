@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Booking confirmed — {{ brand_name }}</title>
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="/static/css/styles.css">
+<link rel="icon" href="/static/img/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="shell site-header__inner">
+    <a class="logo" href="/" aria-label="{{ brand_name }} home">
+      <span class="logo__mark" aria-hidden="true">
+        <img src="/static/img/favicon.svg" width="32" height="32" alt="">
+      </span>
+      <span class="logo__text">
+        <strong>{{ brand_name }}</strong>
+        <small>{{ brand_tagline }}</small>
+      </span>
+    </a>
+    <div class="site-header__actions">
+      <a class="btn btn--ghost btn--sm" href="/">Back to site</a>
+    </div>
+  </div>
+</header>
+
+<main class="section">
+  <div class="shell shell--narrow">
+    <div class="booking" style="padding:0">
+      <div class="booking__success" style="display:block">
+        <div class="booking__success-icon" aria-hidden="true">
+          <svg viewBox="0 0 52 52" width="72" height="72">
+            <circle class="tick__circle" cx="26" cy="26" r="24" fill="none"
+                    stroke="currentColor" stroke-width="2.5"/>
+            <path class="tick__check" fill="none" stroke="currentColor"
+                  stroke-width="4" stroke-linecap="round" d="M14 27l8.5 8.5L38 19"/>
+          </svg>
+        </div>
+
+        <h1 class="booking__success-title"
+            style="font-size:clamp(26px,4vw,38px);margin:22px 0 10px">
+          Your consultation is reserved
+        </h1>
+        <p class="booking__success-ref">
+          Reference <strong>{{ reference }}</strong>
+        </p>
+
+        <dl class="booking__success-detail">
+          <div><dt>Appointment</dt><dd>{{ details }}</dd></div>
+          <div><dt>Service</dt><dd>{{ summary }}</dd></div>
+          <div><dt>Status</dt><dd>Awaiting confirmation</dd></div>
+        </dl>
+
+        <p class="booking__success-note">
+          We've emailed the details to <strong>{{ client_email }}</strong>. A
+          consultant will confirm your slot shortly — if you don't see anything
+          within a few minutes, please check your spam folder.
+        </p>
+
+        <div class="booking__success-detail" style="text-align:left">
+          <p style="font-weight:700;margin-bottom:10px">Before your session</p>
+          <ul class="visa-card__list">
+            <li>Have your passport bio-page to hand</li>
+            <li>Gather any previous Ukrainian visas or refusal notices</li>
+            <li>Note down your intended travel dates</li>
+            <li>Prepare any employer, university or family sponsor details</li>
+          </ul>
+        </div>
+
+        <p class="booking__success-note">
+          Need to reschedule or cancel? Reply to your confirmation email or call
+          <a href="tel:{{ contact_phone_href }}">{{ contact_phone }}</a> quoting
+          your reference.
+        </p>
+
+        <div class="booking__success-actions">
+          <a class="btn btn--primary" href="/">Back to homepage</a>
+          <a class="btn btn--ghost" href="mailto:{{ contact_email }}?subject=Booking%20{{ reference }}">
+            Email us about this booking
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="shell site-footer__legal" style="border-top:0">
+    <p>© {{ year }} {{ brand_name }} · {{ office_address }}</p>
+    <p>Immigration advice only; we are not a government body and cannot
+       guarantee visa outcomes.</p>
+  </div>
+</footer>
+
+</body>
+</html>

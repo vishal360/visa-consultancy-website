@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Consultant sign in — {{ brand_name }}</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="stylesheet" href="/static/css/styles.css">
+<link rel="stylesheet" href="/static/css/admin.css">
+<link rel="icon" href="/static/img/favicon.svg" type="image/svg+xml">
+</head>
+<body class="login-body">
+
+<div class="login">
+  <div class="login__aside" aria-hidden="true">
+    <span class="login__orb login__orb--1"></span>
+    <span class="login__orb login__orb--2"></span>
+    <div class="login__aside-content">
+      <span class="flag"><i></i><i></i></span>
+      <h2>{{ brand_name }}</h2>
+      <p>Consultant dashboard</p>
+      <ul>
+        <li>Every booking the website takes, in one queue</li>
+        <li>Confirm, reschedule or cancel with one click</li>
+        <li>Clients emailed automatically on every change</li>
+        <li>Export the whole pipeline to CSV</li>
+      </ul>
+    </div>
+  </div>
+
+  <main class="login__panel">
+    <a class="login__logo" href="/">
+      <img src="/static/img/favicon.svg" width="38" height="38" alt="">
+      <span>{{ brand_name }}</span>
+    </a>
+
+    <h1 class="login__title">Sign in</h1>
+    <p class="login__subtitle">
+      Access the consultation dashboard and enquiry inbox.
+    </p>
+
+    <form class="login__form" method="post" action="/admin/login" autocomplete="on">
+      <input type="hidden" name="next" value="{{ next_path }}">
+
+      <div class="field">
+        <label for="email">Email address</label>
+        <input type="email" id="email" name="email" value="{{ email }}"
+               required autocomplete="username" autofocus
+               placeholder="you@example.com">
+      </div>
+
+      <div class="field">
+        <label for="password">Password</label>
+        <div class="password-wrap">
+          <input type="password" id="password" name="password" required
+                 autocomplete="current-password" placeholder="••••••••••">
+          <button class="password-toggle" type="button" id="pwToggle"
+                  aria-label="Show password">Show</button>
+        </div>
+      </div>
+
+      <p class="login__error" id="loginError">{{ error }}</p>
+
+      <button class="btn btn--primary btn--block btn--lg" type="submit">
+        Sign in
+      </button>
+    </form>
+
+    <p class="login__hint">
+      <strong>Email delivery:</strong> {{ mail_hint }}
+    </p>
+
+    <p class="login__foot">
+      <a href="/">← Back to the public website</a>
+    </p>
+    <p class="login__legal">
+      Forgotten your password? Run
+      <code>python3 run.py set-password</code> on the server.
+    </p>
+  </main>
+</div>
+
+<script>
+  // Hide the error banner unless the server actually rendered a message.
+  (function () {
+    var box = document.getElementById('loginError');
+    if (box && !box.textContent.trim()) box.style.display = 'none';
+
+    var toggle = document.getElementById('pwToggle');
+    var input = document.getElementById('password');
+    toggle && toggle.addEventListener('click', function () {
+      var hidden = input.type === 'password';
+      input.type = hidden ? 'text' : 'password';
+      toggle.textContent = hidden ? 'Hide' : 'Show';
+      toggle.setAttribute('aria-label', hidden ? 'Hide password' : 'Show password');
+      input.focus();
+    });
+  })();
+</script>
+</body>
+</html>

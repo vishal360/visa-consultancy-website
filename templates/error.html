@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ status }} — {{ title }}</title>
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="/static/css/styles.css">
+<link rel="icon" href="/static/img/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+
+<main class="section" style="min-height:100vh;display:grid;place-items:center">
+  <div class="shell shell--narrow" style="text-align:center">
+    <p class="section__eyebrow" style="justify-content:center">Error {{ status }}</p>
+    <h1 class="section__title" style="font-size:clamp(32px,6vw,58px)">{{ title }}</h1>
+    <p class="section__lede" style="margin-inline:auto;max-width:52ch">{{ message }}</p>
+    <div class="hero__actions" style="justify-content:center;margin-top:34px">
+      <a class="btn btn--primary btn--lg" href="/">Back to homepage</a>
+      <a class="btn btn--outline btn--lg" href="/#booking">Book a consultation</a>
+    </div>
+    <p style="margin-top:40px;font-size:13px;color:var(--text-dim)">
+      {{ brand_name }} · © {{ year }}
+    </p>
+  </div>
+</main>
+
+</body>
+</html>
