@@ -1,0 +1,55 @@
+# Render blueprint. In the Render dashboard: New → Blueprint → pick this repo.
+#
+# The disk is the important part: without it, data/app.db lives on an ephemeral
+# filesystem and every redeploy would delete all your bookings.
+services:
+  - type: web
+    name: visa-consultancy
+    runtime: python
+    plan: starter # a paid plan is required for a persistent disk
+    region: frankfurt # closest to Ukraine; also: oregon, ohio, virginia, singapore
+    branch: main
+
+    # No dependencies to install, so this is a no-op that just satisfies Render.
+    buildCommand: "python3 --version"
+    startCommand: "python3 run.py"
+
+    healthCheckPath: /
+
+    disk:
+      name: data
+      mountPath: /opt/render/project/src/data
+      sizeGB: 1
+
+    envVars:
+      # --- set these yourself ---
+      - key: SECRET_KEY
+        generateValue: true # Render generates a strong random value
+      - key: ADMIN_EMAIL
+        sync: false # prompts you in the dashboard
+      - key: ADMIN_PASSWORD
+        sync: false
+      - key: SMTP_HOST
+        sync: false
+      - key: SMTP_USER
+        sync: false
+      - key: SMTP_PASSWORD
+        sync: false
+      - key: MAIL_FROM
+        sync: false
+      - key: NOTIFY_EMAILS
+        sync: false
+      - key: BASE_URL
+        sync: false # e.g. https://visa-consultancy.onrender.com
+
+      # --- production hardening ---
+      - key: DEBUG
+        value: "false"
+      - key: SECURE_COOKIES
+        value: "true"
+      - key: SMTP_PORT
+        value: "587"
+      - key: SMTP_USE_TLS
+        value: "true"
+      - key: PYTHON_VERSION
+        value: "3.12.6"

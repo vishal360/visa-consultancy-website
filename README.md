@@ -231,6 +231,15 @@ and session expiry. It fails the build if the server logged any traceback.
 
 ---
 
+## Deploying
+
+See **[DEPLOY.md](DEPLOY.md)** for step-by-step instructions covering Render,
+Fly.io/Railway and a plain VPS, plus a pre-launch checklist.
+
+Two requirements to keep in mind wherever you host it: the app needs a
+**long-running process** (it is not serverless), and `data/` must be on a
+**persistent volume** or you will lose bookings on every redeploy.
+
 ## Notes before going live
 
 - **Change `SECRET_KEY`, `ADMIN_PASSWORD` and the contact details.** The
