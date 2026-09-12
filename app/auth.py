@@ -10,6 +10,7 @@ from __future__ import annotations
 import hashlib
 import hmac
 import secrets
+import sqlite3
 from datetime import datetime, timedelta, timezone
 
 from . import db
@@ -90,6 +91,36 @@ def set_admin_password(email: str, password: str) -> bool:
     cur = db.execute(
         "UPDATE admin_users SET password_hash = ? WHERE email = ?",
         (hash_password(password), email.strip().lower()),
+    )
+    return cur.rowcount > 0
+
+
+def change_admin_email(current: str, new_email: str) -> bool:
+    """
+    Rename the address a user signs in with.
+
+    Any active sessions are dropped, so the change takes effect immediately
+    everywhere rather than lingering until the old cookie expires.
+    """
+    current = current.strip().lower()
+    new_email = new_email.strip().lower()
+    user = get_admin_by_email(current)
+    if user is None:
+        return False
+    try:
+        db.execute(
+            "UPDATE admin_users SET email = ? WHERE id = ?", (new_email, user["id"])
+        )
+    except sqlite3.IntegrityError:
+        return False  # the new address is already taken
+    db.execute("DELETE FROM sessions WHERE user_id = ?", (user["id"],))
+    return True
+
+
+def delete_admin(email: str) -> bool:
+    """Remove a dashboard user. Caller is responsible for not orphaning access."""
+    cur = db.execute(
+        "DELETE FROM admin_users WHERE email = ?", (email.strip().lower(),)
     )
     return cur.rowcount > 0
 

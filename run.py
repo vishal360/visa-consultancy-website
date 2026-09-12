@@ -4,9 +4,11 @@ Entry point and management CLI.
 
     python3 run.py                      start the web server
     python3 run.py serve                same thing, explicitly
-    python3 run.py create-admin         add a dashboard user
+    python3 run.py list-admins          show who can sign in
     python3 run.py set-password         change a user's password
-    python3 run.py list-admins          show dashboard users
+    python3 run.py change-email         change a user's sign-in email
+    python3 run.py create-admin         add another dashboard user
+    python3 run.py delete-admin         remove a dashboard user
     python3 run.py test-email [addr]    verify your email configuration
     python3 run.py seed-demo [n]        insert sample bookings to explore the UI
     python3 run.py stats                print a summary of the database
@@ -83,6 +85,62 @@ def cmd_set_password(args: list[str]) -> int:
         (email,),
     )
     print(f"Password updated for {email}. Existing sessions were signed out.")
+    return 0
+
+
+def cmd_change_email(args: list[str]) -> int:
+    """Change the email address an existing dashboard user signs in with."""
+    db.get_connection()
+    current = (args[0] if args else input("Current email: ")).strip().lower()
+    user = auth.get_admin_by_email(current)
+    if user is None:
+        print(f"No admin found with email {current}.")
+        print("Run `python3 run.py list-admins` to see who exists.")
+        return 1
+
+    new_email = (args[1] if len(args) > 1 else input("New email: ")).strip().lower()
+    if "@" not in new_email:
+        print("That does not look like an email address.")
+        return 1
+    if new_email == current:
+        print("That is already the current email address.")
+        return 0
+    if auth.get_admin_by_email(new_email):
+        print(f"Another admin already uses {new_email}.")
+        return 1
+
+    if not auth.change_admin_email(current, new_email):
+        print("Could not update the email address.")
+        return 1
+    print(f"Sign-in email changed from {current} to {new_email}.")
+    print("Existing sessions were signed out.")
+    if current == settings.contact_email:
+        print(
+            "\nNote: CONTACT_EMAIL in your .env is still "
+            f"{settings.contact_email}, so booking notifications keep going "
+            "there. Update .env too if you want those to move."
+        )
+    return 0
+
+
+def cmd_delete_admin(args: list[str]) -> int:
+    """Remove a dashboard user, refusing to leave you locked out."""
+    db.get_connection()
+    email = (args[0] if args else input("Email to delete: ")).strip().lower()
+    user = auth.get_admin_by_email(email)
+    if user is None:
+        print(f"No admin found with email {email}.")
+        return 1
+    if auth.count_admins() <= 1:
+        print("This is the only dashboard user; deleting it would lock you out.")
+        print("Create another admin first: python3 run.py create-admin")
+        return 1
+    if "--yes" not in args:
+        print(f"This permanently removes the dashboard user {email}.")
+        print(f"Re-run to confirm: python3 run.py delete-admin {email} --yes")
+        return 1
+    auth.delete_admin(email)
+    print(f"Deleted dashboard user {email}.")
     return 0
 
 
@@ -318,6 +376,8 @@ COMMANDS = {
     "run": cmd_serve,
     "create-admin": cmd_create_admin,
     "set-password": cmd_set_password,
+    "change-email": cmd_change_email,
+    "delete-admin": cmd_delete_admin,
     "list-admins": cmd_list_admins,
     "test-email": cmd_test_email,
     "seed-demo": cmd_seed_demo,

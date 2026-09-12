@@ -167,14 +167,34 @@ SESSION_TTL_HOURS=12
 
 ```bash
 python3 run.py                    # start the server
-python3 run.py create-admin       # add another dashboard user
+python3 run.py list-admins        # show who can sign in
 python3 run.py set-password       # change a password (signs that user out everywhere)
-python3 run.py list-admins        # list dashboard users
+python3 run.py change-email       # change a sign-in email
+python3 run.py create-admin       # add another dashboard user
+python3 run.py delete-admin       # remove a dashboard user
 python3 run.py test-email [addr]  # verify email configuration
 python3 run.py seed-demo [n]      # insert n sample bookings (default 12)
 python3 run.py stats              # print a database summary
 python3 run.py reset --yes        # wipe all data and start over
 ```
+
+### Changing the dashboard login
+
+`ADMIN_EMAIL` and `ADMIN_PASSWORD` in `.env` are only read **once**, on the very
+first run, to create the initial account. Editing them afterwards has no effect —
+use the commands instead:
+
+```bash
+python3 run.py change-email old@example.com new@example.com
+python3 run.py set-password new@example.com     # prompts, never echoes
+```
+
+Both drop any active sessions, so the change applies immediately. Changing the
+sign-in email does **not** move where booking notifications are sent — that is
+`NOTIFY_EMAILS` in `.env`.
+
+Locked out entirely? Create a fresh account on the server with
+`python3 run.py create-admin`, then delete the old one.
 
 ---
 
