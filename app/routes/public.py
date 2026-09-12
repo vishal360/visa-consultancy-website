@@ -8,7 +8,7 @@ from datetime import datetime
 
 from .. import db, mailer, scheduling, validation
 from ..config import settings
-from ..content import FAQS, PROCESS_STEPS, STATS, TESTIMONIALS, VISA_TYPES, WIZARD
+from ..content import FAQS, PROCESS_STEPS, TESTIMONIALS, TRUST_BADGES, VISA_TYPES, WIZARD
 from ..web import (
     Request,
     Response,
@@ -46,7 +46,6 @@ def _boot_payload() -> dict:
                 "id": s["id"],
                 "name": s["name"],
                 "duration": s["duration"],
-                "price": s["price"],
                 "summary": s["summary"],
             }
             for s in settings.SERVICES
@@ -79,7 +78,6 @@ def _page_context() -> dict:
         "contact_phone_href": "".join(
             ch for ch in settings.contact_phone if ch.isdigit() or ch == "+"
         ),
-        "office_address": settings.office_address,
         "timezone_label": settings.timezone_label,
         "year": year,
     }
@@ -97,7 +95,7 @@ def home(request: Request) -> Response:
         raw_boot=json_for_script(_boot_payload()),
         raw_visa_cards=_render_visa_cards(),
         raw_process_steps=_render_process_steps(),
-        raw_stats=_render_stats(),
+        raw_trust_badges=_render_trust_badges(),
         raw_testimonials=_render_testimonials(),
         raw_faqs=_render_faqs(),
         raw_service_options=_render_service_options(),
@@ -430,15 +428,11 @@ def _render_process_steps() -> str:
     return "\n".join(steps)
 
 
-def _render_stats() -> str:
+def _render_trust_badges() -> str:
     return "\n".join(
         f"""
-<div class="stat reveal" style="--delay:{index * 70}ms">
-  <span class="stat__value" data-count-to="{_e(stat['value'])}"
-        data-suffix="{_e(stat['suffix'])}">0{_e(stat['suffix'])}</span>
-  <span class="stat__label">{_e(stat['label'])}</span>
-</div>"""
-        for index, stat in enumerate(STATS)
+<li><span aria-hidden="true">{badge['icon']}</span> {_e(badge['label'])}</li>"""
+        for badge in TRUST_BADGES
     )
 
 
@@ -486,7 +480,7 @@ def _render_service_options() -> str:
     <span class="option-card__title">{_e(service['name'])}</span>
     <span class="option-card__summary">{_e(service['summary'])}</span>
     <span class="option-card__meta">
-      <span>{service['duration']} min</span><span>{_e(service['price'])}</span>
+      <span>{service['duration']} min</span><span>Fee quoted on the call</span>
     </span>
   </span>
 </label>"""
@@ -495,7 +489,7 @@ def _render_service_options() -> str:
 
 
 def _render_mode_options() -> str:
-    icons = {"video": "🎥", "phone": "📞", "office": "🏢"}
+    icons = {"video": "🎥", "phone": "📞"}
     return "\n".join(
         f"""
 <label class="pill-option">

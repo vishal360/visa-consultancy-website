@@ -233,7 +233,7 @@ PROCESS_STEPS: list[dict] = [
         "title": "Free eligibility check",
         "text": (
             "Answer a few questions in our checker, or book a short orientation "
-            "call. We tell you honestly which route fits and what it costs."
+            "call. We tell you honestly which route fits your situation."
         ),
         "duration": "15 minutes",
     },
@@ -271,29 +271,32 @@ PROCESS_STEPS: list[dict] = [
     },
 ]
 
-STATS: list[dict] = [
-    {"value": "2400", "suffix": "+", "label": "Applications handled"},
-    {"value": "96", "suffix": "%", "label": "Approval rate"},
-    {"value": "38", "suffix": "", "label": "Nationalities served"},
-    {"value": "11", "suffix": " yrs", "label": "In Ukrainian immigration law"},
-]
-
 TESTIMONIALS: list[dict] = [
     {
-        "name": "Adaeze O.",
-        "initials": "AO",
-        "detail": "Medical student · Lagos → Kharkiv",
+        "name": "Priya S.",
+        "initials": "PS",
+        "detail": "Family reunification · Mumbai → Lviv",
+        "rating": 5,
+        "text": (
+            "Clear answers and no false promises. They told me one route would "
+            "not work for my case, which saved me months of wasted effort."
+        ),
+    },
+    {
+        "name": "Rohit M.",
+        "initials": "RM",
+        "detail": "Medical student · Pune → Kharkiv",
         "rating": 5,
         "text": (
             "My first application was refused for missing legalisation. They "
-            "spotted it in ten minutes, rebuilt the file and I had my student "
+            "spotted it in ten minutes, rebuilt the file, and I had my student "
             "visa five weeks later."
         ),
     },
     {
-        "name": "Martin K.",
-        "initials": "MK",
-        "detail": "IT contractor · Berlin → Kyiv",
+        "name": "Aisha K.",
+        "initials": "AK",
+        "detail": "Work permit · Hyderabad → Kyiv",
         "rating": 5,
         "text": (
             "The work permit process looked impossible from the outside. They "
@@ -301,33 +304,13 @@ TESTIMONIALS: list[dict] = [
         ),
     },
     {
-        "name": "Priya S.",
-        "initials": "PS",
-        "detail": "Family reunification · Mumbai → Lviv",
-        "rating": 5,
-        "text": (
-            "Clear answers, fixed fees and no false promises. They told me one "
-            "route would not work, which saved me months."
-        ),
-    },
-    {
-        "name": "Tomasz W.",
-        "initials": "TW",
-        "detail": "Founder · Warsaw → Odesa",
+        "name": "Vikram N.",
+        "initials": "VN",
+        "detail": "Business route · Ahmedabad → Odesa",
         "rating": 4,
         "text": (
             "Registered my company and sorted investor residency in under two "
-            "months. The document checklist alone was worth the fee."
-        ),
-    },
-    {
-        "name": "Amina B.",
-        "initials": "AB",
-        "detail": "Tourist visa · Istanbul → Kyiv",
-        "rating": 5,
-        "text": (
-            "Booked a consultation on a Sunday evening and had a reply first "
-            "thing Monday. Simple, fast and genuinely helpful."
+            "months. The document checklist alone was worth it."
         ),
     },
 ]
@@ -360,8 +343,9 @@ FAQS: list[dict] = [
             "A consultant reviews your passport history, purpose of travel and "
             "any previous refusals, then confirms the correct visa category. "
             "You leave with a written checklist tailored to your case, a "
-            "realistic timeline and a fixed quote. Sessions run 45–60 minutes "
-            "by video, phone or at our Kyiv office."
+            "realistic timeline and a quote for handling it. Sessions run "
+            "45–60 minutes by video or phone, so you can join from anywhere in "
+            "India."
         ),
     },
     {
@@ -377,11 +361,11 @@ FAQS: list[dict] = [
     {
         "question": "What are your fees?",
         "answer": (
-            "Consultations are charged at the fixed rate shown next to each "
-            "service, and the orientation call is free. Full case handling is "
-            "quoted as a fixed fee after your consultation, so you always know "
-            "the total before committing. Government and consular fees are "
-            "separate and paid directly to the authorities."
+            "We do not publish a price list, because what a case actually needs "
+            "varies enormously. Fees are quoted on the call itself, once we "
+            "understand your situation — and you get a clear figure before you "
+            "commit to anything. Government and consular charges are separate "
+            "and paid directly to the authorities."
         ),
     },
     {
@@ -523,18 +507,17 @@ WIZARD: dict = {
             ),
         },
         "other": {
-            "title": "Free orientation call",
+            "title": "Orientation call",
             "text": (
-                "Your plans are still taking shape, so start with a free "
-                "30-minute call to narrow the options."
+                "Your plans are still taking shape, so start with a short "
+                "orientation call to narrow down the options."
             ),
         },
     },
 }
 
 TRUST_BADGES: list[dict] = [
-    {"icon": "⚖️", "label": "Licensed immigration advisers"},
-    {"icon": "🔒", "label": "GDPR-compliant data handling"},
-    {"icon": "💬", "label": "Support in 6 languages"},
-    {"icon": "📄", "label": "Fixed fees, quoted upfront"},
+    {"icon": "⚖️", "label": "Experienced immigration advisers"},
+    {"icon": "📄", "label": "Fees quoted on your call"},
+    {"icon": "💬", "label": "Reply within one business day"},
 ]

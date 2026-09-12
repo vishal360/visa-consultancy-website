@@ -104,8 +104,8 @@ check "bad month rejected" 400 "$(code "${BASE}/api/availability/month?year=2026
 # --------------------------------------------------------------------------
 say "Booking creation"
 BOOK=$(cat <<JSON
-{"full_name":"Olena Kovalenko","email":"olena.test@example.com",
- "phone":"+380 63 555 0110","nationality":"Ukrainian","service_id":"student",
+{"full_name":"Priya Sharma","email":"priya.test@example.com",
+ "phone":"+91 98200 55014","nationality":"Indian","service_id":"student",
  "mode_id":"video","applicants":"2","travel_timeline":"1-3-months",
  "slot_date":"${DAY}","slot_time":"${TIME}","consent":"true",
  "message":"Testing the booking flow end to end."}
@@ -145,7 +145,7 @@ contains "field errors returned" '"errors"' /tmp/e_inv.json
 # Honeypot: silently accepted, nothing stored.
 STATUS=$(curl -s -o /tmp/e_spam.json -w '%{http_code}' -X POST "${BASE}/api/bookings" \
   -H 'Content-Type: application/json' \
-  -d "{\"full_name\":\"Bot\",\"email\":\"bot@spam.com\",\"phone\":\"+380635550111\",\"service_id\":\"student\",\"slot_date\":\"${DAY}\",\"slot_time\":\"${TIME2}\",\"consent\":\"true\",\"website\":\"http://spam.example\"}")
+  -d "{\"full_name\":\"Bot\",\"email\":\"bot@spam.com\",\"phone\":\"+919820055014\",\"service_id\":\"student\",\"slot_date\":\"${DAY}\",\"slot_time\":\"${TIME2}\",\"consent\":\"true\",\"website\":\"http://spam.example\"}")
 check "honeypot accepted silently" 200 "$STATUS"
 contains "honeypot flagged" '"spam": true' /tmp/e_spam.json
 
@@ -153,7 +153,7 @@ contains "honeypot flagged" '"spam": true' /tmp/e_spam.json
 STATUS=$(curl -s -o /tmp/e_form.json -w '%{http_code}' -X POST "${BASE}/api/bookings" \
   --data-urlencode "full_name=Form Encoded" \
   --data-urlencode "email=form.test@example.com" \
-  --data-urlencode "phone=+380 63 555 0122" \
+  --data-urlencode "phone=+91 98330 55127" \
   --data-urlencode "service_id=work" \
   --data-urlencode "mode_id=phone" \
   --data-urlencode "slot_date=${DAY}" \
@@ -165,7 +165,7 @@ check "form-encoded booking works" 201 "$STATUS"
 say "Booking lookup"
 check "lookup by reference" 200 "$(code "${BASE}/api/bookings/${REF}" /tmp/e_look.json)"
 contains "lookup masks email" 'email_masked' /tmp/e_look.json
-if grep -q 'olena.test@example.com' /tmp/e_look.json; then
+if grep -q 'priya.test@example.com' /tmp/e_look.json; then
   bad "lookup leaked the full email address"
 else
   ok "lookup does not leak full email"
@@ -176,7 +176,7 @@ check "unknown reference 404s" 404 "$(code "${BASE}/api/bookings/VC-0000-0000" /
 say "Enquiry submission"
 STATUS=$(curl -s -o /tmp/e_enq.json -w '%{http_code}' -X POST "${BASE}/api/enquiries" \
   -H 'Content-Type: application/json' \
-  -d '{"full_name":"Ivan Petrenko","email":"ivan.test@example.com","phone":"+380 44 555 0133","topic":"documents","message":"Which documents do I need for a Type D student visa?"}')
+  -d '{"full_name":"Rohit Mehta","email":"rohit.test@example.com","phone":"+91 99400 55183","topic":"documents","message":"Which documents do I need for a Type D student visa?"}')
 check "POST /api/enquiries" 201 "$STATUS"
 contains "enquiry reference returned" '"reference"' /tmp/e_enq.json
 
@@ -205,13 +205,13 @@ check "login page renders" 200 "$(code "${BASE}/admin/login" /tmp/e_login.html)"
 contains "login form present" 'name="password"' /tmp/e_login.html
 
 STATUS=$(curl -s -o /dev/null -w '%{http_code}' -c "$COOKIES" -X POST "${BASE}/admin/login" \
-  --data-urlencode "email=admin@dniprovisa.example" \
+  --data-urlencode "email=vpukralink@gmail.com" \
   --data-urlencode "password=WrongPassword" \
   --data-urlencode "next=/admin")
 check "bad credentials rejected" 401 "$STATUS"
 
 STATUS=$(curl -s -o /dev/null -w '%{http_code}' -c "$COOKIES" -X POST "${BASE}/admin/login" \
-  --data-urlencode "email=admin@dniprovisa.example" \
+  --data-urlencode "email=vpukralink@gmail.com" \
   --data-urlencode "password=ChangeMe123!" \
   --data-urlencode "next=/admin")
 check "valid login redirects" 303 "$STATUS"
@@ -239,7 +239,7 @@ else
 fi
 
 # Search filter
-curl -s -b "$COOKIES" "${BASE}/admin/api/bookings?q=olena" -o /tmp/e_search.json
+curl -s -b "$COOKIES" "${BASE}/admin/api/bookings?q=priya" -o /tmp/e_search.json
 FOUND=$(python3 -c "
 import json;d=json.load(open('/tmp/e_search.json'));print(d.get('total',0))")
 if [ "$FOUND" -ge 1 ]; then ok "admin search finds booking (total=$FOUND)"; else bad "admin search found nothing"; fi

@@ -220,8 +220,7 @@ def _shell(title: str, intro: str, rows: list[tuple[str, str]], footer: str) -> 
       <td style="background:#f7f9fc;padding:16px 24px;color:#7a839a;font-size:12px;
                  line-height:1.6;font-family:Arial,Helvetica,sans-serif;
                  border-top:1px solid #e8ecf3;">
-        {html.escape(settings.brand_name)} &middot; {html.escape(settings.office_address)}<br>
-        {html.escape(settings.contact_phone)} &middot;
+        {html.escape(settings.brand_name)} &middot; India<br>
         <a href="mailto:{html.escape(settings.contact_email)}"
            style="color:#1b57d6;">{html.escape(settings.contact_email)}</a>
       </td>
@@ -349,7 +348,6 @@ def send_client_booking_confirmation(booking: dict) -> None:
     mode_note = {
         "video": "We will email you a secure video-call link shortly before the session.",
         "phone": f"One of our advisers will call you on <strong>{html.escape(booking['phone'])}</strong>.",
-        "office": f"Please arrive 10 minutes early at {html.escape(settings.office_address)}.",
     }.get(booking.get("mode_id", "video"), "")
 
     html_body = _shell(
@@ -362,8 +360,9 @@ def send_client_booking_confirmation(booking: dict) -> None:
         "<p style='margin:0 0 10px;'><strong>What to prepare:</strong> your passport "
         "bio-page, any previous Ukrainian visas or refusals, and a rough idea of your "
         "intended travel dates.</p>"
-        f"<p style='margin:0;'>Need to reschedule? Reply to this email or call "
-        f"{html.escape(settings.contact_phone)} quoting "
+        f"<p style='margin:0;'>Need to reschedule or cancel? Just reply to this "
+        f"email, or write to <a href='mailto:{html.escape(settings.contact_email)}' "
+        f"style='color:#1b57d6;'>{html.escape(settings.contact_email)}</a> quoting "
         f"<strong>{html.escape(booking['reference'])}</strong>.</p>",
     )
 
@@ -374,9 +373,9 @@ def send_client_booking_confirmation(booking: dict) -> None:
         f"{_text_block(rows)}\n\n"
         "What to prepare: your passport bio-page, any previous Ukrainian visas or\n"
         "refusals, and a rough idea of your intended travel dates.\n\n"
-        f"Need to reschedule? Reply to this email or call {settings.contact_phone}\n"
-        f"quoting {booking['reference']}.\n\n"
-        f"— {settings.brand_name}\n{settings.office_address}\n"
+        "Need to reschedule or cancel? Just reply to this email, or write to\n"
+        f"{settings.contact_email} quoting {booking['reference']}.\n\n"
+        f"— {settings.brand_name}\n"
     )
 
     send_email_async(
@@ -404,7 +403,7 @@ def send_status_update(booking: dict, old_status: str) -> None:
         "confirmed": "Good news — a consultant has confirmed your appointment. "
         "We are looking forward to speaking with you.",
         "cancelled": "Your appointment has been cancelled. If this was not "
-        "intended, please get in touch and we will find you a new slot.",
+        "intended, reply to this email and we will find you a new slot.",
         "completed": "Thanks for meeting with us. A written summary of the advice "
         "and next steps will follow separately.",
     }[status]
@@ -422,14 +421,13 @@ def send_status_update(booking: dict, old_status: str) -> None:
         headline,
         f"Hi {html.escape(_first_name(booking['full_name']))}, {intro}",
         _escape_rows(rows),
-        f"Questions? Reply to this email or call "
-        f"{html.escape(settings.contact_phone)}.",
+        "Questions? Just reply to this email and we will pick it up.",
     )
     text_body = (
         f"{headline.upper()}\n\n"
         f"Hi {booking['full_name']}, {intro}\n\n"
         f"{_text_block(rows)}\n\n"
-        f"Questions? Reply to this email or call {settings.contact_phone}.\n\n"
+        "Questions? Just reply to this email and we will pick it up.\n\n"
         f"— {settings.brand_name}\n"
     )
 

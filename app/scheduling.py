@@ -2,9 +2,13 @@
 Availability engine.
 
 Turns the opening-hours configuration plus existing bookings into the concrete
-list of slots a visitor may choose. All reasoning happens in the office
-timezone offset implied by TIMEZONE_LABEL; we keep it simple by treating dates
-as naive calendar dates and comparing against UTC "now" plus the lead time.
+list of slots a visitor may choose.
+
+Slot times in `Settings.OPENING_HOURS` are wall-clock times in the office
+timezone (`TIMEZONE_OFFSET_MINUTES`, IST by default). Dates are stored as naive
+calendar dates, but every comparison against "now" -- the minimum lead time, and
+whether a slot has already passed -- is done on timezone-aware datetimes so the
+arithmetic is correct regardless of where the server itself runs.
 """
 
 from __future__ import annotations
@@ -32,8 +36,14 @@ def parse_time(value: str) -> time | None:
         return None
 
 
+def now_local() -> datetime:
+    """Current time in the office timezone."""
+    return datetime.now(settings.tz)
+
+
 def today() -> date:
-    return datetime.now(timezone.utc).date()
+    """Today's date *in the office timezone*, not UTC."""
+    return now_local().date()
 
 
 def booking_window() -> tuple[date, date]:
@@ -44,7 +54,7 @@ def booking_window() -> tuple[date, date]:
 
 def earliest_bookable() -> datetime:
     """The cutoff: slots starting before this are too soon to book."""
-    return datetime.now(timezone.utc) + timedelta(hours=settings.min_lead_hours)
+    return now_local() + timedelta(hours=settings.min_lead_hours)
 
 
 def is_open(day: date) -> bool:
@@ -54,8 +64,9 @@ def is_open(day: date) -> bool:
 
 
 def slot_datetime(day: date, hhmm: str) -> datetime:
+    """The absolute moment a slot starts, anchored to the office timezone."""
     parsed = parse_time(hhmm) or time(0, 0)
-    return datetime.combine(day, parsed, tzinfo=timezone.utc)
+    return datetime.combine(day, parsed, tzinfo=settings.tz)
 
 
 def slot_is_bookable(day: date, hhmm: str) -> tuple[bool, str, str]:

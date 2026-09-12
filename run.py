@@ -121,22 +121,22 @@ def cmd_test_email(args: list[str]) -> int:
 
 
 DEMO_NAMES = [
-    ("Adaeze Okonkwo", "adaeze.okonkwo@example.com", "+234 803 555 0142", "Nigerian"),
-    ("Martin Kellner", "m.kellner@example.de", "+49 30 5550 1188", "German"),
     ("Priya Sharma", "priya.sharma@example.in", "+91 98200 55014", "Indian"),
-    ("Tomasz Wysocki", "t.wysocki@example.pl", "+48 22 555 0193", "Polish"),
-    ("Amina Bayrak", "amina.bayrak@example.com.tr", "+90 212 555 0176", "Turkish"),
-    ("Chen Wei", "chen.wei@example.cn", "+86 10 5550 1120", "Chinese"),
-    ("Sofia Rossi", "sofia.rossi@example.it", "+39 06 5550 1155", "Italian"),
-    ("James Mwangi", "j.mwangi@example.ke", "+254 20 555 0167", "Kenyan"),
-    ("Layla Haddad", "layla.haddad@example.jo", "+962 6 555 0134", "Jordanian"),
-    ("Diego Fernández", "d.fernandez@example.es", "+34 91 555 0148", "Spanish"),
+    ("Rohit Mehta", "rohit.mehta@example.in", "+91 98330 55127", "Indian"),
+    ("Aisha Khan", "aisha.khan@example.in", "+91 99400 55183", "Indian"),
+    ("Vikram Nair", "vikram.nair@example.in", "+91 98450 55206", "Indian"),
+    ("Sneha Reddy", "sneha.reddy@example.in", "+91 90000 55291", "Indian"),
+    ("Arjun Patel", "arjun.patel@example.in", "+91 99780 55314", "Indian"),
+    ("Kavya Iyer", "kavya.iyer@example.in", "+91 94440 55378", "Indian"),
+    ("Imran Sheikh", "imran.sheikh@example.in", "+91 98690 55402", "Indian"),
+    ("Neha Gupta", "neha.gupta@example.in", "+91 98110 55465", "Indian"),
+    ("Sandeep Singh", "sandeep.singh@example.in", "+91 98140 55519", "Indian"),
 ]
 
 DEMO_MESSAGES = [
     "I was refused last year for missing legalisation and want to reapply properly.",
     "Starting a master's programme in Kharkiv this autumn and need the student route.",
-    "My employer in Kyiv is sponsoring me — unsure who applies for the permit first.",
+    "An employer in Kyiv is sponsoring me — unsure who applies for the permit first.",
     "Looking to register an LLC and move myself plus two staff over.",
     "My spouse holds a Ukrainian residence permit and I want to join her.",
     "Just a short holiday, but my passport expires in five months.",

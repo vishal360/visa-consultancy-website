@@ -9,6 +9,7 @@ dependencies are used -- the `.env` parser is intentionally small.
 from __future__ import annotations
 
 import os
+from datetime import timedelta, timezone
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -64,15 +65,12 @@ class Settings:
         self.base_url = _env("BASE_URL", f"http://localhost:{self.port}").rstrip("/")
 
         # --- Branding ---
-        self.brand_name = _env("BRAND_NAME", "Dnipro Visa Partners")
+        self.brand_name = _env("BRAND_NAME", "V&P UkraLink")
         self.brand_tagline = _env(
-            "BRAND_TAGLINE", "Ukraine immigration & visa specialists"
+            "BRAND_TAGLINE", "Ukraine visa & immigration consultants"
         )
-        self.contact_email = _env("CONTACT_EMAIL", "hello@dniprovisa.example")
-        self.contact_phone = _env("CONTACT_PHONE", "+380 44 123 4567")
-        self.office_address = _env(
-            "OFFICE_ADDRESS", "12 Khreshchatyk St, Kyiv 01001, Ukraine"
-        )
+        self.contact_email = _env("CONTACT_EMAIL", "vpukralink@gmail.com")
+        self.contact_phone = _env("CONTACT_PHONE", "+91 7048900551")
 
         # --- Database ---
         self.db_path = Path(_env("DB_PATH", str(DATA_DIR / "app.db")))
@@ -84,7 +82,7 @@ class Settings:
         self.secure_cookies = _env_bool("SECURE_COOKIES", False)
 
         # --- Bootstrap admin (created on first run if no admins exist) ---
-        self.admin_email = _env("ADMIN_EMAIL", "admin@dniprovisa.example")
+        self.admin_email = _env("ADMIN_EMAIL", "vpukralink@gmail.com")
         self.admin_password = _env("ADMIN_PASSWORD", "ChangeMe123!")
         self.admin_name = _env("ADMIN_NAME", "Consultant")
 
@@ -106,7 +104,12 @@ class Settings:
         ]
 
         # --- Booking rules ---
-        self.timezone_label = _env("TIMEZONE_LABEL", "EET (UTC+2)")
+        # Slot times below are expressed in this timezone. The offset is used for
+        # real arithmetic (lead time, "is this slot in the past"); the label is
+        # only what visitors see. India observes no DST, so a fixed offset is
+        # exact. If you move somewhere with DST, switch to zoneinfo.
+        self.timezone_label = _env("TIMEZONE_LABEL", "IST (UTC+5:30)")
+        self.timezone_offset_minutes = _env_int("TIMEZONE_OFFSET_MINUTES", 330)
         self.slot_minutes = _env_int("SLOT_MINUTES", 45)
         # Lead time before the earliest bookable slot, and how far ahead we open.
         self.min_lead_hours = _env_int("MIN_LEAD_HOURS", 12)
@@ -117,91 +120,90 @@ class Settings:
         self.rate_limit_max = _env_int("RATE_LIMIT_MAX", 12)
         self.rate_limit_window_seconds = _env_int("RATE_LIMIT_WINDOW_SECONDS", 600)
 
-    # Weekly opening hours: weekday index (Mon=0 .. Sun=6) -> list of start times.
-    # Closed days simply map to an empty list.
+    # Weekly opening hours in IST: weekday index (Mon=0 .. Sun=6) -> slot start
+    # times. Consultations run 11:00-18:00 Monday to Friday, with a shorter
+    # Saturday. Closed days simply map to an empty list.
     OPENING_HOURS: dict[int, list[str]] = {
-        0: ["09:00", "10:00", "11:00", "13:00", "14:00", "15:00", "16:00"],
-        1: ["09:00", "10:00", "11:00", "13:00", "14:00", "15:00", "16:00"],
-        2: ["09:00", "10:00", "11:00", "13:00", "14:00", "15:00", "16:00"],
-        3: ["09:00", "10:00", "11:00", "13:00", "14:00", "15:00", "16:00"],
-        4: ["09:00", "10:00", "11:00", "13:00", "14:00", "15:00"],
-        5: ["10:00", "11:00", "12:00"],
+        0: ["11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00"],
+        1: ["11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00"],
+        2: ["11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00"],
+        3: ["11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00"],
+        4: ["11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00"],
+        5: ["11:00", "12:00", "13:00", "14:00"],
         6: [],
     }
 
-    # Dates the office is closed regardless of weekday (YYYY-MM-DD).
+    # Dates we are closed regardless of weekday (YYYY-MM-DD).
+    #
+    # These are the fixed-date Indian national holidays. Festival dates such as
+    # Diwali, Holi, Eid and Raksha Bandhan move every year against the Gregorian
+    # calendar, so add the ones you observe here yourself rather than trusting a
+    # hard-coded guess.
     HOLIDAYS: set[str] = {
         "2026-01-01",  # New Year's Day
-        "2026-01-07",  # Christmas
-        "2026-03-08",  # International Women's Day
+        "2026-01-26",  # Republic Day
         "2026-05-01",  # Labour Day
-        "2026-08-24",  # Independence Day
+        "2026-08-15",  # Independence Day
+        "2026-10-02",  # Gandhi Jayanti
         "2026-12-25",  # Christmas
     }
 
     # Consultation services offered. `id` values are what the frontend submits.
+    # Fees are deliberately not listed: they are quoted during the call, once we
+    # understand the case.
     SERVICES: list[dict] = [
         {
             "id": "tourist-c",
             "name": "Short-stay visa (Type C)",
             "duration": 45,
-            "price": "€90",
             "summary": "Tourism, family visits and short business trips up to 90 days.",
         },
         {
             "id": "long-d",
             "name": "Long-stay visa (Type D)",
             "duration": 60,
-            "price": "€140",
             "summary": "The gateway to a Ukrainian temporary residence permit.",
         },
         {
             "id": "student",
             "name": "Student visa & university placement",
             "duration": 60,
-            "price": "€120",
             "summary": "Invitation letters, accreditation checks and enrolment support.",
         },
         {
             "id": "work",
             "name": "Work permit & employment visa",
             "duration": 60,
-            "price": "€160",
             "summary": "Employer sponsorship, permit filing and residence registration.",
         },
         {
             "id": "business",
             "name": "Business & investor route",
             "duration": 60,
-            "price": "€180",
             "summary": "Company formation, investor visas and corporate relocation.",
         },
         {
             "id": "family",
             "name": "Family reunification",
             "duration": 45,
-            "price": "€130",
             "summary": "Spouse, child and dependent-parent applications.",
         },
         {
             "id": "residence",
             "name": "Temporary / permanent residence",
             "duration": 60,
-            "price": "€150",
             "summary": "TRP and PRP filings, renewals and status changes.",
         },
         {
             "id": "appeal",
             "name": "Refusal review & appeal",
             "duration": 45,
-            "price": "€110",
             "summary": "Post-refusal analysis and a corrected re-application plan.",
         },
         {
             "id": "other",
             "name": "Something else / not sure yet",
             "duration": 30,
-            "price": "Free",
             "summary": "A short orientation call to point you at the right route.",
         },
     ]
@@ -209,7 +211,6 @@ class Settings:
     CONSULTATION_MODES: list[dict] = [
         {"id": "video", "name": "Video call", "hint": "Zoom or Google Meet link"},
         {"id": "phone", "name": "Phone call", "hint": "We ring the number you give us"},
-        {"id": "office", "name": "In person", "hint": "At our Kyiv office"},
     ]
 
     BOOKING_STATUSES: list[str] = [
@@ -219,6 +220,11 @@ class Settings:
         "cancelled",
         "no-show",
     ]
+
+    @property
+    def tz(self) -> timezone:
+        """Timezone the opening hours above are written in."""
+        return timezone(timedelta(minutes=self.timezone_offset_minutes))
 
     @property
     def smtp_configured(self) -> bool:

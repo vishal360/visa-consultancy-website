@@ -168,7 +168,7 @@ is live. Copy the backups off the machine periodically.
 - [ ] `data/` is on a persistent volume
 - [ ] `python3 run.py test-email you@example.com` actually arrives
 - [ ] Real contact details in `BRAND_NAME`, `CONTACT_EMAIL`, `CONTACT_PHONE`,
-      `OFFICE_ADDRESS`
+      `CONTACT_PHONE`
 - [ ] Visa content in `app/content.py` checked against current official rules
 - [ ] `templates/privacy.html` reviewed for your jurisdiction
 - [ ] Database backups scheduled

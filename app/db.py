@@ -582,9 +582,12 @@ def list_activity(limit: int = 40) -> list[dict]:
 # Dashboard statistics
 # --------------------------------------------------------------------------- #
 def dashboard_stats() -> dict:
-    today = datetime.now(timezone.utc).date().isoformat()
-    week_ago = (datetime.now(timezone.utc).date() - timedelta(days=7)).isoformat()
-    month_ahead = (datetime.now(timezone.utc).date() + timedelta(days=30)).isoformat()
+    # Slot dates are office-local calendar dates, so "today" must be the local
+    # date too -- using UTC would roll the dashboard over at 05:30 IST.
+    local_today = datetime.now(settings.tz).date()
+    today = local_today.isoformat()
+    week_ago = (local_today - timedelta(days=7)).isoformat()
+    month_ahead = (local_today + timedelta(days=30)).isoformat()
 
     def scalar(sql: str, params: Sequence[Any] = ()) -> int:
         row = query_one(sql, params)

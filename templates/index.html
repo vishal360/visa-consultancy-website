@@ -104,10 +104,7 @@
       </div>
 
       <ul class="hero__badges">
-        <li><span aria-hidden="true">⚖️</span> Licensed advisers</li>
-        <li><span aria-hidden="true">📄</span> Fixed fees, quoted upfront</li>
-        <li><span aria-hidden="true">🔒</span> GDPR-compliant</li>
-        <li><span aria-hidden="true">💬</span> 6 languages</li>
+        {{ raw_trust_badges }}
       </ul>
     </div>
 
@@ -129,16 +126,11 @@
         Choose a time
       </button>
       <p class="hero__card-foot">
-        Free 30-minute orientation call available
+        Not sure which route you need? Book a short orientation call
       </p>
     </aside>
   </div>
 
-  <div class="shell">
-    <div class="stats" id="stats">
-      {{ raw_stats }}
-    </div>
-  </div>
 </section>
 
 <!-- ================= VISA TYPES ================= -->
@@ -201,7 +193,7 @@
   <div class="shell">
     <header class="section__head reveal">
       <p class="section__eyebrow">How it works</p>
-      <h2 class="section__title">From first question to landing in Kyiv</h2>
+      <h2 class="section__title">From first question to visa in hand</h2>
       <p class="section__lede">
         Five stages. You always know which one you're in and what happens next.
       </p>
@@ -332,7 +324,7 @@
             <div class="field">
               <label for="phone">Phone number <span class="req">*</span></label>
               <input type="tel" id="phone" name="phone" required
-                     autocomplete="tel" placeholder="+380 44 123 4567"
+                     autocomplete="tel" placeholder="+91 98765 43210"
                      inputmode="tel">
               <p class="field-hint">Include your country code.</p>
               <p class="field-error" data-error-for="phone"></p>
@@ -341,7 +333,7 @@
             <div class="field">
               <label for="nationality">Nationality</label>
               <input type="text" id="nationality" name="nationality"
-                     autocomplete="country-name" placeholder="e.g. Nigerian"
+                     autocomplete="country-name" placeholder="e.g. Indian"
                      list="nationalityList">
               <datalist id="nationalityList"></datalist>
               <p class="field-error" data-error-for="nationality"></p>
@@ -503,8 +495,8 @@
           <li>
             <span class="contact__icon" aria-hidden="true">⌖</span>
             <span>
-              <small>Office</small>
-              {{ office_address }}
+              <small>Based in</small>
+              India — we consult by video and phone
             </span>
           </li>
         </ul>
@@ -603,7 +595,7 @@
     <div class="site-footer__brand">
       <strong>{{ brand_name }}</strong>
       <p>{{ brand_tagline }}</p>
-      <p class="site-footer__address">{{ office_address }}</p>
+      <p class="site-footer__address">Based in India · consultations by video &amp; phone</p>
     </div>
     <nav class="site-footer__nav" aria-label="Footer navigation">
       <a href="#visas">Visa types</a>

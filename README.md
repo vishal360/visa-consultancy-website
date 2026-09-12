@@ -26,8 +26,8 @@ Open:
 | <http://localhost:8000/admin> | Consultant dashboard |
 
 The first run creates the database and a dashboard login from `ADMIN_EMAIL` /
-`ADMIN_PASSWORD` in your `.env` (defaults: `admin@dniprovisa.example` /
-`ChangeMe123!` — change these).
+`ADMIN_PASSWORD` in your `.env` (defaults: `vpukralink@gmail.com` /
+`ChangeMe123!` — change the password).
 
 Want data to look at straight away?
 
@@ -53,10 +53,13 @@ python3 run.py seed-demo 20    # inserts sample bookings and enquiries
 - **Check an existing booking** by typing their reference (`VC-XXXX-XXXX`).
 - **Send a general enquiry** without booking anything.
 
-Also included: light/dark theme toggle, scroll-reveal animations, animated
-counters, a testimonial carousel with swipe support, an FAQ accordion, full
-keyboard accessibility, and a `prefers-reduced-motion` path that disables
-animation entirely.
+Consultations are held by **video or phone** — there is no office to visit — and
+fees are deliberately not published, since they are quoted on the call once the
+case is understood.
+
+Also included: light/dark theme toggle, scroll-reveal animations, a testimonial
+carousel with swipe support, an FAQ accordion, full keyboard accessibility, and a
+`prefers-reduced-motion` path that disables animation entirely.
 
 ## What you get as the owner
 
@@ -91,11 +94,10 @@ annotated full list. The ones that matter most:
 ### Branding
 
 ```ini
-BRAND_NAME=Dnipro Visa Partners
-BRAND_TAGLINE=Ukraine immigration & visa specialists
-CONTACT_EMAIL=hello@yourdomain.com
-CONTACT_PHONE=+380 44 123 4567
-OFFICE_ADDRESS=12 Khreshchatyk St, Kyiv 01001, Ukraine
+BRAND_NAME=V&P UkraLink
+BRAND_TAGLINE=Ukraine visa & immigration consultants
+CONTACT_EMAIL=vpukralink@gmail.com
+CONTACT_PHONE=+91 7048900551
 ```
 
 ### Receiving booking emails
@@ -133,17 +135,23 @@ Other providers work the same way — SendGrid (`smtp.sendgrid.net`, user
 ### Availability rules
 
 ```ini
-SLOT_MINUTES=45          # length of one consultation
-MIN_LEAD_HOURS=12        # earliest a visitor may book from now
-BOOKING_WINDOW_DAYS=60   # how far ahead the calendar opens
-MAX_PER_SLOT=1           # appointments per slot
-TIMEZONE_LABEL=EET (UTC+2)
+SLOT_MINUTES=45              # length of one consultation
+MIN_LEAD_HOURS=12            # earliest a visitor may book from now
+BOOKING_WINDOW_DAYS=60       # how far ahead the calendar opens
+MAX_PER_SLOT=1               # appointments per slot
+TIMEZONE_LABEL=IST (UTC+5:30)  # what visitors see
+TIMEZONE_OFFSET_MINUTES=330    # what the arithmetic uses (330 = +5:30)
 ```
 
-Opening hours, public holidays and the service list live in
+Consultations run **11:00–18:00 IST Monday to Friday**, with a shorter Saturday
+and Sundays closed. Those hours, the public holidays and the service list live in
 [`app/config.py`](app/config.py) — `OPENING_HOURS` (per weekday), `HOLIDAYS`,
 and `SERVICES`. Edit those to match how you actually work; the calendar, the
 booking form and the emails all follow automatically.
+
+Only the fixed-date Indian national holidays are pre-filled. Festival dates such
+as Diwali and Holi move each year, so add the ones you observe to `HOLIDAYS`
+yourself.
 
 ### Security
 
@@ -248,7 +256,7 @@ Two requirements to keep in mind wherever you host it: the app needs a
   `SECURE_COOKIES=true` and `DEBUG=false`. `http.server` is fine for modest
   traffic behind a proxy; it is not intended as an internet-facing edge server.
 - **Back up `data/app.db`.** It holds every booking and enquiry.
-- **Review the visa content.** The processing times, document lists and fees in
+- **Review the visa content.** The processing times and document lists in
   `app/content.py` are realistic placeholders, not verified legal guidance.
   Check them against current Ukrainian State Migration Service and MFA rules
   before publishing, and have the privacy notice in `templates/privacy.html`

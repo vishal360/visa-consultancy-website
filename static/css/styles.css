@@ -1,5 +1,5 @@
 /* =========================================================================
-   Dnipro Visa Partners — public site styles
+   V&P UkraLink — public site styles
    Palette anchors on the Ukrainian flag: deep azure + wheat gold.
    ========================================================================= */
 
@@ -539,34 +539,6 @@ input, select, textarea, button { font-family: inherit; }
 .hero__card-foot {
   margin-top: 14px; text-align: center;
   font-size: 12.5px; color: var(--text-dim);
-}
-
-/* ---------- Stats ---------- */
-.stats {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-  gap: 1px;
-  border: 1px solid var(--border); border-radius: var(--radius-lg);
-  background: var(--border); overflow: hidden;
-  margin-bottom: clamp(20px, 4vw, 40px);
-}
-.stat {
-  padding: 26px 22px; background: var(--surface); text-align: center;
-  transition: background .25s var(--ease);
-}
-.stat:hover { background: var(--surface-2); }
-.stat__value {
-  display: block;
-  font-size: clamp(28px, 3.6vw, 40px); font-weight: 800;
-  letter-spacing: -.03em;
-  background: linear-gradient(135deg, var(--gold-400), var(--azure-400));
-  -webkit-background-clip: text; background-clip: text;
-  -webkit-text-fill-color: transparent; color: transparent;
-  font-variant-numeric: tabular-nums;
-}
-.stat__label {
-  display: block; margin-top: 6px;
-  font-size: 13px; color: var(--text-muted);
 }
 
 /* ---------- Visa cards ---------- */
@@ -1488,7 +1460,6 @@ input, select, textarea, button { font-family: inherit; }
     display: flex; justify-content: space-between; gap: 12px;
   }
   .visa-card__meta dd { margin-top: 0; }
-  .stats { grid-template-columns: repeat(2, 1fr); }
   .toasts { right: 12px; left: 12px; bottom: 12px; max-width: none; }
   .hero__actions .btn { width: 100%; }
 }

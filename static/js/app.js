@@ -1,5 +1,5 @@
 /* =========================================================================
-   Dnipro Visa Partners — public site behaviour
+   V&P UkraLink — public site behaviour
    Vanilla ES2020. No dependencies, no build step.
    ========================================================================= */
 (function () {
@@ -237,50 +237,6 @@
       { threshold: 0.12, rootMargin: '0px 0px -8% 0px' }
     );
     targets.forEach((t) => observer.observe(t));
-  })();
-
-  /* ------------------------------------------------------------------ *
-   * Animated stat counters
-   * ------------------------------------------------------------------ */
-  (function counters() {
-    const nodes = $$('[data-count-to]');
-    if (!nodes.length) return;
-
-    const run = (node) => {
-      const target = parseFloat(node.dataset.countTo) || 0;
-      const suffix = node.dataset.suffix || '';
-      if (REDUCED_MOTION) {
-        node.textContent = `${target.toLocaleString()}${suffix}`;
-        return;
-      }
-      const duration = 1500;
-      const start = performance.now();
-      const tick = (now) => {
-        const progress = Math.min((now - start) / duration, 1);
-        // easeOutExpo keeps the motion lively but settles precisely.
-        const eased = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
-        node.textContent =
-          Math.round(target * eased).toLocaleString() + suffix;
-        if (progress < 1) requestAnimationFrame(tick);
-      };
-      requestAnimationFrame(tick);
-    };
-
-    if (!('IntersectionObserver' in window)) {
-      nodes.forEach(run);
-      return;
-    }
-    const observer = new IntersectionObserver(
-      (entries, obs) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) return;
-          run(entry.target);
-          obs.unobserve(entry.target);
-        });
-      },
-      { threshold: 0.5 }
-    );
-    nodes.forEach((n) => observer.observe(n));
   })();
 
   /* ------------------------------------------------------------------ *
@@ -537,7 +493,7 @@
           ),
           service
             ? el('p', { class: 'muted', style: 'margin-bottom:20px' }, [
-                `Suggested consultation: ${service.name} · ${service.duration} minutes · ${service.price}`,
+                `Suggested consultation: ${service.name} · ${service.duration} minutes`,
               ])
             : null,
           el('div', { class: 'wizard__result-actions' }, [
