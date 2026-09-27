@@ -148,10 +148,17 @@ A paid instance is required: Render only lets you attach a persistent disk to a
 paid service, and free services spin down after 15 minutes of inactivity and
 take about a minute to wake. Both are disqualifying for a booking site.
 
-Expect roughly **$7/month** for the 0.5 CPU / 512 MB instance plus **$0.25/month**
-for the 1 GB disk. Render asks for a card when you apply the Blueprint, because
-it provisions a paid instance. Billing is prorated to the second, so deleting the
-service stops the charge immediately — you are not locked into a month.
+Budget roughly **$7/month** for the 0.5 CPU / 512 MB instance, plus **$0.25/month**
+for the 1 GB disk at Render's published $0.25/GB. Treat the figure Render shows
+you on the Apply screen as authoritative — it is the only number guaranteed to be
+current.
+
+This is a **recurring monthly charge**, not a one-off. Render meters it prorated
+to the second, but a website has to stay up, so in practice you accrue the full
+monthly amount every month. The per-second billing matters only when you stop:
+delete or suspend the service and charges stop there and then, with no
+minimum term. The Hobby workspace itself has no monthly fee, so you are paying
+for the instance and disk only, not a plan on top.
 
 Useful afterwards: the **Shell** tab in the Render dashboard gives you a
 terminal in the browser, so you can run `python3 run.py change-email …` or
