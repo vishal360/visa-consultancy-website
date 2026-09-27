@@ -39,14 +39,71 @@ on every deploy. If you go with DigitalOcean, use a Droplet and follow Option C.
 Roughly five minutes, and the repo already contains
 [`render.yaml`](render.yaml) so most settings come across automatically.
 
-1. Sign up at <https://render.com> and connect your GitHub account.
-2. **New → Blueprint**, select the `visa-consultancy` repo. Render reads
-   `render.yaml`.
-3. Fill in the variables it prompts for (`sync: false` ones):
-   `ADMIN_EMAIL`, `ADMIN_PASSWORD`, `SMTP_*`, `MAIL_FROM`, `NOTIFY_EMAILS`.
-   Leave `SECRET_KEY` alone — Render generates it.
-4. Deploy. You get `https://visa-consultancy.onrender.com`.
-5. Set `BASE_URL` to that URL and redeploy, so links inside emails are correct.
+### 1. Get a Gmail App Password first
+
+You cannot use your normal Google password for SMTP. With 2-Step Verification
+enabled on the account, go to <https://myaccount.google.com/apppasswords>,
+create a password for "Mail", and keep the 16-character value. That is your
+`SMTP_PASSWORD`.
+
+### 2. Create the service
+
+1. Sign up at <https://render.com> and connect GitHub. The repo is private, so
+   approve Render's access to it.
+2. **New → Blueprint**, select `visa-consultancy-website`. Render reads
+   `render.yaml` and proposes a web service with a 1 GB disk attached.
+3. Fill in the variables it prompts for:
+
+   | Variable | Value |
+   | --- | --- |
+   | `ADMIN_EMAIL` | the address you will sign in with |
+   | `ADMIN_PASSWORD` | a strong password, not the documented default |
+   | `SMTP_HOST` | `smtp.gmail.com` |
+   | `SMTP_USER` | your Gmail address |
+   | `SMTP_PASSWORD` | the 16-character App Password |
+   | `MAIL_FROM` | the same Gmail address |
+   | `NOTIFY_EMAILS` | where booking alerts should land |
+   | `BASE_URL` | leave blank for now |
+
+   Leave `SECRET_KEY` alone — Render generates a strong one.
+4. Apply. The first build takes a couple of minutes; there is nothing to
+   install, so it is mostly just cloning the repo.
+
+### 3. Point BASE_URL at the real URL
+
+Once deployed you get something like
+`https://visa-consultancy.onrender.com`. Set `BASE_URL` to exactly that (no
+trailing slash) and save — Render redeploys automatically. Until you do, links
+inside emails point at localhost.
+
+### 4. Verify the deployment, *before* taking real bookings
+
+Open the **Shell** tab on your service and run:
+
+```bash
+python3 run.py check
+```
+
+Every line should read `PASS`. Two you must not ignore:
+
+- **Disk persistence** — on a brand-new service this says *"Boot #1 … not yet
+  proven"*, which is expected. Trigger a manual redeploy (**Manual Deploy →
+  Deploy latest commit**), then run `python3 run.py check` again. The boot count
+  must reach **2 or more**. If it is still stuck at 1, the disk did not mount
+  and every booking would be erased on your next deploy — stop and fix that
+  first.
+- **Dashboard login** — fails while the documented default password is still in
+  use. Fix with `python3 run.py set-password`.
+
+Then confirm email actually leaves the building:
+
+```bash
+python3 run.py test-email your@email.com
+```
+
+Check the inbox *and* the spam folder. Finally, book a test consultation through
+the public site and confirm the notification arrives, then delete it from the
+dashboard.
 
 A paid instance is required: Render only lets you attach a persistent disk to a
 paid service, and free services spin down after 15 minutes of inactivity and

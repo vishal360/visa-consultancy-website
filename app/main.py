@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from datetime import datetime
 
-from . import auth, db
+from . import auth, db, diagnostics
 from .config import settings
 from .routes import admin, public
 from .web import Application, Request, Response, html_response, render
@@ -38,6 +38,15 @@ def create_app() -> Application:
     # Touch the database so the schema exists before the first request, and
     # make sure somebody can actually log in to the dashboard.
     db.get_connection()
+
+    # Stamp the data directory so `run.py check` can prove the disk survives
+    # redeploys. A counter stuck at 1 means the filesystem is ephemeral.
+    boot = diagnostics.record_boot()
+    print(
+        f"[setup] data directory boot #{boot.get('boot_count')} "
+        f"(first seen {boot.get('first_boot_at')})"
+    )
+
     created, message = auth.ensure_bootstrap_admin()
     if created:
         print(f"[setup] {message}")

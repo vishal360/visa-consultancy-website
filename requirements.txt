@@ -1,0 +1,6 @@
+# This application deliberately has no third-party dependencies -- it runs on
+# the Python 3.10+ standard library alone (http.server, sqlite3, smtplib).
+#
+# The file is kept because most hosting platforms (Render, Railway, Heroku)
+# look for it to detect a Python project. Leaving it empty is intentional;
+# please do not add packages without a good reason.

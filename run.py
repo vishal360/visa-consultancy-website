@@ -9,6 +9,7 @@ Entry point and management CLI.
     python3 run.py change-email         change a user's sign-in email
     python3 run.py create-admin         add another dashboard user
     python3 run.py delete-admin         remove a dashboard user
+    python3 run.py check                production readiness report
     python3 run.py test-email [addr]    verify your email configuration
     python3 run.py seed-demo [n]        insert sample bookings to explore the UI
     python3 run.py stats                print a summary of the database
@@ -24,7 +25,7 @@ import random
 import sys
 from datetime import timedelta
 
-from app import auth, db, mailer, scheduling
+from app import auth, db, diagnostics, mailer, scheduling
 from app.config import settings
 from app.main import create_app
 from app.web import run_server
@@ -323,6 +324,35 @@ def cmd_seed_demo(args: list[str]) -> int:
     return 0
 
 
+def cmd_check(_args: list[str]) -> int:
+    """Production readiness report. Exits non-zero if anything is broken."""
+    db.get_connection()
+    results = diagnostics.preflight()
+    ok_count, warn_count, fail_count = diagnostics.summarise(results)
+
+    symbols = {"ok": "PASS", "warn": "WARN", "fail": "FAIL"}
+    width = max(len(r["name"]) for r in results)
+
+    print(f"\n  {settings.brand_name} — deployment check")
+    print("  " + "=" * 62)
+    for result in results:
+        print(f"  [{symbols[result['status']]}] {result['name'].ljust(width)}  "
+              f"{result['detail']}")
+        if result["fix"] and result["status"] != "ok":
+            print(f"         {' ' * width}  → {result['fix']}")
+    print("  " + "=" * 62)
+    print(f"  {ok_count} passed · {warn_count} warnings · {fail_count} failures\n")
+
+    if fail_count:
+        print("  Not safe to take real bookings yet — fix the failures above.\n")
+        return 1
+    if warn_count:
+        print("  Usable, but review the warnings before going live.\n")
+        return 0
+    print("  Ready for production.\n")
+    return 0
+
+
 def cmd_stats(_args: list[str]) -> int:
     db.get_connection()
     stats = db.dashboard_stats()
@@ -379,6 +409,7 @@ COMMANDS = {
     "change-email": cmd_change_email,
     "delete-admin": cmd_delete_admin,
     "list-admins": cmd_list_admins,
+    "check": cmd_check,
     "test-email": cmd_test_email,
     "seed-demo": cmd_seed_demo,
     "stats": cmd_stats,

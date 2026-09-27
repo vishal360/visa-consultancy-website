@@ -27,6 +27,8 @@ def register(router) -> None:
     router.add("GET", "/thanks", thanks)
     router.add("GET", "/privacy", privacy)
 
+    router.add("GET", "/healthz", healthz)
+
     router.add("GET", "/api/config", api_config)
     router.add("GET", "/api/availability", api_availability)
     router.add("GET", "/api/availability/month", api_availability_month)
@@ -134,6 +136,20 @@ def thanks(request: Request) -> Response:
 
 def privacy(request: Request) -> Response:
     return html_response(render("privacy.html", **_page_context()))
+
+
+def healthz(request: Request) -> Response:
+    """
+    Cheap liveness probe for the host's health checker.
+
+    Confirms the database is actually reachable rather than merely that the
+    process is up, but deliberately reveals nothing else.
+    """
+    try:
+        db.query_one("SELECT 1")
+    except Exception:  # noqa: BLE001 - any DB failure means unhealthy
+        return json_response({"status": "unhealthy"}, status=503)
+    return json_response({"status": "ok"})
 
 
 # --------------------------------------------------------------------------- #

@@ -2,6 +2,7 @@
 .env
 
 # Runtime data
+data/.runtime-state.json
 data/*.db
 data/*.db-journal
 data/*.db-wal

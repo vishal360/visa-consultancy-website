@@ -14,7 +14,9 @@ services:
     buildCommand: "python3 --version"
     startCommand: "python3 run.py"
 
-    healthCheckPath: /
+    # Cheaper than rendering the whole homepage, and it verifies the database
+    # is reachable rather than just that the process is alive.
+    healthCheckPath: /healthz
 
     disk:
       name: data
