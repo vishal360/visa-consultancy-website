@@ -160,6 +160,27 @@ delete or suspend the service and charges stop there and then, with no
 minimum term. The Hobby workspace itself has no monthly fee, so you are paying
 for the instance and disk only, not a plan on top.
 
+### Will the bill move around?
+
+Barely. The instance and the disk are flat. The only usage-based line that could
+grow is outbound bandwidth, billed at $0.15/GB once you exceed your plan's
+included allowance — and this site is small:
+
+| | |
+| --- | --- |
+| Page weight for a first-time visitor | ~148 KB (HTML + CSS + JS + icon) |
+| Visits per GB of bandwidth | ~7,000 |
+| 10,000 visits | ~1.4 GB, about $0.21 at the overage rate |
+
+Returning visitors re-download almost nothing, because static assets are served
+with long cache headers. Unless the site gets genuinely popular, bandwidth will
+not be a meaningful part of the bill.
+
+Check the **Billing** page in your Render dashboard for your exact cycle dates,
+current accrued usage and next invoice — that is the authoritative view, and it
+is worth glancing at after the first month to confirm the number matches what you
+expected.
+
 Useful afterwards: the **Shell** tab in the Render dashboard gives you a
 terminal in the browser, so you can run `python3 run.py change-email …` or
 `set-password` without SSH or installing anything locally.
