@@ -15,6 +15,25 @@ reverse proxy in front — see the VPS section.
 
 ---
 
+## Which host to pick
+
+| | Render / Railway (managed) | Hetzner / DigitalOcean (VPS) |
+| --- | --- | --- |
+| Deploying a change | `git push`, done | `git pull` + restart over SSH |
+| HTTPS certificate | automatic | you install Caddy once |
+| OS patching, firewall | not your problem | yours forever |
+| Running `run.py` commands | browser shell (Render) | SSH |
+| Backups | you still script them | you still script them |
+| Cost | ~$5–7/month | ~$4–6/month |
+
+The VPS saves a couple of dollars a month and costs you a sysadmin job. Unless
+you want that job, take the managed option — the price difference is not the
+interesting variable here.
+
+**Do not use DigitalOcean App Platform** (their PaaS, as opposed to a Droplet).
+Its basic tier has an ephemeral filesystem, so `data/app.db` would be destroyed
+on every deploy. If you go with DigitalOcean, use a Droplet and follow Option C.
+
 ## Option A — Render (easiest)
 
 Roughly five minutes, and the repo already contains
@@ -29,9 +48,14 @@ Roughly five minutes, and the repo already contains
 4. Deploy. You get `https://visa-consultancy.onrender.com`.
 5. Set `BASE_URL` to that URL and redeploy, so links inside emails are correct.
 
-A paid plan (currently ~$7/month) is required because the free tier has no
-persistent disk and also spins the process down when idle. Both are
-disqualifying here.
+A paid instance is required: Render only lets you attach a persistent disk to a
+paid service, and free services spin down after 15 minutes of inactivity and
+take about a minute to wake. Both are disqualifying for a booking site. Budget
+roughly $7/month for the instance plus $0.25/GB/month for the disk.
+
+Useful afterwards: the **Shell** tab in the Render dashboard gives you a
+terminal in the browser, so you can run `python3 run.py change-email …` or
+`set-password` without SSH or installing anything locally.
 
 **Custom domain:** Settings → Custom Domain, add `yourdomain.com`, then create
 the CNAME record Render shows you at your registrar. TLS is automatic. Update
