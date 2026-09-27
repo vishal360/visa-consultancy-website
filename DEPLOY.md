@@ -39,18 +39,57 @@ on every deploy. If you go with DigitalOcean, use a Droplet and follow Option C.
 Roughly five minutes, and the repo already contains
 [`render.yaml`](render.yaml) so most settings come across automatically.
 
+### The three passwords, which are all different
+
+This trips everyone up, so to be explicit:
+
+| Password | Who creates it | Where it goes | What it does |
+| --- | --- | --- | --- |
+| Your **Gmail account password** | you already have it | **nowhere in this app** | logs you into Gmail itself |
+| A **Gmail App Password** | Google generates it (16 characters) | `SMTP_PASSWORD` | lets the website send email through your Gmail |
+| Your **dashboard password** | you invent it | `ADMIN_PASSWORD` | logs you into `/admin` |
+
+Your real Gmail password is never entered anywhere in this application. Google
+blocks plain-password sign-ins from apps once 2-Step Verification is on, which is
+why the App Password exists: it is a separate, single-purpose credential you can
+revoke on its own without touching your main account.
+
+The dashboard password is unrelated to Gmail entirely — it is just the password
+for this website's admin area. Pick something new.
+
 ### 1. Get a Gmail App Password first
 
-You cannot use your normal Google password for SMTP. With 2-Step Verification
-enabled on the account, go to <https://myaccount.google.com/apppasswords>,
-create a password for "Mail", and keep the 16-character value. That is your
-`SMTP_PASSWORD`.
+With 2-Step Verification enabled on the account, go to
+<https://myaccount.google.com/apppasswords>, create a password for "Mail", and
+keep the 16-character value it shows you (Google only displays it once). That is
+your `SMTP_PASSWORD`.
 
-### 2. Create the service
+### 2. Create the service — choose Blueprint, not Web Service
+
+Render's **+ New** menu offers Web Service, Static Site, Blueprint, Postgres and
+others. Pick **Blueprint**. It reads `render.yaml` from the repo and sets up the
+web service, the persistent disk and every environment variable in one step.
+Choosing "Web Service" instead works, but then you have to add the disk and all
+the variables by hand, and forgetting the disk is exactly the mistake that
+deletes your bookings.
+
+For reference, if you ever do configure it manually:
+
+| Setting | Value |
+| --- | --- |
+| Service type | **Web Service** (it runs a server, so not a Static Site) |
+| Language / runtime | **Python 3** |
+| Build command | `python3 --version` (nothing to install) |
+| Start command | `python3 run.py` |
+| Instance plan | **0.5 CPU / 512 MB** — listed as `0.5c-512mb`, formerly "Starter" |
+| Disk | 1 GB mounted at `/opt/render/project/src/data` |
+
+Do **not** pick the **Free** instance: it cannot have a persistent disk and it
+sleeps after 15 minutes of inactivity.
 
 1. Sign up at <https://render.com> and connect GitHub. The repo is private, so
    approve Render's access to it.
-2. **New → Blueprint**, select `visa-consultancy-website`. Render reads
+2. **+ New → Blueprint**, select `visa-consultancy-website`. Render reads
    `render.yaml` and proposes a web service with a 1 GB disk attached.
 3. Fill in the variables it prompts for:
 

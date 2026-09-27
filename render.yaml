@@ -6,7 +6,11 @@ services:
   - type: web
     name: visa-consultancy
     runtime: python
-    plan: starter # a paid instance is required to attach a persistent disk
+    # A paid instance is required to attach a persistent disk. "starter" is the
+    # legacy name for the 0.5 CPU / 512 MB plan, which Render's dashboard now
+    # labels "0.5c-512mb" after its August 2026 rename. Legacy names still work
+    # in Blueprints, and 512 MB is ample for a zero-dependency stdlib app.
+    plan: starter
     region: singapore # closest Render region to India; also: frankfurt, oregon, ohio, virginia
     branch: main
 
