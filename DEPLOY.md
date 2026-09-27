@@ -372,6 +372,38 @@ Fix it:
    Verification (you will need your phone).
 2. Go back to <https://myaccount.google.com/apppasswords>. The page now works.
 
+### App Passwords are not the same as "less secure app access"
+
+These get conflated constantly. They are two different mechanisms:
+
+- **Less secure app access (LSA)** let an app sign in with your *real account
+  password*. Google removed it — for consumer accounts in May 2022, and for
+  Workspace accounts through 2025. It is gone and not coming back.
+- **App Passwords** are 16-character credentials generated per-app, and they
+  still work. Google's own migration guidance says access moves to OAuth
+  ["with the exception of app passwords"](https://support.google.com/a/answer/14114704).
+
+So a page announcing the end of less secure apps is **not** saying App Passwords
+are dead, and the January 2025 notice specifically concerns **Google Workspace**
+accounts — an address ending `@gmail.com` is a consumer account and unaffected.
+
+### Why a correctly formatted App Password gets rejected
+
+If `python3 run.py check` reports the credentials as well-formed (16 characters,
+no spaces) but Gmail still answers `535 BadCredentials`, the password is valid in
+shape but no longer *live*. Google revokes App Passwords when:
+
+- **You change your Google Account password.** This is the most common cause;
+  Google states it revokes app passwords on password change and you must
+  [create a new one](https://support.google.com/mail/answer/185833).
+- You turn off 2-Step Verification.
+- You revoke it yourself, or it was created on a different Google account than
+  the one in `SMTP_USER`.
+
+The fix is always the same: generate a fresh App Password and update
+`SMTP_PASSWORD`. A revoked password looks perfect and fails anyway, which is what
+makes this confusing to debug.
+
 Still hidden after enabling 2SV? Then one of these applies:
 
 - **It is a Google Workspace account** (an email on your own domain rather than
