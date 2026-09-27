@@ -176,6 +176,55 @@ def _check_disk_space() -> dict:
     )
 
 
+def _check_smtp_credentials() -> dict:
+    """
+    Catch the credential mistakes that cause an authentication rejection,
+    without needing to talk to the server.
+    """
+    if not settings.smtp_configured:
+        return _check("SMTP credentials", OK, "Not applicable in offline mode")
+
+    host = settings.smtp_host.lower()
+    user = settings.smtp_user
+    password = settings.smtp_password
+    problems: list[str] = []
+
+    if not user:
+        problems.append("SMTP_USER is empty")
+    if not password:
+        problems.append("SMTP_PASSWORD is empty")
+
+    if password and "gmail" in host:
+        if " " in password:
+            problems.append(
+                f"SMTP_PASSWORD contains spaces ({len(password)} chars) — Google "
+                "displays App Passwords in four groups, but they must be entered "
+                "as 16 characters with no spaces"
+            )
+        elif len(password) != 16:
+            problems.append(
+                f"SMTP_PASSWORD is {len(password)} characters; a Gmail App "
+                "Password is exactly 16. A normal account password will always "
+                "be rejected"
+            )
+
+    # Brevo's SMTP login is not your own address, which catches many people out.
+    if user and "brevo" in host and not user.endswith("smtp-brevo.com"):
+        problems.append(
+            f"SMTP_USER is {user}, but Brevo expects its own "
+            "…@smtp-brevo.com login"
+        )
+
+    if problems:
+        return _check(
+            "SMTP credentials", FAIL, "; ".join(problems),
+            "Correct the value, then re-run: python3 run.py test-email you@example.com",
+        )
+
+    shown = f"{user} · password {len(password)} chars"
+    return _check("SMTP credentials", OK, shown)
+
+
 def _check_debug() -> dict:
     if settings.debug:
         return _check(
@@ -313,6 +362,7 @@ def preflight() -> list[dict]:
         _check_admin(),
         _check_notify(),
         _check_email(),
+        _check_smtp_credentials(),
         _check_debug(),
         _check_cookies(),
         _check_base_url(),

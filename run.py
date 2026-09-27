@@ -213,7 +213,17 @@ def cmd_test_email(args: list[str]) -> int:
     recipient = args[0] if args else settings.notify_emails[0]
     print(f"Mode: {'SMTP' if settings.smtp_configured else 'offline (outbox)'}")
     if settings.smtp_configured:
-        print(f"Host: {settings.smtp_host}:{settings.smtp_port}")
+        # Show exactly which credentials are in play -- an authentication
+        # failure is almost always one of these three being wrong.
+        password = settings.smtp_password
+        shape = f"{len(password)} chars"
+        if " " in password:
+            shape += ", CONTAINS SPACES"
+        print(f"Host: {settings.smtp_host}:{settings.smtp_port} "
+              f"(TLS={settings.smtp_use_tls}, SSL={settings.smtp_use_ssl})")
+        print(f"User: {settings.smtp_user or '(empty)'}")
+        print(f"Pass: {'(empty)' if not password else shape}")
+        print(f"From: {settings.mail_from}")
     print(f"Sending test message to {recipient} …")
     result = mailer.send_test_email(recipient)
     if result["status"] == "sent":
