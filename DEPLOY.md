@@ -160,26 +160,43 @@ delete or suspend the service and charges stop there and then, with no
 minimum term. The Hobby workspace itself has no monthly fee, so you are paying
 for the instance and disk only, not a plan on top.
 
+### What the Hobby plan includes each month
+
+Billing → Included Usage in the dashboard shows these allowances, which reset
+monthly and cost nothing:
+
+| Allowance | Included | What it means here |
+| --- | --- | --- |
+| Bandwidth | **5 GB** | ~35,000 first-time visits, see below |
+| Custom domains | **2** | enough for `yourdomain.com` + `www` |
+| Services | **25** | this app is 1 |
+| Pipeline (build) minutes | **500** | builds are trivial, nothing to install |
+| Free instance hours | **750** | only applies to *free* instances, not yours |
+
+That last row is worth understanding: the 750 hours are for Render's **free**
+instance type. A paid instance does not draw from that pool, so seeing `0 / 750`
+used is normal and expected on a paid service — it is not a sign that anything
+is wrong.
+
 ### Will the bill move around?
 
-Barely. The instance and the disk are flat. The only usage-based line that could
-grow is outbound bandwidth, billed at $0.15/GB once you exceed your plan's
-included allowance — and this site is small:
+Barely. The instance and the disk are flat charges. The only line that scales
+with traffic is bandwidth, charged at $0.15/GB *after* the 5 GB included — and
+this site is light:
 
 | | |
 | --- | --- |
 | Page weight for a first-time visitor | ~148 KB (HTML + CSS + JS + icon) |
-| Visits per GB of bandwidth | ~7,000 |
-| 10,000 visits | ~1.4 GB, about $0.21 at the overage rate |
+| Included 5 GB covers | **~35,000 first-time visits/month** (~1,180/day) |
+| If you somehow doubled that | 5 GB overage = **$0.75** |
 
-Returning visitors re-download almost nothing, because static assets are served
-with long cache headers. Unless the site gets genuinely popular, bandwidth will
-not be a meaningful part of the bill.
+Returning visitors re-download almost nothing, since static assets carry long
+cache headers, so real headroom is higher still. Bandwidth will not be a
+meaningful part of your bill.
 
-Check the **Billing** page in your Render dashboard for your exact cycle dates,
-current accrued usage and next invoice — that is the authoritative view, and it
-is worth glancing at after the first month to confirm the number matches what you
-expected.
+The **Unbilled Charges** tab shows what is accruing right now; **Invoices** shows
+your cycle dates and past bills. Those are the authoritative views — glance at
+them after the first month to confirm the total matches what you expected.
 
 Useful afterwards: the **Shell** tab in the Render dashboard gives you a
 terminal in the browser, so you can run `python3 run.py change-email …` or
@@ -194,9 +211,10 @@ purchase from a registrar — Render does not sell domains.
    Hostinger are cheap, BigRock is India-based. Expect roughly ₹800–1,500 a year
    for a `.com`; `.in` is often cheaper. A `.com` is only yours if nobody already
    owns it, so check availability first and have a fallback in mind.
-2. **Add it in Render:** service → Settings → Custom Domain. Your workspace plan
-   includes a number of custom domains at no charge; beyond that they are
-   $0.25/month each, so a single domain costs nothing extra.
+2. **Add it in Render:** service → Settings → Custom Domain. The Hobby plan
+   includes **2 custom domains free**, which is exactly enough for
+   `vpukralink.com` and `www.vpukralink.com`. Further domains are $0.25/month
+   each, so this costs you nothing extra.
 3. **Create the DNS record** Render shows you at the registrar — a `CNAME` for
    `www`, or an `ALIAS`/`A` record for the bare domain.
 4. Wait for DNS to propagate (minutes to a few hours). TLS is issued
