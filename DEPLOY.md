@@ -428,6 +428,52 @@ dashboard. Nothing is lost. Deploy first, sort email out second — just do it
 before you point real clients at the site, since they would otherwise get no
 confirmation.
 
+## No emails arriving after a booking
+
+Every booking sends **two** emails: a notification to `NOTIFY_EMAILS` and a
+confirmation to the client's own address. If neither shows up, diagnose from the
+Render **Shell** tab rather than guessing:
+
+```bash
+python3 run.py email-log
+```
+
+That prints every send attempt with its outcome. Three possibilities:
+
+**`mode: OFFLINE (nothing is sent)` with entries marked `QUEUED`.**
+`SMTP_HOST` is not set, so the app never tried to send — it wrote the messages to
+`data/outbox/` instead. This is the usual cause. Set `SMTP_HOST`, `SMTP_USER` and
+`SMTP_PASSWORD` under Environment, let it redeploy, and re-test. The bookings
+themselves are safe; only the emails were skipped.
+
+**Entries marked `FAILED` with an error.** SMTP is configured but the server
+rejected the attempt. The error text is printed. For Gmail the usual reasons are
+a `SMTP_PASSWORD` that is not a 16-character App Password, spaces left in when
+pasting it, or 2-Step Verification not being enabled on the account. Note the
+message is still written to `data/outbox/`, so nothing is lost while you fix it.
+
+**Entries marked `SENT` but nothing in the inbox.** Delivery worked and the
+message is being filtered — check spam, then read the deliverability section
+below.
+
+### Verifying the *client's* confirmation specifically
+
+Testing with your own address only proves you can email yourself. To prove a real
+client would receive their confirmation, book through the public site using a
+second address you control (a different provider is a better test — Outlook,
+Yahoo, or a work address), then:
+
+```bash
+python3 run.py email-log
+```
+
+Look for the `booking_client` entry addressed to that second address and confirm
+it reads `SENT`. Then check that inbox, including spam. The dashboard shows the
+same history per booking: open the booking and look at "Emails for this booking".
+
+If `booking_client` says `SENT` but the mail never lands, the problem is
+deliverability rather than your configuration — see below.
+
 ## Email deliverability
 
 Mail sent from a cloud host often lands in spam. Two fixes, in order of

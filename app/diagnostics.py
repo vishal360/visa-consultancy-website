@@ -233,16 +233,52 @@ def _check_base_url() -> dict:
 
 
 def _check_email() -> dict:
+    """Report both the configuration *and* what actually happened on recent sends."""
+    try:
+        recent = db.list_email_log(25)
+    except sqlite3.Error:
+        recent = []
+    sent = sum(1 for r in recent if r["status"] == "sent")
+    queued = sum(1 for r in recent if r["status"] == "queued")
+    failed = sum(1 for r in recent if r["status"] == "failed")
+    last_error = next((r["error"] for r in recent if r["error"]), "")
+
     if not settings.smtp_configured:
+        detail = "Offline mode — nothing is being sent."
+        if queued:
+            detail += f" {queued} message(s) written to data/outbox/ instead."
+        return _check(
+            "Email delivery", WARN, detail,
+            "Set SMTP_HOST, SMTP_USER and SMTP_PASSWORD to send real email.",
+        )
+
+    target = f"SMTP via {settings.smtp_host}:{settings.smtp_port} as {settings.mail_from}"
+
+    if not recent:
+        return _check(
+            "Email delivery", OK,
+            f"{target} · no send attempts recorded yet",
+            "Verify with: python3 run.py test-email you@example.com",
+        )
+
+    tally = f"last {len(recent)} attempts: {sent} sent, {failed} failed, {queued} queued"
+
+    # Configured but nothing is getting through -- this is the case worth shouting about.
+    if failed and sent == 0:
+        return _check(
+            "Email delivery", FAIL,
+            f"{target} · {tally} · last error: {last_error[:160]}",
+            "Credentials are being rejected. See `python3 run.py email-log`.",
+        )
+    if failed:
         return _check(
             "Email delivery", WARN,
-            "Offline mode — messages are written to data/outbox/ instead of sent.",
-            "Set SMTP_HOST / SMTP_USER / SMTP_PASSWORD to send real email.",
+            f"{target} · {tally} · last error: {last_error[:160]}",
+            "Some sends are failing — inspect with `python3 run.py email-log`.",
         )
-    return _check(
-        "Email delivery", OK,
-        f"SMTP via {settings.smtp_host}:{settings.smtp_port} as {settings.mail_from}",
-    )
+    if queued and not settings.smtp_configured:
+        return _check("Email delivery", WARN, f"{target} · {tally}")
+    return _check("Email delivery", OK, f"{target} · {tally}")
 
 
 def _check_notify() -> dict:

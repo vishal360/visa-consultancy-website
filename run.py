@@ -10,6 +10,7 @@ Entry point and management CLI.
     python3 run.py create-admin         add another dashboard user
     python3 run.py delete-admin         remove a dashboard user
     python3 run.py check                production readiness report
+    python3 run.py email-log [n]        recent email attempts and why they failed
     python3 run.py test-email [addr]    verify your email configuration
     python3 run.py seed-demo [n]        insert sample bookings to explore the UI
     python3 run.py stats                print a summary of the database
@@ -157,6 +158,53 @@ def cmd_list_admins(_args: list[str]) -> int:
             f"{row['email']:<34} {(row['name'] or '—'):<20} "
             f"{('yes' if row['is_active'] else 'no'):<7} {row['last_login_at'] or 'never'}"
         )
+    return 0
+
+
+def cmd_email_log(args: list[str]) -> int:
+    """Show recent email attempts with their outcome, for debugging delivery."""
+    db.get_connection()
+    try:
+        limit = int(args[0]) if args else 20
+    except ValueError:
+        limit = 20
+
+    rows = db.list_email_log(max(1, min(limit, 200)))
+    mode = "SMTP" if settings.smtp_configured else "OFFLINE (nothing is sent)"
+    print(f"\n  Email log — mode: {mode}")
+    if settings.smtp_configured:
+        print(f"  Sending via {settings.smtp_host}:{settings.smtp_port} "
+              f"as {settings.mail_from}")
+    print("  " + "=" * 74)
+
+    if not rows:
+        print("  No email attempts recorded yet.")
+        print("  Make a test booking, or run: python3 run.py test-email you@example.com\n")
+        return 0
+
+    labels = {"sent": "SENT  ", "queued": "QUEUED", "failed": "FAILED"}
+    for row in rows:
+        when = (row["created_at"] or "")[:16].replace("T", " ")
+        print(f"  [{labels.get(row['status'], row['status'])}] {when}  "
+              f"{row['kind']:16} -> {row['recipients']}")
+        print(f"           {row['subject'][:68]}")
+        if row["error"]:
+            print(f"           error: {row['error'][:150]}")
+        if row["outbox_file"]:
+            print(f"           saved:  {row['outbox_file']}")
+
+    counts = {s: sum(1 for r in rows if r["status"] == s)
+              for s in ("sent", "queued", "failed")}
+    print("  " + "=" * 74)
+    print(f"  {counts['sent']} sent · {counts['queued']} queued · "
+          f"{counts['failed']} failed\n")
+
+    if counts["queued"] and not settings.smtp_configured:
+        print("  Those queued messages were never sent — SMTP is not configured.")
+        print("  Set SMTP_HOST / SMTP_USER / SMTP_PASSWORD, then re-test.\n")
+    if counts["failed"]:
+        print("  Failed sends usually mean rejected credentials. For Gmail, confirm")
+        print("  SMTP_PASSWORD is a 16-character App Password with no spaces.\n")
     return 0
 
 
@@ -410,6 +458,7 @@ COMMANDS = {
     "delete-admin": cmd_delete_admin,
     "list-admins": cmd_list_admins,
     "check": cmd_check,
+    "email-log": cmd_email_log,
     "test-email": cmd_test_email,
     "seed-demo": cmd_seed_demo,
     "stats": cmd_stats,
