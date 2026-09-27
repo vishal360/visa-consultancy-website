@@ -148,10 +148,17 @@ A paid instance is required: Render only lets you attach a persistent disk to a
 paid service, and free services spin down after 15 minutes of inactivity and
 take about a minute to wake. Both are disqualifying for a booking site.
 
-Budget roughly **$7/month** for the 0.5 CPU / 512 MB instance, plus **$0.25/month**
-for the 1 GB disk at Render's published $0.25/GB. Treat the figure Render shows
-you on the Apply screen as authoritative — it is the only number guaranteed to be
-current.
+Render meters this hourly. The rates, taken from a live account's Unbilled
+Charges page:
+
+| Item | Rate | Per month (730 hrs) |
+| --- | --- | --- |
+| Starter instance (0.5c-512mb) | $0.0097/hr | $7.08 |
+| Disk, 1 GB | $0.0003/GB·hr | $0.22 |
+| **Total** | | **~$7.30** (~$87/year) |
+
+Short months cost slightly less: about $6.72 over 28 days, $7.44 over 31. Your
+own **Unbilled Charges** page is always the authoritative figure.
 
 This is a **recurring monthly charge**, not a one-off. Render meters it prorated
 to the second, but a website has to stay up, so in practice you accrue the full
