@@ -29,8 +29,6 @@ services:
 
     envVars:
       # --- set these yourself ---
-      - key: SECRET_KEY
-        generateValue: true # Render generates a strong random value
       - key: ADMIN_EMAIL
         sync: false # prompts you in the dashboard
       - key: ADMIN_PASSWORD

@@ -55,7 +55,4 @@ def create_app() -> Application:
                 "[setup] WARNING: using the default admin password. "
                 "Set ADMIN_PASSWORD in .env and run `python3 run.py set-password`."
             )
-    if settings.secret_key == "dev-only-insecure-secret-change-me" and not settings.debug:
-        print("[setup] WARNING: SECRET_KEY is still the development default.")
-
     return app

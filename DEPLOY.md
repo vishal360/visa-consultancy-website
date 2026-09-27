@@ -104,7 +104,6 @@ sleeps after 15 minutes of inactivity.
    | `NOTIFY_EMAILS` | where booking alerts should land |
    | `BASE_URL` | leave blank for now |
 
-   Leave `SECRET_KEY` alone — Render generates a strong one.
 4. Apply. The first build takes a couple of minutes; there is nothing to
    install, so it is mostly just cloning the repo.
 
@@ -239,8 +238,7 @@ Both work the same way using the included [`Dockerfile`](Dockerfile).
 ```bash
 fly launch --no-deploy            # generates fly.toml from the Dockerfile
 fly volumes create data --size 1 --region waw
-fly secrets set SECRET_KEY="$(python3 -c 'import secrets;print(secrets.token_urlsafe(48))')" \
-                ADMIN_EMAIL=you@example.com \
+fly secrets set ADMIN_EMAIL=you@example.com \
                 ADMIN_PASSWORD='a-strong-password' \
                 SMTP_HOST=smtp.gmail.com SMTP_USER=you@gmail.com \
                 SMTP_PASSWORD='your-app-password' \
@@ -274,7 +272,7 @@ cd /home/visa
 git clone https://github.com/vishal360/visa-consultancy.git app
 cd app
 cp .env.example .env
-nano .env            # set SECRET_KEY, ADMIN_*, SMTP_*, BASE_URL,
+nano .env            # set ADMIN_*, SMTP_*, BASE_URL,
                      # DEBUG=false, SECURE_COOKIES=true, PORT=8000
 chown -R visa:visa /home/visa
 ```
@@ -349,8 +347,6 @@ is live. Copy the backups off the machine periodically.
 
 ## Before you go live
 
-- [ ] `SECRET_KEY` set to a long random value
-      (`python3 -c "import secrets; print(secrets.token_urlsafe(48))"`)
 - [ ] `ADMIN_PASSWORD` changed from the default, or run
       `python3 run.py set-password`
 - [ ] `DEBUG=false` — otherwise error pages leak internal details

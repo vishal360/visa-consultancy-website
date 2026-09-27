@@ -156,10 +156,13 @@ yourself.
 ### Security
 
 ```ini
-SECRET_KEY=<long random string>   # python3 -c "import secrets; print(secrets.token_urlsafe(48))"
-SECURE_COOKIES=true               # set true once you serve over HTTPS
+SECURE_COOKIES=true   # set true once you serve over HTTPS
 SESSION_TTL_HOURS=12
 ```
+
+There is no `SECRET_KEY` to configure. Session cookies carry an opaque random
+token and every bit of session state is held server-side, so there is no signing
+key that could leak.
 
 ---
 
@@ -270,8 +273,8 @@ Two requirements to keep in mind wherever you host it: the app needs a
 
 ## Notes before going live
 
-- **Change `SECRET_KEY`, `ADMIN_PASSWORD` and the contact details.** The
-  defaults are for local development only.
+- **Change `ADMIN_PASSWORD` and the contact details.** The defaults are for
+  local development only.
 - **Put it behind a reverse proxy** (nginx, Caddy) terminating HTTPS, then set
   `SECURE_COOKIES=true` and `DEBUG=false`. `http.server` is fine for modest
   traffic behind a proxy; it is not intended as an internet-facing edge server.

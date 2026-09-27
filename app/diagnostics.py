@@ -176,23 +176,6 @@ def _check_disk_space() -> dict:
     )
 
 
-def _check_secret_key() -> dict:
-    if settings.secret_key == "dev-only-insecure-secret-change-me":
-        return _check(
-            "SECRET_KEY",
-            FAIL if not settings.debug else WARN,
-            "Still the development default.",
-            'Set SECRET_KEY to: python3 -c "import secrets; '
-            'print(secrets.token_urlsafe(48))"',
-        )
-    if len(settings.secret_key) < 32:
-        return _check(
-            "SECRET_KEY", WARN, f"Only {len(settings.secret_key)} characters.",
-            "Use at least 32 characters.",
-        )
-    return _check("SECRET_KEY", OK, f"Set ({len(settings.secret_key)} characters)")
-
-
 def _check_debug() -> dict:
     if settings.debug:
         return _check(
@@ -330,7 +313,6 @@ def preflight() -> list[dict]:
         _check_admin(),
         _check_notify(),
         _check_email(),
-        _check_secret_key(),
         _check_debug(),
         _check_cookies(),
         _check_base_url(),

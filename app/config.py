@@ -85,8 +85,11 @@ class Settings:
         self.db_path = Path(_env("DB_PATH", str(DATA_DIR / "app.db")))
 
         # --- Security ---
-        # Used to sign session cookies. MUST be overridden in production.
-        self.secret_key = _env("SECRET_KEY", "dev-only-insecure-secret-change-me")
+        # There is deliberately no SECRET_KEY here. Sessions are not signed
+        # cookies: the cookie holds an opaque `secrets.token_urlsafe(40)` value
+        # and all state lives server-side in the `sessions` table, with CSRF
+        # tokens generated the same way. So there is no signing key to manage,
+        # leak, or rotate.
         self.session_ttl_hours = _env_int("SESSION_TTL_HOURS", 12)
         self.secure_cookies = _env_bool("SECURE_COOKIES", False)
 
