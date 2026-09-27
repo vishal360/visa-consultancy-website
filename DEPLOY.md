@@ -146,16 +146,34 @@ dashboard.
 
 A paid instance is required: Render only lets you attach a persistent disk to a
 paid service, and free services spin down after 15 minutes of inactivity and
-take about a minute to wake. Both are disqualifying for a booking site. Budget
-roughly $7/month for the instance plus $0.25/GB/month for the disk.
+take about a minute to wake. Both are disqualifying for a booking site.
+
+Expect roughly **$7/month** for the 0.5 CPU / 512 MB instance plus **$0.25/month**
+for the 1 GB disk. Render asks for a card when you apply the Blueprint, because
+it provisions a paid instance. Billing is prorated to the second, so deleting the
+service stops the charge immediately — you are not locked into a month.
 
 Useful afterwards: the **Shell** tab in the Render dashboard gives you a
 terminal in the browser, so you can run `python3 run.py change-email …` or
 `set-password` without SSH or installing anything locally.
 
-**Custom domain:** Settings → Custom Domain, add `yourdomain.com`, then create
-the CNAME record Render shows you at your registrar. TLS is automatic. Update
-`BASE_URL` afterwards.
+### Custom domain
+
+Render gives you a free `*.onrender.com` subdomain. Your own domain is a separate
+purchase from a registrar — Render does not sell domains.
+
+1. **Buy the domain** from a registrar. Cloudflare sells at cost, Namecheap and
+   Hostinger are cheap, BigRock is India-based. Expect roughly ₹800–1,500 a year
+   for a `.com`; `.in` is often cheaper. A `.com` is only yours if nobody already
+   owns it, so check availability first and have a fallback in mind.
+2. **Add it in Render:** service → Settings → Custom Domain. Your workspace plan
+   includes a number of custom domains at no charge; beyond that they are
+   $0.25/month each, so a single domain costs nothing extra.
+3. **Create the DNS record** Render shows you at the registrar — a `CNAME` for
+   `www`, or an `ALIAS`/`A` record for the bare domain.
+4. Wait for DNS to propagate (minutes to a few hours). TLS is issued
+   automatically, no certificate work needed.
+5. **Update `BASE_URL`** to the new domain so email links are right.
 
 ---
 
