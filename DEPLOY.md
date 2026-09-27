@@ -293,6 +293,70 @@ is live. Copy the backups off the machine periodically.
 - [ ] `templates/privacy.html` reviewed for your jurisdiction
 - [ ] Database backups scheduled
 
+## "The setting you are looking for is not available for your account"
+
+This is what Google says when you open the App Passwords page and the feature is
+hidden. Almost always it means **2-Step Verification is not switched on** — App
+Passwords simply do not exist as an option until it is.
+
+Fix it:
+
+1. Go to <https://myaccount.google.com/signinoptions/twosv> and turn on 2-Step
+   Verification (you will need your phone).
+2. Go back to <https://myaccount.google.com/apppasswords>. The page now works.
+
+Still hidden after enabling 2SV? Then one of these applies:
+
+- **It is a Google Workspace account** (an email on your own domain rather than
+  `@gmail.com`) and the administrator has disabled App Passwords. Only the admin
+  can re-enable it.
+- **The account is enrolled in Google's Advanced Protection Program**, which
+  blocks App Passwords by design.
+- **Your only second factor is a passkey or security key.** Add a phone number
+  as a backup second step and the option usually appears.
+
+If none of those can be changed, do not fight it — use Brevo instead.
+
+### Alternative: Brevo (no App Password needed)
+
+Brevo gives you 300 emails a day free, permanently, and does not require you to
+own a domain. It is also purpose-built for transactional email, so
+deliverability is generally better than relaying through a personal Gmail.
+
+1. Sign up at <https://www.brevo.com> and verify your email address.
+2. Add `vpukralink@gmail.com` as a **verified sender** (Senders, Domains & IPs →
+   Senders). Brevo emails you a confirmation link.
+3. Open **SMTP & API → SMTP** and generate an **SMTP key**.
+4. Set these on Render:
+
+   | Variable | Value |
+   | --- | --- |
+   | `SMTP_HOST` | `smtp-relay.brevo.com` |
+   | `SMTP_PORT` | `587` |
+   | `SMTP_USE_TLS` | `true` |
+   | `SMTP_USER` | the login Brevo shows, e.g. `9a1b2c001@smtp-brevo.com` |
+   | `SMTP_PASSWORD` | the **SMTP key** from step 3 |
+   | `MAIL_FROM` | `vpukralink@gmail.com` (the sender you verified) |
+
+Two mistakes to avoid, because they account for most Brevo failures:
+
+- `SMTP_USER` is **not** your own email address. It is the odd-looking
+  `…@smtp-brevo.com` login on the SMTP page.
+- Use the **SMTP key**, not an **API key**. They are different credentials on
+  the same screen and the API key will fail to authenticate.
+
+Then verify: `python3 run.py test-email vpukralink@gmail.com`
+
+### You are not blocked on this
+
+Email is the one piece that can be fixed after launch. With `SMTP_HOST` unset
+the site runs in offline mode: bookings still save, still appear in the
+dashboard, and the emails that *would* have been sent are written to
+`data/outbox/` on the persistent disk, viewable under each booking in the
+dashboard. Nothing is lost. Deploy first, sort email out second — just do it
+before you point real clients at the site, since they would otherwise get no
+confirmation.
+
 ## Email deliverability
 
 Mail sent from a cloud host often lands in spam. Two fixes, in order of
