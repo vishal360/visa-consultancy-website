@@ -38,7 +38,16 @@ def load_dotenv(path: Path | None = None) -> None:
 
 
 def _env(key: str, default: str = "") -> str:
-    return os.environ.get(key, default).strip()
+    """
+    Read a setting, treating an empty value as absent.
+
+    Hosting dashboards happily set variables to the empty string when you leave
+    a field blank. Without this, `MAIL_FROM=""` would override its default
+    instead of falling back to it, and the app would try to send mail with no
+    From address.
+    """
+    value = os.environ.get(key, default).strip()
+    return value if value else default.strip()
 
 
 def _env_int(key: str, default: int) -> int:
