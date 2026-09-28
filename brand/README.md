@@ -47,6 +47,37 @@ corners — the route and both markers stay well inside the circle.
 | `06-book.svg` | Booking details, hours and contact |
 | `story-template.svg` | 1080 x 1920 story, with a guide box for your own text |
 
+### Job vacancies — `brand/instagram/jobs/`
+
+Vacancies sit in their own folder because they expire, whereas the brand posts
+above stay relevant.
+
+| File | Use |
+| --- | --- |
+| `00-both-vacancies.svg` | Single post announcing both roles — good standalone |
+| `greenhouse-1-hero.svg` | Carousel slide 1: title + salary |
+| `greenhouse-2-details.svg` | Slide 2: what's provided + duties |
+| `greenhouse-3-conditions.svg` | Slide 3: hours, schedule, age, experience + apply |
+| `bakery-1-hero.svg` | Carousel slide 1 |
+| `bakery-2-details.svg` | Slide 2 |
+| `bakery-3-conditions.svg` | Slide 3 |
+
+Post each job as a **carousel** in the order 1 → 2 → 3. A single square cannot
+hold a full job spec at a legible size; the hero slide carries the salary as the
+hook and the rest lives behind a swipe.
+
+The salary ranges on these carry a 20% uplift over the employer briefs
+(greenhouse `$500–$650` → `$600–$780`, bakery `$450–$600` → `$540–$720`).
+Everything else — hours, schedule, age limits, duties, benefits — is reproduced
+from the briefs unchanged.
+
+**One practical caution.** An advertised salary that does not match the signed
+contract is the kind of discrepancy that generates complaints and, for a
+consultancy, regulatory attention — candidates make international relocation
+decisions on that number. Worth confirming the uplifted figures are what the
+employer will actually pay before publishing. Adjust `JOBS` in
+`generate_posts.py` if they need to change.
+
 ## Editing the posts
 
 The posts are generated from one template, so they cannot drift apart
@@ -138,6 +169,38 @@ claims or invented client numbers, because none of that is verified.
 > your case. Video or phone, 11am to 6pm IST, Monday to Friday.
 > Fees are quoted on the call, once we understand what your case actually needs.
 > #BookNow #VisaConsultation #UkraineVisa
+
+### Vacancy captions
+
+**Greenhouse Agriculture Worker — Ukraine**
+> 🌱 GREENHOUSE AGRICULTURE WORKER — UKRAINE
+> $600–$780 USD per month, depending on hours and output.
+> Official employment contract with full legal registration. Free housing with
+> utilities and free transport to the complex. Harvesting performance bonus.
+> 200–220 hrs/month · 6 days a week, day shifts · men & women up to 52 ·
+> agricultural experience is a plus.
+> Swipe for the full details. Send your CV to vpukralink@gmail.com
+> #UkraineJobs #WorkInUkraine #AgricultureJobs #JobsAbroad #OverseasJobs
+
+**Bakery Production Worker — Ukraine**
+> 🥖 BAKERY PRODUCTION WORKER — UKRAINE
+> $540–$720 USD per month, paid on a regular monthly schedule.
+> Official full-time contract with full legalization support. Free accommodation
+> near the site, free daily meals on shift, uniform and safety gear provided,
+> on-site coordinator for support.
+> 210–240 hrs/month · 5–6 days a week · men & women up to 50 ·
+> **no experience required**.
+> Swipe for the full details. Send your CV to vpukralink@gmail.com
+> #UkraineJobs #WorkInUkraine #BakeryJobs #JobsAbroad #NoExperienceRequired
+
+**Both roles (teaser post)**
+> 📢 TWO VACANCIES OPEN IN UKRAINE
+> Greenhouse Agriculture Worker — $600–$780/month
+> Bakery Production Worker — $540–$720/month
+> Both roles: official employment contract, housing provided, full legalization
+> support.
+> Send your CV to vpukralink@gmail.com
+> #UkraineJobs #WorkInUkraine #JobsAbroad #OverseasEmployment
 
 ## Before you publish
 

@@ -490,6 +490,262 @@ def build_export_html(assets: list[tuple[str, str]]) -> str:
 """
 
 
+# --------------------------------------------------------------------------- #
+# Job vacancy carousels
+# --------------------------------------------------------------------------- #
+# Everything below is taken from the employer briefs as supplied. Only the
+# salary figures differ: both ranges carry a 20% uplift, applied on request.
+#   Greenhouse  $500-$650  ->  $600-$780
+#   Bakery      $450-$600  ->  $540-$720
+# Nothing else has been added or embellished — if a benefit is not in the brief,
+# it is not on the post.
+
+JOBS = [
+    {
+        "slug": "greenhouse",
+        "title": ["Greenhouse", "Agriculture Worker"],
+        "subtitle": "Ukraine · Modern vegetable cultivation complexes",
+        "salary": "$600 – $780",
+        "salary_note": "USD per month, depending on hours and output",
+        "provides": [
+            "Official employment contract",
+            "Free housing with all utilities",
+            "Free transport to the complex",
+            "Harvesting performance bonus",
+            "Full legalization support",
+        ],
+        "duties": [
+            "Planting & crop care",
+            "Harvesting vegetables",
+            "Packaging & sorting produce",
+            "Pruning & vine maintenance",
+        ],
+        "conditions": [
+            ("Working hours", "200 – 220 hrs / month"),
+            ("Schedule", "6 days / week, day shifts"),
+            ("Age limit", "Men & women up to 52"),
+            ("Experience", "Agricultural experience is a plus"),
+        ],
+    },
+    {
+        "slug": "bakery",
+        "title": ["Bakery", "Production Worker"],
+        "subtitle": "Ukraine · Major industrial bakery facility",
+        "salary": "$540 – $720",
+        "salary_note": "USD per month, paid on a regular monthly schedule",
+        "provides": [
+            "Official full-time contract",
+            "Free accommodation near the site",
+            "Free daily meals on shift",
+            "Work uniform & safety gear",
+            "On-site coordinator support",
+            "Full legalization support",
+        ],
+        "duties": [
+            "Operate the dough moulding line",
+            "Package finished bakery goods",
+            "Monitor oven baking cycles",
+            "Clean & sanitise equipment",
+        ],
+        "conditions": [
+            ("Working hours", "210 – 240 hrs / month"),
+            ("Schedule", "5 – 6 working days / week"),
+            ("Age limit", "Men & women up to 50"),
+            ("Experience", "No experience required"),
+        ],
+    },
+]
+
+
+def _shell(w: int, h: int, label: str, body: str) -> str:
+    return (
+        f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {w} {h}" '
+        f'width="{w}" height="{h}" role="img" aria-label="{esc(label)}">\n'
+        f"  <title>{esc(label)}</title>\n{_defs()}\n{_background(w, h)}\n{body}\n</svg>\n"
+    )
+
+
+def _pill(x: int, y: int, text: str, size: int = 25) -> str:
+    width = int(len(text) * (size * 0.72)) + 56
+    return (
+        f'  <rect x="{x}" y="{y}" width="{width}" height="56" rx="28" fill="{GOLD}"/>\n'
+        f'  <text x="{x + 28}" y="{y + 38}" font-family="{FONT}" font-size="{size}" '
+        f'font-weight="700" letter-spacing="3" fill="{INK}">{esc(text.upper())}</text>'
+    )
+
+
+def build_job_hero(job: dict) -> str:
+    pad = 88
+    p = [_lockup(pad, 74), _pill(pad, 214, "Now hiring")]
+
+    y = 392
+    for line in job["title"]:
+        size = 76 if len(line) <= 19 else 64
+        p.append(
+            f'  <text x="{pad}" y="{y}" font-family="{FONT}" font-size="{size}" '
+            f'font-weight="700" letter-spacing="-2" fill="{WHITE}">{esc(line)}</text>'
+        )
+        y += 88
+    p.append(
+        f'  <text x="{pad}" y="{y + 22}" font-family="{FONT}" font-size="30" '
+        f'font-weight="500" fill="{BLUE_SOFT}">{esc(job["subtitle"])}</text>'
+    )
+
+    # Salary is the hook, so it gets its own framed block.
+    card_y = 624
+    p.append(
+        f'  <rect x="{pad}" y="{card_y}" width="{1080 - pad*2}" height="186" rx="26" '
+        f'fill="{WHITE}" fill-opacity="0.06" stroke="{GOLD}" stroke-opacity="0.34" '
+        f'stroke-width="2"/>'
+    )
+    p.append(
+        f'  <text x="{pad + 38}" y="{card_y + 54}" font-family="{FONT}" font-size="24" '
+        f'font-weight="700" letter-spacing="3.4" fill="{GOLD}">MONTHLY SALARY</text>'
+    )
+    p.append(
+        f'  <text x="{pad + 38}" y="{card_y + 132}" font-family="{FONT}" font-size="72" '
+        f'font-weight="700" letter-spacing="-1.6" fill="{WHITE}">{esc(job["salary"])}</text>'
+    )
+    p.append(
+        f'  <text x="{pad + 38}" y="{card_y + 168}" font-family="{FONT}" font-size="23" '
+        f'font-weight="400" fill="{MUTED}">{esc(job["salary_note"])}</text>'
+    )
+
+    p.append(
+        f'  <text x="{pad}" y="898" font-family="{FONT}" font-size="29" '
+        f'font-weight="700" fill="{GOLD}">Swipe for full details &#8594;</text>'
+    )
+    p.append(
+        f'  <line x1="{pad}" y1="962" x2="{1080 - pad}" y2="962" stroke="{BLUE_SOFT}" '
+        f'stroke-width="1" opacity="0.22"/>'
+    )
+    p.append(
+        f'  <text x="{pad}" y="1014" font-family="{FONT}" font-size="28" '
+        f'font-weight="600" fill="{BLUE_SOFT}">{esc(SITE)}</text>'
+    )
+    return _shell(1080, 1080, " ".join(job["title"]) + " — vacancy", "\n".join(p))
+
+
+def build_job_details(job: dict) -> str:
+    pad = 88
+    p = [_lockup(pad, 74)]
+
+    def section(heading: str, items: list[str], y: int) -> int:
+        p.append(
+            f'  <text x="{pad}" y="{y}" font-family="{FONT}" font-size="28" '
+            f'font-weight="700" letter-spacing="3.4" fill="{GOLD}">{esc(heading.upper())}</text>'
+        )
+        p.append(f'  <rect x="{pad}" y="{y + 18}" width="62" height="3" rx="2" fill="{GOLD}"/>')
+        y += 74
+        for item in items:
+            p.append(f'  <circle cx="{pad + 8}" cy="{y - 10}" r="6" fill="{GOLD}"/>')
+            p.append(
+                f'  <text x="{pad + 30}" y="{y}" font-family="{FONT}" font-size="30" '
+                f'font-weight="500" fill="{WHITE}">{esc(item)}</text>'
+            )
+            y += 52
+        return y
+
+    y = section("What we provide", job["provides"], 236)
+    section("Job duties", job["duties"], y + 44)
+
+    p.append(
+        f'  <line x1="{pad}" y1="962" x2="{1080 - pad}" y2="962" stroke="{BLUE_SOFT}" '
+        f'stroke-width="1" opacity="0.22"/>'
+    )
+    p.append(
+        f'  <text x="{pad}" y="1014" font-family="{FONT}" font-size="28" '
+        f'font-weight="600" fill="{BLUE_SOFT}">{esc(SITE)}</text>'
+    )
+    return _shell(1080, 1080, " ".join(job["title"]) + " — what we provide",
+                  "\n".join(p))
+
+
+def build_job_conditions(job: dict) -> str:
+    pad = 88
+    p = [_lockup(pad, 74)]
+    p.append(
+        f'  <text x="{pad}" y="238" font-family="{FONT}" font-size="28" '
+        f'font-weight="700" letter-spacing="3.4" fill="{GOLD}">CONDITIONS</text>'
+    )
+    p.append(f'  <rect x="{pad}" y="256" width="62" height="3" rx="2" fill="{GOLD}"/>')
+
+    y = 336
+    for label, value in job["conditions"]:
+        p.append(
+            f'  <text x="{pad}" y="{y}" font-family="{FONT}" font-size="24" '
+            f'font-weight="600" letter-spacing="2.4" fill="{BLUE_SOFT}">'
+            f'{esc(label.upper())}</text>'
+        )
+        size = 34 if len(value) <= 34 else 29
+        p.append(
+            f'  <text x="{pad}" y="{y + 44}" font-family="{FONT}" font-size="{size}" '
+            f'font-weight="600" fill="{WHITE}">{esc(value)}</text>'
+        )
+        y += 112
+
+    p.append(_pill(pad, 800, "Apply now", 27))
+    p.append(
+        f'  <text x="{pad}" y="922" font-family="{FONT}" font-size="27" '
+        f'font-weight="500" fill="{MUTED}">Send your CV to {esc(EMAIL)}</text>'
+    )
+    p.append(
+        f'  <line x1="{pad}" y1="962" x2="{1080 - pad}" y2="962" stroke="{BLUE_SOFT}" '
+        f'stroke-width="1" opacity="0.22"/>'
+    )
+    p.append(
+        f'  <text x="{pad}" y="1014" font-family="{FONT}" font-size="28" '
+        f'font-weight="600" fill="{BLUE_SOFT}">{esc(SITE)}</text>'
+    )
+    return _shell(1080, 1080, " ".join(job["title"]) + " — conditions", "\n".join(p))
+
+
+def build_vacancy_teaser() -> str:
+    """Single feed post announcing both roles at once."""
+    pad = 88
+    p = [_lockup(pad, 74), _pill(pad, 214, "Vacancies in Ukraine")]
+    p.append(
+        f'  <text x="{pad}" y="392" font-family="{FONT}" font-size="76" '
+        f'font-weight="700" letter-spacing="-2" fill="{WHITE}">Two roles open</text>'
+    )
+
+    y = 470
+    for job in JOBS:
+        p.append(
+            f'  <rect x="{pad}" y="{y}" width="{1080 - pad*2}" height="176" rx="24" '
+            f'fill="{WHITE}" fill-opacity="0.06" stroke="{BLUE_SOFT}" '
+            f'stroke-opacity="0.2" stroke-width="2"/>'
+        )
+        p.append(
+            f'  <text x="{pad + 34}" y="{y + 62}" font-family="{FONT}" font-size="38" '
+            f'font-weight="700" fill="{WHITE}">{esc(" ".join(job["title"]))}</text>'
+        )
+        p.append(
+            f'  <text x="{pad + 34}" y="{y + 114}" font-family="{FONT}" font-size="44" '
+            f'font-weight="700" fill="{GOLD}">{esc(job["salary"])}</text>'
+        )
+        p.append(
+            f'  <text x="{pad + 34}" y="{y + 150}" font-family="{FONT}" font-size="24" '
+            f'font-weight="400" fill="{MUTED}">USD / month · official contract · '
+            f'housing provided</text>'
+        )
+        y += 204
+
+    p.append(
+        f'  <text x="{pad}" y="{y + 44}" font-family="{FONT}" font-size="28" '
+        f'font-weight="600" fill="{BLUE_SOFT}">Send your CV to {esc(EMAIL)}</text>'
+    )
+    p.append(
+        f'  <line x1="{pad}" y1="962" x2="{1080 - pad}" y2="962" stroke="{BLUE_SOFT}" '
+        f'stroke-width="1" opacity="0.22"/>'
+    )
+    p.append(
+        f'  <text x="{pad}" y="1014" font-family="{FONT}" font-size="28" '
+        f'font-weight="600" fill="{BLUE_SOFT}">{esc(SITE)}</text>'
+    )
+    return _shell(1080, 1080, "Two vacancies open in Ukraine", "\n".join(p))
+
+
 def main() -> None:
     OUT.mkdir(parents=True, exist_ok=True)
     written = []
@@ -500,6 +756,23 @@ def main() -> None:
     story = OUT / "story-template.svg"
     story.write_text(build_story(), encoding="utf-8")
     written.append(story)
+
+    # Job vacancies live in their own folder: they expire, the brand posts do not.
+    jobs_dir = OUT / "jobs"
+    jobs_dir.mkdir(parents=True, exist_ok=True)
+    teaser = jobs_dir / "00-both-vacancies.svg"
+    teaser.write_text(build_vacancy_teaser(), encoding="utf-8")
+    written.append(teaser)
+    for job in JOBS:
+        slides = [
+            ("1-hero", build_job_hero(job)),
+            ("2-details", build_job_details(job)),
+            ("3-conditions", build_job_conditions(job)),
+        ]
+        for suffix, svg in slides:
+            path = jobs_dir / f"{job['slug']}-{suffix}.svg"
+            path.write_text(svg, encoding="utf-8")
+            written.append(path)
 
     # Build the exporter over the posts plus the hand-written logo files.
     logo_dir = Path(__file__).parent / "logo"
