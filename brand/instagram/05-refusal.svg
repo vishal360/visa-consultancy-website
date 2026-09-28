@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1080" width="1080" height="1080" role="img" aria-label="Been refused before?">
+  <title>Been refused before?</title>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0.6" y2="1">
+      <stop offset="0" stop-color="#0f2550"/>
+      <stop offset="1" stop-color="#071531"/>
+    </linearGradient>
+    <linearGradient id="route" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0" stop-color="#4d8dff"/>
+      <stop offset="0.55" stop-color="#e6b422"/>
+      <stop offset="1" stop-color="#ffd700"/>
+    </linearGradient>
+    <radialGradient id="orbGold" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#ffd700" stop-opacity="0.20"/>
+      <stop offset="1" stop-color="#ffd700" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="orbBlue" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#4d8dff" stop-opacity="0.26"/>
+      <stop offset="1" stop-color="#4d8dff" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1080" height="1080" fill="url(#bg)"/>
+  <g stroke="#8fbaff" stroke-width="1" opacity="0.055"><line x1="0" y1="0" x2="0" y2="1080"/><line x1="90" y1="0" x2="90" y2="1080"/><line x1="180" y1="0" x2="180" y2="1080"/><line x1="270" y1="0" x2="270" y2="1080"/><line x1="360" y1="0" x2="360" y2="1080"/><line x1="450" y1="0" x2="450" y2="1080"/><line x1="540" y1="0" x2="540" y2="1080"/><line x1="630" y1="0" x2="630" y2="1080"/><line x1="720" y1="0" x2="720" y2="1080"/><line x1="810" y1="0" x2="810" y2="1080"/><line x1="900" y1="0" x2="900" y2="1080"/><line x1="990" y1="0" x2="990" y2="1080"/><line x1="1080" y1="0" x2="1080" y2="1080"/><line x1="0" y1="0" x2="1080" y2="0"/><line x1="0" y1="90" x2="1080" y2="90"/><line x1="0" y1="180" x2="1080" y2="180"/><line x1="0" y1="270" x2="1080" y2="270"/><line x1="0" y1="360" x2="1080" y2="360"/><line x1="0" y1="450" x2="1080" y2="450"/><line x1="0" y1="540" x2="1080" y2="540"/><line x1="0" y1="630" x2="1080" y2="630"/><line x1="0" y1="720" x2="1080" y2="720"/><line x1="0" y1="810" x2="1080" y2="810"/><line x1="0" y1="900" x2="1080" y2="900"/><line x1="0" y1="990" x2="1080" y2="990"/><line x1="0" y1="1080" x2="1080" y2="1080"/></g>
+  <circle cx="950" cy="129" r="453" fill="url(#orbGold)"/>
+  <circle cx="64" cy="864" r="496" fill="url(#orbBlue)"/>
+  <g transform="translate(88 74) scale(0.128906)">
+    <rect width="512" height="512" rx="116" fill="#16376f"/>
+    <path d="M138 372C206 372 244 206 374 156" fill="none" stroke="url(#route)"
+          stroke-width="30" stroke-linecap="round"/>
+    <circle cx="138" cy="372" r="27" fill="#8fbaff"/>
+    <circle cx="374" cy="156" r="38" fill="#ffd700"/>
+    <circle cx="374" cy="156" r="15" fill="#071531"/>
+  </g>
+  <text x="176" y="120" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif"
+        font-size="34" font-weight="700" letter-spacing="-0.7">
+    <tspan fill="#ffd700">V&amp;P</tspan><tspan fill="#ffffff" dx="8">UkraLink</tspan>
+  </text>
+  <text x="88" y="284" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="25" font-weight="700" letter-spacing="4.6" fill="#ffd700">REFUSAL REVIEW</text>
+  <rect x="88" y="304" width="70" height="4" rx="2" fill="#ffd700"/>
+  <text x="88" y="396" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="78" font-weight="700" letter-spacing="-2" fill="#ffffff">Been refused</text>
+  <text x="88" y="487" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="78" font-weight="700" letter-spacing="-2" fill="#ffffff">before?</text>
+  <text x="88" y="596" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="33" font-weight="400" fill="#9db0d0">A refusal is usually a fixable gap in the</text>
+  <text x="88" y="644" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="33" font-weight="400" fill="#9db0d0">evidence, not a permanent bar. We find</text>
+  <text x="88" y="692" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="33" font-weight="400" fill="#9db0d0">the real reason, then decide between an</text>
+  <text x="88" y="740" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="33" font-weight="400" fill="#9db0d0">appeal and a corrected re-application.</text>
+  <rect x="88" y="844" width="538" height="82" rx="41" fill="#ffd700"/>
+  <text x="126" y="898" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="33" font-weight="700" fill="#071531">Get your case reviewed</text>
+  <line x1="88" y1="962" x2="992" y2="962" stroke="#8fbaff" stroke-width="1" opacity="0.22"/>
+  <text x="88" y="1014" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="29" font-weight="600" fill="#8fbaff">visa-consultancy.onrender.com</text>
+</svg>

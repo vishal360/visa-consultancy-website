@@ -1,0 +1,1296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>V&amp;P UkraLink — brand asset exporter</title>
+<style>
+  :root { color-scheme: dark; }
+  * { box-sizing: border-box; }
+  body { margin:0; padding:32px clamp(16px,4vw,48px) 80px; background:#071531;
+         color:#e8eefb; font-family:Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif; }
+  h1 { font-size:clamp(22px,3vw,30px); margin:0 0 6px; letter-spacing:-0.5px; }
+  p.lede { color:#9db0d0; margin:0 0 26px; font-size:15px; max-width:70ch;
+            line-height:1.6; }
+  .bar { display:flex; flex-wrap:wrap; gap:12px; align-items:center;
+          margin-bottom:30px; padding:16px 18px; border:1px solid rgba(143,186,255,.2);
+          border-radius:14px; background:rgba(143,186,255,.05); }
+  label { font-size:14px; color:#9db0d0; }
+  select, button { font:inherit; }
+  select { padding:9px 12px; border-radius:9px; border:1px solid rgba(143,186,255,.28);
+            background:#0f2550; color:#e8eefb; }
+  button { padding:10px 18px; border:0; border-radius:999px; cursor:pointer;
+            background:#ffd700; color:#071531; font-weight:700; font-size:14px;
+            transition:transform .15s, box-shadow .15s; }
+  button:hover { transform:translateY(-1px); box-shadow:0 8px 20px rgba(255,215,0,.24); }
+  button.ghost { background:transparent; color:#e8eefb;
+                  border:1px solid rgba(143,186,255,.34); }
+  .grid { display:grid; gap:22px;
+           grid-template-columns:repeat(auto-fill, minmax(290px, 1fr)); }
+  .card { border:1px solid rgba(143,186,255,.18); border-radius:16px;
+           overflow:hidden; background:#0b1c3d; }
+  .preview { display:grid; place-items:center; padding:14px;
+              background:repeating-conic-gradient(#12203c 0% 25%, #0d1830 0% 50%)
+              50%/18px 18px; }
+  .preview svg { width:100%; height:auto; display:block; border-radius:6px;
+                  box-shadow:0 6px 20px rgba(0,0,0,.4); }
+  .meta { display:flex; align-items:center; justify-content:space-between;
+           gap:12px; padding:13px 15px; border-top:1px solid rgba(143,186,255,.14); }
+  .meta strong { display:block; font-size:14px; }
+  .meta small { color:#9db0d0; font-size:12px; }
+  #log { margin-top:22px; font-size:13px; color:#9db0d0; min-height:20px; }
+</style>
+</head>
+<body>
+
+<h1>V&amp;P UkraLink — brand asset exporter</h1>
+<p class="lede">
+  Everything below is a vector file. Pick a size, then download the ones you
+  want as PNG — Instagram accepts PNG directly. Nothing is uploaded anywhere;
+  the conversion happens in this browser tab.
+</p>
+
+<div class="bar">
+  <label for="scale">Export size</label>
+  <select id="scale">
+    <option value="1">1x — 1080px (Instagram standard)</option>
+    <option value="2" selected>2x — 2160px (sharper, recommended)</option>
+    <option value="3">3x — 3240px (print)</option>
+  </select>
+  <button id="all">Download all</button>
+  <button class="ghost" id="allJpg">Download all as JPG</button>
+</div>
+
+<div class="grid">
+<article class="card">
+  <div class="preview"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1080" width="1080" height="1080" role="img" aria-label="Your route to Ukraine, mapped out properly.">
+  <title>Your route to Ukraine, mapped out properly.</title>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0.6" y2="1">
+      <stop offset="0" stop-color="#0f2550"/>
+      <stop offset="1" stop-color="#071531"/>
+    </linearGradient>
+    <linearGradient id="route" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0" stop-color="#4d8dff"/>
+      <stop offset="0.55" stop-color="#e6b422"/>
+      <stop offset="1" stop-color="#ffd700"/>
+    </linearGradient>
+    <radialGradient id="orbGold" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#ffd700" stop-opacity="0.20"/>
+      <stop offset="1" stop-color="#ffd700" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="orbBlue" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#4d8dff" stop-opacity="0.26"/>
+      <stop offset="1" stop-color="#4d8dff" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1080" height="1080" fill="url(#bg)"/>
+  <g stroke="#8fbaff" stroke-width="1" opacity="0.055"><line x1="0" y1="0" x2="0" y2="1080"/><line x1="90" y1="0" x2="90" y2="1080"/><line x1="180" y1="0" x2="180" y2="1080"/><line x1="270" y1="0" x2="270" y2="1080"/><line x1="360" y1="0" x2="360" y2="1080"/><line x1="450" y1="0" x2="450" y2="1080"/><line x1="540" y1="0" x2="540" y2="1080"/><line x1="630" y1="0" x2="630" y2="1080"/><line x1="720" y1="0" x2="720" y2="1080"/><line x1="810" y1="0" x2="810" y2="1080"/><line x1="900" y1="0" x2="900" y2="1080"/><line x1="990" y1="0" x2="990" y2="1080"/><line x1="1080" y1="0" x2="1080" y2="1080"/><line x1="0" y1="0" x2="1080" y2="0"/><line x1="0" y1="90" x2="1080" y2="90"/><line x1="0" y1="180" x2="1080" y2="180"/><line x1="0" y1="270" x2="1080" y2="270"/><line x1="0" y1="360" x2="1080" y2="360"/><line x1="0" y1="450" x2="1080" y2="450"/><line x1="0" y1="540" x2="1080" y2="540"/><line x1="0" y1="630" x2="1080" y2="630"/><line x1="0" y1="720" x2="1080" y2="720"/><line x1="0" y1="810" x2="1080" y2="810"/><line x1="0" y1="900" x2="1080" y2="900"/><line x1="0" y1="990" x2="1080" y2="990"/><line x1="0" y1="1080" x2="1080" y2="1080"/></g>
+  <circle cx="950" cy="129" r="453" fill="url(#orbGold)"/>
+  <circle cx="64" cy="864" r="496" fill="url(#orbBlue)"/>
+  <g transform="translate(88 74) scale(0.128906)">
+    <rect width="512" height="512" rx="116" fill="#16376f"/>
+    <path d="M138 372C206 372 244 206 374 156" fill="none" stroke="url(#route)"
+          stroke-width="30" stroke-linecap="round"/>
+    <circle cx="138" cy="372" r="27" fill="#8fbaff"/>
+    <circle cx="374" cy="156" r="38" fill="#ffd700"/>
+    <circle cx="374" cy="156" r="15" fill="#071531"/>
+  </g>
+  <text x="176" y="120" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif"
+        font-size="34" font-weight="700" letter-spacing="-0.7">
+    <tspan fill="#ffd700">V&amp;P</tspan><tspan fill="#ffffff" dx="8">UkraLink</tspan>
+  </text>
+  <text x="88" y="284" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="25" font-weight="700" letter-spacing="4.6" fill="#ffd700">UKRAINE VISA SPECIALISTS</text>
+  <rect x="88" y="304" width="70" height="4" rx="2" fill="#ffd700"/>
+  <text x="88" y="396" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="78" font-weight="700" letter-spacing="-2" fill="#ffffff">Your route to</text>
+  <text x="88" y="487" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="78" font-weight="700" letter-spacing="-2" fill="#ffffff">Ukraine, mapped</text>
+  <text x="88" y="578" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="78" font-weight="700" letter-spacing="-2" fill="#ffffff">out properly.</text>
+  <text x="88" y="687" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="33" font-weight="400" fill="#9db0d0">Short-stay, student, work, business,</text>
+  <text x="88" y="735" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="33" font-weight="400" fill="#9db0d0">family or residence — we tell you which</text>
+  <text x="88" y="783" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="33" font-weight="400" fill="#9db0d0">visa you actually need, and what it takes.</text>
+  <rect x="88" y="844" width="475" height="82" rx="41" fill="#ffd700"/>
+  <text x="126" y="898" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="33" font-weight="700" fill="#071531">Book a consultation</text>
+  <line x1="88" y1="962" x2="992" y2="962" stroke="#8fbaff" stroke-width="1" opacity="0.22"/>
+  <text x="88" y="1014" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="29" font-weight="600" fill="#8fbaff">visa-consultancy.onrender.com</text>
+</svg>
+</div>
+  <div class="meta">
+    <div><strong>01-intro</strong><small>1080 x 1080</small></div>
+    <button data-name="01-intro" data-w="1080" data-h="1080">Download PNG</button>
+  </div>
+  <script type="text/plain" class="src"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1080" width="1080" height="1080" role="img" aria-label="Your route to Ukraine, mapped out properly.">
+  <title>Your route to Ukraine, mapped out properly.</title>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0.6" y2="1">
+      <stop offset="0" stop-color="#0f2550"/>
+      <stop offset="1" stop-color="#071531"/>
+    </linearGradient>
+    <linearGradient id="route" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0" stop-color="#4d8dff"/>
+      <stop offset="0.55" stop-color="#e6b422"/>
+      <stop offset="1" stop-color="#ffd700"/>
+    </linearGradient>
+    <radialGradient id="orbGold" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#ffd700" stop-opacity="0.20"/>
+      <stop offset="1" stop-color="#ffd700" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="orbBlue" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#4d8dff" stop-opacity="0.26"/>
+      <stop offset="1" stop-color="#4d8dff" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1080" height="1080" fill="url(#bg)"/>
+  <g stroke="#8fbaff" stroke-width="1" opacity="0.055"><line x1="0" y1="0" x2="0" y2="1080"/><line x1="90" y1="0" x2="90" y2="1080"/><line x1="180" y1="0" x2="180" y2="1080"/><line x1="270" y1="0" x2="270" y2="1080"/><line x1="360" y1="0" x2="360" y2="1080"/><line x1="450" y1="0" x2="450" y2="1080"/><line x1="540" y1="0" x2="540" y2="1080"/><line x1="630" y1="0" x2="630" y2="1080"/><line x1="720" y1="0" x2="720" y2="1080"/><line x1="810" y1="0" x2="810" y2="1080"/><line x1="900" y1="0" x2="900" y2="1080"/><line x1="990" y1="0" x2="990" y2="1080"/><line x1="1080" y1="0" x2="1080" y2="1080"/><line x1="0" y1="0" x2="1080" y2="0"/><line x1="0" y1="90" x2="1080" y2="90"/><line x1="0" y1="180" x2="1080" y2="180"/><line x1="0" y1="270" x2="1080" y2="270"/><line x1="0" y1="360" x2="1080" y2="360"/><line x1="0" y1="450" x2="1080" y2="450"/><line x1="0" y1="540" x2="1080" y2="540"/><line x1="0" y1="630" x2="1080" y2="630"/><line x1="0" y1="720" x2="1080" y2="720"/><line x1="0" y1="810" x2="1080" y2="810"/><line x1="0" y1="900" x2="1080" y2="900"/><line x1="0" y1="990" x2="1080" y2="990"/><line x1="0" y1="1080" x2="1080" y2="1080"/></g>
+  <circle cx="950" cy="129" r="453" fill="url(#orbGold)"/>
+  <circle cx="64" cy="864" r="496" fill="url(#orbBlue)"/>
+  <g transform="translate(88 74) scale(0.128906)">
+    <rect width="512" height="512" rx="116" fill="#16376f"/>
+    <path d="M138 372C206 372 244 206 374 156" fill="none" stroke="url(#route)"
+          stroke-width="30" stroke-linecap="round"/>
+    <circle cx="138" cy="372" r="27" fill="#8fbaff"/>
+    <circle cx="374" cy="156" r="38" fill="#ffd700"/>
+    <circle cx="374" cy="156" r="15" fill="#071531"/>
+  </g>
+  <text x="176" y="120" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif"
+        font-size="34" font-weight="700" letter-spacing="-0.7">
+    <tspan fill="#ffd700">V&amp;P</tspan><tspan fill="#ffffff" dx="8">UkraLink</tspan>
+  </text>
+  <text x="88" y="284" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="25" font-weight="700" letter-spacing="4.6" fill="#ffd700">UKRAINE VISA SPECIALISTS</text>
+  <rect x="88" y="304" width="70" height="4" rx="2" fill="#ffd700"/>
+  <text x="88" y="396" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="78" font-weight="700" letter-spacing="-2" fill="#ffffff">Your route to</text>
+  <text x="88" y="487" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="78" font-weight="700" letter-spacing="-2" fill="#ffffff">Ukraine, mapped</text>
+  <text x="88" y="578" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="78" font-weight="700" letter-spacing="-2" fill="#ffffff">out properly.</text>
+  <text x="88" y="687" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="33" font-weight="400" fill="#9db0d0">Short-stay, student, work, business,</text>
+  <text x="88" y="735" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="33" font-weight="400" fill="#9db0d0">family or residence — we tell you which</text>
+  <text x="88" y="783" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="33" font-weight="400" fill="#9db0d0">visa you actually need, and what it takes.</text>
+  <rect x="88" y="844" width="475" height="82" rx="41" fill="#ffd700"/>
+  <text x="126" y="898" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="33" font-weight="700" fill="#071531">Book a consultation</text>
+  <line x1="88" y1="962" x2="992" y2="962" stroke="#8fbaff" stroke-width="1" opacity="0.22"/>
+  <text x="88" y="1014" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="29" font-weight="600" fill="#8fbaff">visa-consultancy.onrender.com</text>
+</svg>
+</script>
+</article>
+<article class="card">
+  <div class="preview"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1080" width="1080" height="1080" role="img" aria-label="Every Ukraine visa route">
+  <title>Every Ukraine visa route</title>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0.6" y2="1">
+      <stop offset="0" stop-color="#0f2550"/>
+      <stop offset="1" stop-color="#071531"/>
+    </linearGradient>
+    <linearGradient id="route" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0" stop-color="#4d8dff"/>
+      <stop offset="0.55" stop-color="#e6b422"/>
+      <stop offset="1" stop-color="#ffd700"/>
+    </linearGradient>
+    <radialGradient id="orbGold" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#ffd700" stop-opacity="0.20"/>
+      <stop offset="1" stop-color="#ffd700" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="orbBlue" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#4d8dff" stop-opacity="0.26"/>
+      <stop offset="1" stop-color="#4d8dff" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1080" height="1080" fill="url(#bg)"/>
+  <g stroke="#8fbaff" stroke-width="1" opacity="0.055"><line x1="0" y1="0" x2="0" y2="1080"/><line x1="90" y1="0" x2="90" y2="1080"/><line x1="180" y1="0" x2="180" y2="1080"/><line x1="270" y1="0" x2="270" y2="1080"/><line x1="360" y1="0" x2="360" y2="1080"/><line x1="450" y1="0" x2="450" y2="1080"/><line x1="540" y1="0" x2="540" y2="1080"/><line x1="630" y1="0" x2="630" y2="1080"/><line x1="720" y1="0" x2="720" y2="1080"/><line x1="810" y1="0" x2="810" y2="1080"/><line x1="900" y1="0" x2="900" y2="1080"/><line x1="990" y1="0" x2="990" y2="1080"/><line x1="1080" y1="0" x2="1080" y2="1080"/><line x1="0" y1="0" x2="1080" y2="0"/><line x1="0" y1="90" x2="1080" y2="90"/><line x1="0" y1="180" x2="1080" y2="180"/><line x1="0" y1="270" x2="1080" y2="270"/><line x1="0" y1="360" x2="1080" y2="360"/><line x1="0" y1="450" x2="1080" y2="450"/><line x1="0" y1="540" x2="1080" y2="540"/><line x1="0" y1="630" x2="1080" y2="630"/><line x1="0" y1="720" x2="1080" y2="720"/><line x1="0" y1="810" x2="1080" y2="810"/><line x1="0" y1="900" x2="1080" y2="900"/><line x1="0" y1="990" x2="1080" y2="990"/><line x1="0" y1="1080" x2="1080" y2="1080"/></g>
+  <circle cx="950" cy="129" r="453" fill="url(#orbGold)"/>
+  <circle cx="64" cy="864" r="496" fill="url(#orbBlue)"/>
+  <g transform="translate(88 74) scale(0.128906)">
+    <rect width="512" height="512" rx="116" fill="#16376f"/>
+    <path d="M138 372C206 372 244 206 374 156" fill="none" stroke="url(#route)"
+          stroke-width="30" stroke-linecap="round"/>
+    <circle cx="138" cy="372" r="27" fill="#8fbaff"/>
+    <circle cx="374" cy="156" r="38" fill="#ffd700"/>
+    <circle cx="374" cy="156" r="15" fill="#071531"/>
+  </g>
+  <text x="176" y="120" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif"
+        font-size="34" font-weight="700" letter-spacing="-0.7">
+    <tspan fill="#ffd700">V&amp;P</tspan><tspan fill="#ffffff" dx="8">UkraLink</tspan>
+  </text>
+  <text x="88" y="284" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="25" font-weight="700" letter-spacing="4.6" fill="#ffd700">WHAT WE HANDLE</text>
+  <rect x="88" y="304" width="70" height="4" rx="2" fill="#ffd700"/>
+  <text x="88" y="396" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="78" font-weight="700" letter-spacing="-2" fill="#ffffff">Every Ukraine</text>
+  <text x="88" y="487" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="78" font-weight="700" letter-spacing="-2" fill="#ffffff">visa route</text>
+  <circle cx="97" cy="585" r="7" fill="#ffd700"/>
+  <text x="122" y="596" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="34" font-weight="500" fill="#ffffff">Short-stay visa (Type C)</text>
+  <circle cx="97" cy="643" r="7" fill="#ffd700"/>
+  <text x="122" y="654" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="34" font-weight="500" fill="#ffffff">Long-stay visa (Type D)</text>
+  <circle cx="97" cy="701" r="7" fill="#ffd700"/>
+  <text x="122" y="712" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="34" font-weight="500" fill="#ffffff">Student &amp; university placement</text>
+  <circle cx="97" cy="759" r="7" fill="#ffd700"/>
+  <text x="122" y="770" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="34" font-weight="500" fill="#ffffff">Work permit &amp; employment</text>
+  <circle cx="97" cy="817" r="7" fill="#ffd700"/>
+  <text x="122" y="828" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="34" font-weight="500" fill="#ffffff">Business &amp; investor route</text>
+  <circle cx="97" cy="875" r="7" fill="#ffd700"/>
+  <text x="122" y="886" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="34" font-weight="500" fill="#ffffff">Family reunification</text>
+  <line x1="88" y1="962" x2="992" y2="962" stroke="#8fbaff" stroke-width="1" opacity="0.22"/>
+  <text x="88" y="1014" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="29" font-weight="600" fill="#8fbaff">visa-consultancy.onrender.com</text>
+</svg>
+</div>
+  <div class="meta">
+    <div><strong>02-visa-types</strong><small>1080 x 1080</small></div>
+    <button data-name="02-visa-types" data-w="1080" data-h="1080">Download PNG</button>
+  </div>
+  <script type="text/plain" class="src"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1080" width="1080" height="1080" role="img" aria-label="Every Ukraine visa route">
+  <title>Every Ukraine visa route</title>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0.6" y2="1">
+      <stop offset="0" stop-color="#0f2550"/>
+      <stop offset="1" stop-color="#071531"/>
+    </linearGradient>
+    <linearGradient id="route" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0" stop-color="#4d8dff"/>
+      <stop offset="0.55" stop-color="#e6b422"/>
+      <stop offset="1" stop-color="#ffd700"/>
+    </linearGradient>
+    <radialGradient id="orbGold" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#ffd700" stop-opacity="0.20"/>
+      <stop offset="1" stop-color="#ffd700" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="orbBlue" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#4d8dff" stop-opacity="0.26"/>
+      <stop offset="1" stop-color="#4d8dff" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1080" height="1080" fill="url(#bg)"/>
+  <g stroke="#8fbaff" stroke-width="1" opacity="0.055"><line x1="0" y1="0" x2="0" y2="1080"/><line x1="90" y1="0" x2="90" y2="1080"/><line x1="180" y1="0" x2="180" y2="1080"/><line x1="270" y1="0" x2="270" y2="1080"/><line x1="360" y1="0" x2="360" y2="1080"/><line x1="450" y1="0" x2="450" y2="1080"/><line x1="540" y1="0" x2="540" y2="1080"/><line x1="630" y1="0" x2="630" y2="1080"/><line x1="720" y1="0" x2="720" y2="1080"/><line x1="810" y1="0" x2="810" y2="1080"/><line x1="900" y1="0" x2="900" y2="1080"/><line x1="990" y1="0" x2="990" y2="1080"/><line x1="1080" y1="0" x2="1080" y2="1080"/><line x1="0" y1="0" x2="1080" y2="0"/><line x1="0" y1="90" x2="1080" y2="90"/><line x1="0" y1="180" x2="1080" y2="180"/><line x1="0" y1="270" x2="1080" y2="270"/><line x1="0" y1="360" x2="1080" y2="360"/><line x1="0" y1="450" x2="1080" y2="450"/><line x1="0" y1="540" x2="1080" y2="540"/><line x1="0" y1="630" x2="1080" y2="630"/><line x1="0" y1="720" x2="1080" y2="720"/><line x1="0" y1="810" x2="1080" y2="810"/><line x1="0" y1="900" x2="1080" y2="900"/><line x1="0" y1="990" x2="1080" y2="990"/><line x1="0" y1="1080" x2="1080" y2="1080"/></g>
+  <circle cx="950" cy="129" r="453" fill="url(#orbGold)"/>
+  <circle cx="64" cy="864" r="496" fill="url(#orbBlue)"/>
+  <g transform="translate(88 74) scale(0.128906)">
+    <rect width="512" height="512" rx="116" fill="#16376f"/>
+    <path d="M138 372C206 372 244 206 374 156" fill="none" stroke="url(#route)"
+          stroke-width="30" stroke-linecap="round"/>
+    <circle cx="138" cy="372" r="27" fill="#8fbaff"/>
+    <circle cx="374" cy="156" r="38" fill="#ffd700"/>
+    <circle cx="374" cy="156" r="15" fill="#071531"/>
+  </g>
+  <text x="176" y="120" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif"
+        font-size="34" font-weight="700" letter-spacing="-0.7">
+    <tspan fill="#ffd700">V&amp;P</tspan><tspan fill="#ffffff" dx="8">UkraLink</tspan>
+  </text>
+  <text x="88" y="284" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="25" font-weight="700" letter-spacing="4.6" fill="#ffd700">WHAT WE HANDLE</text>
+  <rect x="88" y="304" width="70" height="4" rx="2" fill="#ffd700"/>
+  <text x="88" y="396" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="78" font-weight="700" letter-spacing="-2" fill="#ffffff">Every Ukraine</text>
+  <text x="88" y="487" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="78" font-weight="700" letter-spacing="-2" fill="#ffffff">visa route</text>
+  <circle cx="97" cy="585" r="7" fill="#ffd700"/>
+  <text x="122" y="596" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="34" font-weight="500" fill="#ffffff">Short-stay visa (Type C)</text>
+  <circle cx="97" cy="643" r="7" fill="#ffd700"/>
+  <text x="122" y="654" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="34" font-weight="500" fill="#ffffff">Long-stay visa (Type D)</text>
+  <circle cx="97" cy="701" r="7" fill="#ffd700"/>
+  <text x="122" y="712" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="34" font-weight="500" fill="#ffffff">Student &amp; university placement</text>
+  <circle cx="97" cy="759" r="7" fill="#ffd700"/>
+  <text x="122" y="770" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="34" font-weight="500" fill="#ffffff">Work permit &amp; employment</text>
+  <circle cx="97" cy="817" r="7" fill="#ffd700"/>
+  <text x="122" y="828" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="34" font-weight="500" fill="#ffffff">Business &amp; investor route</text>
+  <circle cx="97" cy="875" r="7" fill="#ffd700"/>
+  <text x="122" y="886" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="34" font-weight="500" fill="#ffffff">Family reunification</text>
+  <line x1="88" y1="962" x2="992" y2="962" stroke="#8fbaff" stroke-width="1" opacity="0.22"/>
+  <text x="88" y="1014" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="29" font-weight="600" fill="#8fbaff">visa-consultancy.onrender.com</text>
+</svg>
+</script>
+</article>
+<article class="card">
+  <div class="preview"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1080" width="1080" height="1080" role="img" aria-label="Studying in Ukraine?">
+  <title>Studying in Ukraine?</title>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0.6" y2="1">
+      <stop offset="0" stop-color="#0f2550"/>
+      <stop offset="1" stop-color="#071531"/>
+    </linearGradient>
+    <linearGradient id="route" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0" stop-color="#4d8dff"/>
+      <stop offset="0.55" stop-color="#e6b422"/>
+      <stop offset="1" stop-color="#ffd700"/>
+    </linearGradient>
+    <radialGradient id="orbGold" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#ffd700" stop-opacity="0.20"/>
+      <stop offset="1" stop-color="#ffd700" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="orbBlue" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#4d8dff" stop-opacity="0.26"/>
+      <stop offset="1" stop-color="#4d8dff" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1080" height="1080" fill="url(#bg)"/>
+  <g stroke="#8fbaff" stroke-width="1" opacity="0.055"><line x1="0" y1="0" x2="0" y2="1080"/><line x1="90" y1="0" x2="90" y2="1080"/><line x1="180" y1="0" x2="180" y2="1080"/><line x1="270" y1="0" x2="270" y2="1080"/><line x1="360" y1="0" x2="360" y2="1080"/><line x1="450" y1="0" x2="450" y2="1080"/><line x1="540" y1="0" x2="540" y2="1080"/><line x1="630" y1="0" x2="630" y2="1080"/><line x1="720" y1="0" x2="720" y2="1080"/><line x1="810" y1="0" x2="810" y2="1080"/><line x1="900" y1="0" x2="900" y2="1080"/><line x1="990" y1="0" x2="990" y2="1080"/><line x1="1080" y1="0" x2="1080" y2="1080"/><line x1="0" y1="0" x2="1080" y2="0"/><line x1="0" y1="90" x2="1080" y2="90"/><line x1="0" y1="180" x2="1080" y2="180"/><line x1="0" y1="270" x2="1080" y2="270"/><line x1="0" y1="360" x2="1080" y2="360"/><line x1="0" y1="450" x2="1080" y2="450"/><line x1="0" y1="540" x2="1080" y2="540"/><line x1="0" y1="630" x2="1080" y2="630"/><line x1="0" y1="720" x2="1080" y2="720"/><line x1="0" y1="810" x2="1080" y2="810"/><line x1="0" y1="900" x2="1080" y2="900"/><line x1="0" y1="990" x2="1080" y2="990"/><line x1="0" y1="1080" x2="1080" y2="1080"/></g>
+  <circle cx="950" cy="129" r="453" fill="url(#orbGold)"/>
+  <circle cx="64" cy="864" r="496" fill="url(#orbBlue)"/>
+  <g transform="translate(88 74) scale(0.128906)">
+    <rect width="512" height="512" rx="116" fill="#16376f"/>
+    <path d="M138 372C206 372 244 206 374 156" fill="none" stroke="url(#route)"
+          stroke-width="30" stroke-linecap="round"/>
+    <circle cx="138" cy="372" r="27" fill="#8fbaff"/>
+    <circle cx="374" cy="156" r="38" fill="#ffd700"/>
+    <circle cx="374" cy="156" r="15" fill="#071531"/>
+  </g>
+  <text x="176" y="120" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif"
+        font-size="34" font-weight="700" letter-spacing="-0.7">
+    <tspan fill="#ffd700">V&amp;P</tspan><tspan fill="#ffffff" dx="8">UkraLink</tspan>
+  </text>
+  <text x="88" y="284" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="25" font-weight="700" letter-spacing="4.6" fill="#ffd700">STUDENT ROUTE</text>
+  <rect x="88" y="304" width="70" height="4" rx="2" fill="#ffd700"/>
+  <text x="88" y="396" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="78" font-weight="700" letter-spacing="-2" fill="#ffffff">Studying in</text>
+  <text x="88" y="487" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="78" font-weight="700" letter-spacing="-2" fill="#ffffff">Ukraine?</text>
+  <circle cx="97" cy="585" r="7" fill="#ffd700"/>
+  <text x="122" y="596" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="34" font-weight="500" fill="#ffffff">University accreditation verified first</text>
+  <circle cx="97" cy="643" r="7" fill="#ffd700"/>
+  <text x="122" y="654" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="34" font-weight="500" fill="#ffffff">Official invitation obtained for you</text>
+  <circle cx="97" cy="701" r="7" fill="#ffd700"/>
+  <text x="122" y="712" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="34" font-weight="500" fill="#ffffff">Certificates legalised &amp; translated</text>
+  <circle cx="97" cy="759" r="7" fill="#ffd700"/>
+  <text x="122" y="770" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="34" font-weight="500" fill="#ffffff">Residence permit after you arrive</text>
+  <rect x="88" y="844" width="538" height="82" rx="41" fill="#ffd700"/>
+  <text x="126" y="898" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="33" font-weight="700" fill="#071531">Check your eligibility</text>
+  <line x1="88" y1="962" x2="992" y2="962" stroke="#8fbaff" stroke-width="1" opacity="0.22"/>
+  <text x="88" y="1014" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="29" font-weight="600" fill="#8fbaff">visa-consultancy.onrender.com</text>
+</svg>
+</div>
+  <div class="meta">
+    <div><strong>03-student</strong><small>1080 x 1080</small></div>
+    <button data-name="03-student" data-w="1080" data-h="1080">Download PNG</button>
+  </div>
+  <script type="text/plain" class="src"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1080" width="1080" height="1080" role="img" aria-label="Studying in Ukraine?">
+  <title>Studying in Ukraine?</title>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0.6" y2="1">
+      <stop offset="0" stop-color="#0f2550"/>
+      <stop offset="1" stop-color="#071531"/>
+    </linearGradient>
+    <linearGradient id="route" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0" stop-color="#4d8dff"/>
+      <stop offset="0.55" stop-color="#e6b422"/>
+      <stop offset="1" stop-color="#ffd700"/>
+    </linearGradient>
+    <radialGradient id="orbGold" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#ffd700" stop-opacity="0.20"/>
+      <stop offset="1" stop-color="#ffd700" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="orbBlue" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#4d8dff" stop-opacity="0.26"/>
+      <stop offset="1" stop-color="#4d8dff" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1080" height="1080" fill="url(#bg)"/>
+  <g stroke="#8fbaff" stroke-width="1" opacity="0.055"><line x1="0" y1="0" x2="0" y2="1080"/><line x1="90" y1="0" x2="90" y2="1080"/><line x1="180" y1="0" x2="180" y2="1080"/><line x1="270" y1="0" x2="270" y2="1080"/><line x1="360" y1="0" x2="360" y2="1080"/><line x1="450" y1="0" x2="450" y2="1080"/><line x1="540" y1="0" x2="540" y2="1080"/><line x1="630" y1="0" x2="630" y2="1080"/><line x1="720" y1="0" x2="720" y2="1080"/><line x1="810" y1="0" x2="810" y2="1080"/><line x1="900" y1="0" x2="900" y2="1080"/><line x1="990" y1="0" x2="990" y2="1080"/><line x1="1080" y1="0" x2="1080" y2="1080"/><line x1="0" y1="0" x2="1080" y2="0"/><line x1="0" y1="90" x2="1080" y2="90"/><line x1="0" y1="180" x2="1080" y2="180"/><line x1="0" y1="270" x2="1080" y2="270"/><line x1="0" y1="360" x2="1080" y2="360"/><line x1="0" y1="450" x2="1080" y2="450"/><line x1="0" y1="540" x2="1080" y2="540"/><line x1="0" y1="630" x2="1080" y2="630"/><line x1="0" y1="720" x2="1080" y2="720"/><line x1="0" y1="810" x2="1080" y2="810"/><line x1="0" y1="900" x2="1080" y2="900"/><line x1="0" y1="990" x2="1080" y2="990"/><line x1="0" y1="1080" x2="1080" y2="1080"/></g>
+  <circle cx="950" cy="129" r="453" fill="url(#orbGold)"/>
+  <circle cx="64" cy="864" r="496" fill="url(#orbBlue)"/>
+  <g transform="translate(88 74) scale(0.128906)">
+    <rect width="512" height="512" rx="116" fill="#16376f"/>
+    <path d="M138 372C206 372 244 206 374 156" fill="none" stroke="url(#route)"
+          stroke-width="30" stroke-linecap="round"/>
+    <circle cx="138" cy="372" r="27" fill="#8fbaff"/>
+    <circle cx="374" cy="156" r="38" fill="#ffd700"/>
+    <circle cx="374" cy="156" r="15" fill="#071531"/>
+  </g>
+  <text x="176" y="120" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif"
+        font-size="34" font-weight="700" letter-spacing="-0.7">
+    <tspan fill="#ffd700">V&amp;P</tspan><tspan fill="#ffffff" dx="8">UkraLink</tspan>
+  </text>
+  <text x="88" y="284" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="25" font-weight="700" letter-spacing="4.6" fill="#ffd700">STUDENT ROUTE</text>
+  <rect x="88" y="304" width="70" height="4" rx="2" fill="#ffd700"/>
+  <text x="88" y="396" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="78" font-weight="700" letter-spacing="-2" fill="#ffffff">Studying in</text>
+  <text x="88" y="487" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="78" font-weight="700" letter-spacing="-2" fill="#ffffff">Ukraine?</text>
+  <circle cx="97" cy="585" r="7" fill="#ffd700"/>
+  <text x="122" y="596" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="34" font-weight="500" fill="#ffffff">University accreditation verified first</text>
+  <circle cx="97" cy="643" r="7" fill="#ffd700"/>
+  <text x="122" y="654" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="34" font-weight="500" fill="#ffffff">Official invitation obtained for you</text>
+  <circle cx="97" cy="701" r="7" fill="#ffd700"/>
+  <text x="122" y="712" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="34" font-weight="500" fill="#ffffff">Certificates legalised &amp; translated</text>
+  <circle cx="97" cy="759" r="7" fill="#ffd700"/>
+  <text x="122" y="770" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="34" font-weight="500" fill="#ffffff">Residence permit after you arrive</text>
+  <rect x="88" y="844" width="538" height="82" rx="41" fill="#ffd700"/>
+  <text x="126" y="898" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="33" font-weight="700" fill="#071531">Check your eligibility</text>
+  <line x1="88" y1="962" x2="992" y2="962" stroke="#8fbaff" stroke-width="1" opacity="0.22"/>
+  <text x="88" y="1014" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="29" font-weight="600" fill="#8fbaff">visa-consultancy.onrender.com</text>
+</svg>
+</script>
+</article>
+<article class="card">
+  <div class="preview"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1080" width="1080" height="1080" role="img" aria-label="Job offer in Ukraine?">
+  <title>Job offer in Ukraine?</title>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0.6" y2="1">
+      <stop offset="0" stop-color="#0f2550"/>
+      <stop offset="1" stop-color="#071531"/>
+    </linearGradient>
+    <linearGradient id="route" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0" stop-color="#4d8dff"/>
+      <stop offset="0.55" stop-color="#e6b422"/>
+      <stop offset="1" stop-color="#ffd700"/>
+    </linearGradient>
+    <radialGradient id="orbGold" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#ffd700" stop-opacity="0.20"/>
+      <stop offset="1" stop-color="#ffd700" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="orbBlue" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#4d8dff" stop-opacity="0.26"/>
+      <stop offset="1" stop-color="#4d8dff" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1080" height="1080" fill="url(#bg)"/>
+  <g stroke="#8fbaff" stroke-width="1" opacity="0.055"><line x1="0" y1="0" x2="0" y2="1080"/><line x1="90" y1="0" x2="90" y2="1080"/><line x1="180" y1="0" x2="180" y2="1080"/><line x1="270" y1="0" x2="270" y2="1080"/><line x1="360" y1="0" x2="360" y2="1080"/><line x1="450" y1="0" x2="450" y2="1080"/><line x1="540" y1="0" x2="540" y2="1080"/><line x1="630" y1="0" x2="630" y2="1080"/><line x1="720" y1="0" x2="720" y2="1080"/><line x1="810" y1="0" x2="810" y2="1080"/><line x1="900" y1="0" x2="900" y2="1080"/><line x1="990" y1="0" x2="990" y2="1080"/><line x1="1080" y1="0" x2="1080" y2="1080"/><line x1="0" y1="0" x2="1080" y2="0"/><line x1="0" y1="90" x2="1080" y2="90"/><line x1="0" y1="180" x2="1080" y2="180"/><line x1="0" y1="270" x2="1080" y2="270"/><line x1="0" y1="360" x2="1080" y2="360"/><line x1="0" y1="450" x2="1080" y2="450"/><line x1="0" y1="540" x2="1080" y2="540"/><line x1="0" y1="630" x2="1080" y2="630"/><line x1="0" y1="720" x2="1080" y2="720"/><line x1="0" y1="810" x2="1080" y2="810"/><line x1="0" y1="900" x2="1080" y2="900"/><line x1="0" y1="990" x2="1080" y2="990"/><line x1="0" y1="1080" x2="1080" y2="1080"/></g>
+  <circle cx="950" cy="129" r="453" fill="url(#orbGold)"/>
+  <circle cx="64" cy="864" r="496" fill="url(#orbBlue)"/>
+  <g transform="translate(88 74) scale(0.128906)">
+    <rect width="512" height="512" rx="116" fill="#16376f"/>
+    <path d="M138 372C206 372 244 206 374 156" fill="none" stroke="url(#route)"
+          stroke-width="30" stroke-linecap="round"/>
+    <circle cx="138" cy="372" r="27" fill="#8fbaff"/>
+    <circle cx="374" cy="156" r="38" fill="#ffd700"/>
+    <circle cx="374" cy="156" r="15" fill="#071531"/>
+  </g>
+  <text x="176" y="120" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif"
+        font-size="34" font-weight="700" letter-spacing="-0.7">
+    <tspan fill="#ffd700">V&amp;P</tspan><tspan fill="#ffffff" dx="8">UkraLink</tspan>
+  </text>
+  <text x="88" y="284" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="25" font-weight="700" letter-spacing="4.6" fill="#ffd700">WORK PERMIT</text>
+  <rect x="88" y="304" width="70" height="4" rx="2" fill="#ffd700"/>
+  <text x="88" y="396" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="78" font-weight="700" letter-spacing="-2" fill="#ffffff">Job offer in</text>
+  <text x="88" y="487" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="78" font-weight="700" letter-spacing="-2" fill="#ffffff">Ukraine?</text>
+  <text x="88" y="596" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="33" font-weight="400" fill="#9db0d0">Your employer must obtain an employment</text>
+  <text x="88" y="644" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="33" font-weight="400" fill="#9db0d0">permit before you can apply for the visa.</text>
+  <text x="88" y="692" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="33" font-weight="400" fill="#9db0d0">We deal with them directly, so you only</text>
+  <text x="88" y="740" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="33" font-weight="400" fill="#9db0d0">have to sign things.</text>
+  <rect x="88" y="844" width="496" height="82" rx="41" fill="#ffd700"/>
+  <text x="126" y="898" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="33" font-weight="700" fill="#071531">Talk to a consultant</text>
+  <line x1="88" y1="962" x2="992" y2="962" stroke="#8fbaff" stroke-width="1" opacity="0.22"/>
+  <text x="88" y="1014" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="29" font-weight="600" fill="#8fbaff">visa-consultancy.onrender.com</text>
+</svg>
+</div>
+  <div class="meta">
+    <div><strong>04-work</strong><small>1080 x 1080</small></div>
+    <button data-name="04-work" data-w="1080" data-h="1080">Download PNG</button>
+  </div>
+  <script type="text/plain" class="src"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1080" width="1080" height="1080" role="img" aria-label="Job offer in Ukraine?">
+  <title>Job offer in Ukraine?</title>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0.6" y2="1">
+      <stop offset="0" stop-color="#0f2550"/>
+      <stop offset="1" stop-color="#071531"/>
+    </linearGradient>
+    <linearGradient id="route" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0" stop-color="#4d8dff"/>
+      <stop offset="0.55" stop-color="#e6b422"/>
+      <stop offset="1" stop-color="#ffd700"/>
+    </linearGradient>
+    <radialGradient id="orbGold" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#ffd700" stop-opacity="0.20"/>
+      <stop offset="1" stop-color="#ffd700" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="orbBlue" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#4d8dff" stop-opacity="0.26"/>
+      <stop offset="1" stop-color="#4d8dff" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1080" height="1080" fill="url(#bg)"/>
+  <g stroke="#8fbaff" stroke-width="1" opacity="0.055"><line x1="0" y1="0" x2="0" y2="1080"/><line x1="90" y1="0" x2="90" y2="1080"/><line x1="180" y1="0" x2="180" y2="1080"/><line x1="270" y1="0" x2="270" y2="1080"/><line x1="360" y1="0" x2="360" y2="1080"/><line x1="450" y1="0" x2="450" y2="1080"/><line x1="540" y1="0" x2="540" y2="1080"/><line x1="630" y1="0" x2="630" y2="1080"/><line x1="720" y1="0" x2="720" y2="1080"/><line x1="810" y1="0" x2="810" y2="1080"/><line x1="900" y1="0" x2="900" y2="1080"/><line x1="990" y1="0" x2="990" y2="1080"/><line x1="1080" y1="0" x2="1080" y2="1080"/><line x1="0" y1="0" x2="1080" y2="0"/><line x1="0" y1="90" x2="1080" y2="90"/><line x1="0" y1="180" x2="1080" y2="180"/><line x1="0" y1="270" x2="1080" y2="270"/><line x1="0" y1="360" x2="1080" y2="360"/><line x1="0" y1="450" x2="1080" y2="450"/><line x1="0" y1="540" x2="1080" y2="540"/><line x1="0" y1="630" x2="1080" y2="630"/><line x1="0" y1="720" x2="1080" y2="720"/><line x1="0" y1="810" x2="1080" y2="810"/><line x1="0" y1="900" x2="1080" y2="900"/><line x1="0" y1="990" x2="1080" y2="990"/><line x1="0" y1="1080" x2="1080" y2="1080"/></g>
+  <circle cx="950" cy="129" r="453" fill="url(#orbGold)"/>
+  <circle cx="64" cy="864" r="496" fill="url(#orbBlue)"/>
+  <g transform="translate(88 74) scale(0.128906)">
+    <rect width="512" height="512" rx="116" fill="#16376f"/>
+    <path d="M138 372C206 372 244 206 374 156" fill="none" stroke="url(#route)"
+          stroke-width="30" stroke-linecap="round"/>
+    <circle cx="138" cy="372" r="27" fill="#8fbaff"/>
+    <circle cx="374" cy="156" r="38" fill="#ffd700"/>
+    <circle cx="374" cy="156" r="15" fill="#071531"/>
+  </g>
+  <text x="176" y="120" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif"
+        font-size="34" font-weight="700" letter-spacing="-0.7">
+    <tspan fill="#ffd700">V&amp;P</tspan><tspan fill="#ffffff" dx="8">UkraLink</tspan>
+  </text>
+  <text x="88" y="284" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="25" font-weight="700" letter-spacing="4.6" fill="#ffd700">WORK PERMIT</text>
+  <rect x="88" y="304" width="70" height="4" rx="2" fill="#ffd700"/>
+  <text x="88" y="396" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="78" font-weight="700" letter-spacing="-2" fill="#ffffff">Job offer in</text>
+  <text x="88" y="487" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="78" font-weight="700" letter-spacing="-2" fill="#ffffff">Ukraine?</text>
+  <text x="88" y="596" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="33" font-weight="400" fill="#9db0d0">Your employer must obtain an employment</text>
+  <text x="88" y="644" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="33" font-weight="400" fill="#9db0d0">permit before you can apply for the visa.</text>
+  <text x="88" y="692" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="33" font-weight="400" fill="#9db0d0">We deal with them directly, so you only</text>
+  <text x="88" y="740" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="33" font-weight="400" fill="#9db0d0">have to sign things.</text>
+  <rect x="88" y="844" width="496" height="82" rx="41" fill="#ffd700"/>
+  <text x="126" y="898" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="33" font-weight="700" fill="#071531">Talk to a consultant</text>
+  <line x1="88" y1="962" x2="992" y2="962" stroke="#8fbaff" stroke-width="1" opacity="0.22"/>
+  <text x="88" y="1014" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="29" font-weight="600" fill="#8fbaff">visa-consultancy.onrender.com</text>
+</svg>
+</script>
+</article>
+<article class="card">
+  <div class="preview"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1080" width="1080" height="1080" role="img" aria-label="Been refused before?">
+  <title>Been refused before?</title>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0.6" y2="1">
+      <stop offset="0" stop-color="#0f2550"/>
+      <stop offset="1" stop-color="#071531"/>
+    </linearGradient>
+    <linearGradient id="route" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0" stop-color="#4d8dff"/>
+      <stop offset="0.55" stop-color="#e6b422"/>
+      <stop offset="1" stop-color="#ffd700"/>
+    </linearGradient>
+    <radialGradient id="orbGold" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#ffd700" stop-opacity="0.20"/>
+      <stop offset="1" stop-color="#ffd700" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="orbBlue" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#4d8dff" stop-opacity="0.26"/>
+      <stop offset="1" stop-color="#4d8dff" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1080" height="1080" fill="url(#bg)"/>
+  <g stroke="#8fbaff" stroke-width="1" opacity="0.055"><line x1="0" y1="0" x2="0" y2="1080"/><line x1="90" y1="0" x2="90" y2="1080"/><line x1="180" y1="0" x2="180" y2="1080"/><line x1="270" y1="0" x2="270" y2="1080"/><line x1="360" y1="0" x2="360" y2="1080"/><line x1="450" y1="0" x2="450" y2="1080"/><line x1="540" y1="0" x2="540" y2="1080"/><line x1="630" y1="0" x2="630" y2="1080"/><line x1="720" y1="0" x2="720" y2="1080"/><line x1="810" y1="0" x2="810" y2="1080"/><line x1="900" y1="0" x2="900" y2="1080"/><line x1="990" y1="0" x2="990" y2="1080"/><line x1="1080" y1="0" x2="1080" y2="1080"/><line x1="0" y1="0" x2="1080" y2="0"/><line x1="0" y1="90" x2="1080" y2="90"/><line x1="0" y1="180" x2="1080" y2="180"/><line x1="0" y1="270" x2="1080" y2="270"/><line x1="0" y1="360" x2="1080" y2="360"/><line x1="0" y1="450" x2="1080" y2="450"/><line x1="0" y1="540" x2="1080" y2="540"/><line x1="0" y1="630" x2="1080" y2="630"/><line x1="0" y1="720" x2="1080" y2="720"/><line x1="0" y1="810" x2="1080" y2="810"/><line x1="0" y1="900" x2="1080" y2="900"/><line x1="0" y1="990" x2="1080" y2="990"/><line x1="0" y1="1080" x2="1080" y2="1080"/></g>
+  <circle cx="950" cy="129" r="453" fill="url(#orbGold)"/>
+  <circle cx="64" cy="864" r="496" fill="url(#orbBlue)"/>
+  <g transform="translate(88 74) scale(0.128906)">
+    <rect width="512" height="512" rx="116" fill="#16376f"/>
+    <path d="M138 372C206 372 244 206 374 156" fill="none" stroke="url(#route)"
+          stroke-width="30" stroke-linecap="round"/>
+    <circle cx="138" cy="372" r="27" fill="#8fbaff"/>
+    <circle cx="374" cy="156" r="38" fill="#ffd700"/>
+    <circle cx="374" cy="156" r="15" fill="#071531"/>
+  </g>
+  <text x="176" y="120" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif"
+        font-size="34" font-weight="700" letter-spacing="-0.7">
+    <tspan fill="#ffd700">V&amp;P</tspan><tspan fill="#ffffff" dx="8">UkraLink</tspan>
+  </text>
+  <text x="88" y="284" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="25" font-weight="700" letter-spacing="4.6" fill="#ffd700">REFUSAL REVIEW</text>
+  <rect x="88" y="304" width="70" height="4" rx="2" fill="#ffd700"/>
+  <text x="88" y="396" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="78" font-weight="700" letter-spacing="-2" fill="#ffffff">Been refused</text>
+  <text x="88" y="487" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="78" font-weight="700" letter-spacing="-2" fill="#ffffff">before?</text>
+  <text x="88" y="596" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="33" font-weight="400" fill="#9db0d0">A refusal is usually a fixable gap in the</text>
+  <text x="88" y="644" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="33" font-weight="400" fill="#9db0d0">evidence, not a permanent bar. We find</text>
+  <text x="88" y="692" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="33" font-weight="400" fill="#9db0d0">the real reason, then decide between an</text>
+  <text x="88" y="740" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="33" font-weight="400" fill="#9db0d0">appeal and a corrected re-application.</text>
+  <rect x="88" y="844" width="538" height="82" rx="41" fill="#ffd700"/>
+  <text x="126" y="898" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="33" font-weight="700" fill="#071531">Get your case reviewed</text>
+  <line x1="88" y1="962" x2="992" y2="962" stroke="#8fbaff" stroke-width="1" opacity="0.22"/>
+  <text x="88" y="1014" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="29" font-weight="600" fill="#8fbaff">visa-consultancy.onrender.com</text>
+</svg>
+</div>
+  <div class="meta">
+    <div><strong>05-refusal</strong><small>1080 x 1080</small></div>
+    <button data-name="05-refusal" data-w="1080" data-h="1080">Download PNG</button>
+  </div>
+  <script type="text/plain" class="src"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1080" width="1080" height="1080" role="img" aria-label="Been refused before?">
+  <title>Been refused before?</title>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0.6" y2="1">
+      <stop offset="0" stop-color="#0f2550"/>
+      <stop offset="1" stop-color="#071531"/>
+    </linearGradient>
+    <linearGradient id="route" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0" stop-color="#4d8dff"/>
+      <stop offset="0.55" stop-color="#e6b422"/>
+      <stop offset="1" stop-color="#ffd700"/>
+    </linearGradient>
+    <radialGradient id="orbGold" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#ffd700" stop-opacity="0.20"/>
+      <stop offset="1" stop-color="#ffd700" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="orbBlue" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#4d8dff" stop-opacity="0.26"/>
+      <stop offset="1" stop-color="#4d8dff" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1080" height="1080" fill="url(#bg)"/>
+  <g stroke="#8fbaff" stroke-width="1" opacity="0.055"><line x1="0" y1="0" x2="0" y2="1080"/><line x1="90" y1="0" x2="90" y2="1080"/><line x1="180" y1="0" x2="180" y2="1080"/><line x1="270" y1="0" x2="270" y2="1080"/><line x1="360" y1="0" x2="360" y2="1080"/><line x1="450" y1="0" x2="450" y2="1080"/><line x1="540" y1="0" x2="540" y2="1080"/><line x1="630" y1="0" x2="630" y2="1080"/><line x1="720" y1="0" x2="720" y2="1080"/><line x1="810" y1="0" x2="810" y2="1080"/><line x1="900" y1="0" x2="900" y2="1080"/><line x1="990" y1="0" x2="990" y2="1080"/><line x1="1080" y1="0" x2="1080" y2="1080"/><line x1="0" y1="0" x2="1080" y2="0"/><line x1="0" y1="90" x2="1080" y2="90"/><line x1="0" y1="180" x2="1080" y2="180"/><line x1="0" y1="270" x2="1080" y2="270"/><line x1="0" y1="360" x2="1080" y2="360"/><line x1="0" y1="450" x2="1080" y2="450"/><line x1="0" y1="540" x2="1080" y2="540"/><line x1="0" y1="630" x2="1080" y2="630"/><line x1="0" y1="720" x2="1080" y2="720"/><line x1="0" y1="810" x2="1080" y2="810"/><line x1="0" y1="900" x2="1080" y2="900"/><line x1="0" y1="990" x2="1080" y2="990"/><line x1="0" y1="1080" x2="1080" y2="1080"/></g>
+  <circle cx="950" cy="129" r="453" fill="url(#orbGold)"/>
+  <circle cx="64" cy="864" r="496" fill="url(#orbBlue)"/>
+  <g transform="translate(88 74) scale(0.128906)">
+    <rect width="512" height="512" rx="116" fill="#16376f"/>
+    <path d="M138 372C206 372 244 206 374 156" fill="none" stroke="url(#route)"
+          stroke-width="30" stroke-linecap="round"/>
+    <circle cx="138" cy="372" r="27" fill="#8fbaff"/>
+    <circle cx="374" cy="156" r="38" fill="#ffd700"/>
+    <circle cx="374" cy="156" r="15" fill="#071531"/>
+  </g>
+  <text x="176" y="120" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif"
+        font-size="34" font-weight="700" letter-spacing="-0.7">
+    <tspan fill="#ffd700">V&amp;P</tspan><tspan fill="#ffffff" dx="8">UkraLink</tspan>
+  </text>
+  <text x="88" y="284" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="25" font-weight="700" letter-spacing="4.6" fill="#ffd700">REFUSAL REVIEW</text>
+  <rect x="88" y="304" width="70" height="4" rx="2" fill="#ffd700"/>
+  <text x="88" y="396" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="78" font-weight="700" letter-spacing="-2" fill="#ffffff">Been refused</text>
+  <text x="88" y="487" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="78" font-weight="700" letter-spacing="-2" fill="#ffffff">before?</text>
+  <text x="88" y="596" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="33" font-weight="400" fill="#9db0d0">A refusal is usually a fixable gap in the</text>
+  <text x="88" y="644" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="33" font-weight="400" fill="#9db0d0">evidence, not a permanent bar. We find</text>
+  <text x="88" y="692" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="33" font-weight="400" fill="#9db0d0">the real reason, then decide between an</text>
+  <text x="88" y="740" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="33" font-weight="400" fill="#9db0d0">appeal and a corrected re-application.</text>
+  <rect x="88" y="844" width="538" height="82" rx="41" fill="#ffd700"/>
+  <text x="126" y="898" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="33" font-weight="700" fill="#071531">Get your case reviewed</text>
+  <line x1="88" y1="962" x2="992" y2="962" stroke="#8fbaff" stroke-width="1" opacity="0.22"/>
+  <text x="88" y="1014" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="29" font-weight="600" fill="#8fbaff">visa-consultancy.onrender.com</text>
+</svg>
+</script>
+</article>
+<article class="card">
+  <div class="preview"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1080" width="1080" height="1080" role="img" aria-label="Pick a time that suits you">
+  <title>Pick a time that suits you</title>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0.6" y2="1">
+      <stop offset="0" stop-color="#0f2550"/>
+      <stop offset="1" stop-color="#071531"/>
+    </linearGradient>
+    <linearGradient id="route" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0" stop-color="#4d8dff"/>
+      <stop offset="0.55" stop-color="#e6b422"/>
+      <stop offset="1" stop-color="#ffd700"/>
+    </linearGradient>
+    <radialGradient id="orbGold" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#ffd700" stop-opacity="0.20"/>
+      <stop offset="1" stop-color="#ffd700" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="orbBlue" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#4d8dff" stop-opacity="0.26"/>
+      <stop offset="1" stop-color="#4d8dff" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1080" height="1080" fill="url(#bg)"/>
+  <g stroke="#8fbaff" stroke-width="1" opacity="0.055"><line x1="0" y1="0" x2="0" y2="1080"/><line x1="90" y1="0" x2="90" y2="1080"/><line x1="180" y1="0" x2="180" y2="1080"/><line x1="270" y1="0" x2="270" y2="1080"/><line x1="360" y1="0" x2="360" y2="1080"/><line x1="450" y1="0" x2="450" y2="1080"/><line x1="540" y1="0" x2="540" y2="1080"/><line x1="630" y1="0" x2="630" y2="1080"/><line x1="720" y1="0" x2="720" y2="1080"/><line x1="810" y1="0" x2="810" y2="1080"/><line x1="900" y1="0" x2="900" y2="1080"/><line x1="990" y1="0" x2="990" y2="1080"/><line x1="1080" y1="0" x2="1080" y2="1080"/><line x1="0" y1="0" x2="1080" y2="0"/><line x1="0" y1="90" x2="1080" y2="90"/><line x1="0" y1="180" x2="1080" y2="180"/><line x1="0" y1="270" x2="1080" y2="270"/><line x1="0" y1="360" x2="1080" y2="360"/><line x1="0" y1="450" x2="1080" y2="450"/><line x1="0" y1="540" x2="1080" y2="540"/><line x1="0" y1="630" x2="1080" y2="630"/><line x1="0" y1="720" x2="1080" y2="720"/><line x1="0" y1="810" x2="1080" y2="810"/><line x1="0" y1="900" x2="1080" y2="900"/><line x1="0" y1="990" x2="1080" y2="990"/><line x1="0" y1="1080" x2="1080" y2="1080"/></g>
+  <circle cx="950" cy="129" r="453" fill="url(#orbGold)"/>
+  <circle cx="64" cy="864" r="496" fill="url(#orbBlue)"/>
+  <g transform="translate(88 74) scale(0.128906)">
+    <rect width="512" height="512" rx="116" fill="#16376f"/>
+    <path d="M138 372C206 372 244 206 374 156" fill="none" stroke="url(#route)"
+          stroke-width="30" stroke-linecap="round"/>
+    <circle cx="138" cy="372" r="27" fill="#8fbaff"/>
+    <circle cx="374" cy="156" r="38" fill="#ffd700"/>
+    <circle cx="374" cy="156" r="15" fill="#071531"/>
+  </g>
+  <text x="176" y="120" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif"
+        font-size="34" font-weight="700" letter-spacing="-0.7">
+    <tspan fill="#ffd700">V&amp;P</tspan><tspan fill="#ffffff" dx="8">UkraLink</tspan>
+  </text>
+  <text x="88" y="284" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="25" font-weight="700" letter-spacing="4.6" fill="#ffd700">BOOK A CONSULTATION</text>
+  <rect x="88" y="304" width="70" height="4" rx="2" fill="#ffd700"/>
+  <text x="88" y="396" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="78" font-weight="700" letter-spacing="-2" fill="#ffffff">Pick a time</text>
+  <text x="88" y="487" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="78" font-weight="700" letter-spacing="-2" fill="#ffffff">that suits you</text>
+  <circle cx="97" cy="585" r="7" fill="#ffd700"/>
+  <text x="122" y="596" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="34" font-weight="500" fill="#ffffff">By video call or phone</text>
+  <circle cx="97" cy="643" r="7" fill="#ffd700"/>
+  <text x="122" y="654" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="34" font-weight="500" fill="#ffffff">11:00 – 18:00 IST, Mon to Fri</text>
+  <circle cx="97" cy="701" r="7" fill="#ffd700"/>
+  <text x="122" y="712" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="34" font-weight="500" fill="#ffffff">Fees quoted on the call</text>
+  <circle cx="97" cy="759" r="7" fill="#ffd700"/>
+  <text x="122" y="770" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="34" font-weight="500" fill="#ffffff">Written checklist for your case</text>
+  <line x1="88" y1="962" x2="992" y2="962" stroke="#8fbaff" stroke-width="1" opacity="0.22"/>
+  <text x="88" y="1014" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="29" font-weight="600" fill="#8fbaff">visa-consultancy.onrender.com  ·  vpukralink@gmail.com</text>
+</svg>
+</div>
+  <div class="meta">
+    <div><strong>06-book</strong><small>1080 x 1080</small></div>
+    <button data-name="06-book" data-w="1080" data-h="1080">Download PNG</button>
+  </div>
+  <script type="text/plain" class="src"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1080" width="1080" height="1080" role="img" aria-label="Pick a time that suits you">
+  <title>Pick a time that suits you</title>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0.6" y2="1">
+      <stop offset="0" stop-color="#0f2550"/>
+      <stop offset="1" stop-color="#071531"/>
+    </linearGradient>
+    <linearGradient id="route" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0" stop-color="#4d8dff"/>
+      <stop offset="0.55" stop-color="#e6b422"/>
+      <stop offset="1" stop-color="#ffd700"/>
+    </linearGradient>
+    <radialGradient id="orbGold" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#ffd700" stop-opacity="0.20"/>
+      <stop offset="1" stop-color="#ffd700" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="orbBlue" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#4d8dff" stop-opacity="0.26"/>
+      <stop offset="1" stop-color="#4d8dff" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1080" height="1080" fill="url(#bg)"/>
+  <g stroke="#8fbaff" stroke-width="1" opacity="0.055"><line x1="0" y1="0" x2="0" y2="1080"/><line x1="90" y1="0" x2="90" y2="1080"/><line x1="180" y1="0" x2="180" y2="1080"/><line x1="270" y1="0" x2="270" y2="1080"/><line x1="360" y1="0" x2="360" y2="1080"/><line x1="450" y1="0" x2="450" y2="1080"/><line x1="540" y1="0" x2="540" y2="1080"/><line x1="630" y1="0" x2="630" y2="1080"/><line x1="720" y1="0" x2="720" y2="1080"/><line x1="810" y1="0" x2="810" y2="1080"/><line x1="900" y1="0" x2="900" y2="1080"/><line x1="990" y1="0" x2="990" y2="1080"/><line x1="1080" y1="0" x2="1080" y2="1080"/><line x1="0" y1="0" x2="1080" y2="0"/><line x1="0" y1="90" x2="1080" y2="90"/><line x1="0" y1="180" x2="1080" y2="180"/><line x1="0" y1="270" x2="1080" y2="270"/><line x1="0" y1="360" x2="1080" y2="360"/><line x1="0" y1="450" x2="1080" y2="450"/><line x1="0" y1="540" x2="1080" y2="540"/><line x1="0" y1="630" x2="1080" y2="630"/><line x1="0" y1="720" x2="1080" y2="720"/><line x1="0" y1="810" x2="1080" y2="810"/><line x1="0" y1="900" x2="1080" y2="900"/><line x1="0" y1="990" x2="1080" y2="990"/><line x1="0" y1="1080" x2="1080" y2="1080"/></g>
+  <circle cx="950" cy="129" r="453" fill="url(#orbGold)"/>
+  <circle cx="64" cy="864" r="496" fill="url(#orbBlue)"/>
+  <g transform="translate(88 74) scale(0.128906)">
+    <rect width="512" height="512" rx="116" fill="#16376f"/>
+    <path d="M138 372C206 372 244 206 374 156" fill="none" stroke="url(#route)"
+          stroke-width="30" stroke-linecap="round"/>
+    <circle cx="138" cy="372" r="27" fill="#8fbaff"/>
+    <circle cx="374" cy="156" r="38" fill="#ffd700"/>
+    <circle cx="374" cy="156" r="15" fill="#071531"/>
+  </g>
+  <text x="176" y="120" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif"
+        font-size="34" font-weight="700" letter-spacing="-0.7">
+    <tspan fill="#ffd700">V&amp;P</tspan><tspan fill="#ffffff" dx="8">UkraLink</tspan>
+  </text>
+  <text x="88" y="284" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="25" font-weight="700" letter-spacing="4.6" fill="#ffd700">BOOK A CONSULTATION</text>
+  <rect x="88" y="304" width="70" height="4" rx="2" fill="#ffd700"/>
+  <text x="88" y="396" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="78" font-weight="700" letter-spacing="-2" fill="#ffffff">Pick a time</text>
+  <text x="88" y="487" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="78" font-weight="700" letter-spacing="-2" fill="#ffffff">that suits you</text>
+  <circle cx="97" cy="585" r="7" fill="#ffd700"/>
+  <text x="122" y="596" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="34" font-weight="500" fill="#ffffff">By video call or phone</text>
+  <circle cx="97" cy="643" r="7" fill="#ffd700"/>
+  <text x="122" y="654" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="34" font-weight="500" fill="#ffffff">11:00 – 18:00 IST, Mon to Fri</text>
+  <circle cx="97" cy="701" r="7" fill="#ffd700"/>
+  <text x="122" y="712" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="34" font-weight="500" fill="#ffffff">Fees quoted on the call</text>
+  <circle cx="97" cy="759" r="7" fill="#ffd700"/>
+  <text x="122" y="770" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="34" font-weight="500" fill="#ffffff">Written checklist for your case</text>
+  <line x1="88" y1="962" x2="992" y2="962" stroke="#8fbaff" stroke-width="1" opacity="0.22"/>
+  <text x="88" y="1014" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="29" font-weight="600" fill="#8fbaff">visa-consultancy.onrender.com  ·  vpukralink@gmail.com</text>
+</svg>
+</script>
+</article>
+<article class="card">
+  <div class="preview"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1920" width="1080" height="1920" role="img" aria-label="V&amp;P UkraLink story template">
+  <title>V&amp;P UkraLink — story template</title>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0.6" y2="1">
+      <stop offset="0" stop-color="#0f2550"/>
+      <stop offset="1" stop-color="#071531"/>
+    </linearGradient>
+    <linearGradient id="route" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0" stop-color="#4d8dff"/>
+      <stop offset="0.55" stop-color="#e6b422"/>
+      <stop offset="1" stop-color="#ffd700"/>
+    </linearGradient>
+    <radialGradient id="orbGold" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#ffd700" stop-opacity="0.20"/>
+      <stop offset="1" stop-color="#ffd700" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="orbBlue" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#4d8dff" stop-opacity="0.26"/>
+      <stop offset="1" stop-color="#4d8dff" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1080" height="1920" fill="url(#bg)"/>
+  <g stroke="#8fbaff" stroke-width="1" opacity="0.055"><line x1="0" y1="0" x2="0" y2="1920"/><line x1="90" y1="0" x2="90" y2="1920"/><line x1="180" y1="0" x2="180" y2="1920"/><line x1="270" y1="0" x2="270" y2="1920"/><line x1="360" y1="0" x2="360" y2="1920"/><line x1="450" y1="0" x2="450" y2="1920"/><line x1="540" y1="0" x2="540" y2="1920"/><line x1="630" y1="0" x2="630" y2="1920"/><line x1="720" y1="0" x2="720" y2="1920"/><line x1="810" y1="0" x2="810" y2="1920"/><line x1="900" y1="0" x2="900" y2="1920"/><line x1="990" y1="0" x2="990" y2="1920"/><line x1="1080" y1="0" x2="1080" y2="1920"/><line x1="0" y1="0" x2="1080" y2="0"/><line x1="0" y1="90" x2="1080" y2="90"/><line x1="0" y1="180" x2="1080" y2="180"/><line x1="0" y1="270" x2="1080" y2="270"/><line x1="0" y1="360" x2="1080" y2="360"/><line x1="0" y1="450" x2="1080" y2="450"/><line x1="0" y1="540" x2="1080" y2="540"/><line x1="0" y1="630" x2="1080" y2="630"/><line x1="0" y1="720" x2="1080" y2="720"/><line x1="0" y1="810" x2="1080" y2="810"/><line x1="0" y1="900" x2="1080" y2="900"/><line x1="0" y1="990" x2="1080" y2="990"/><line x1="0" y1="1080" x2="1080" y2="1080"/><line x1="0" y1="1170" x2="1080" y2="1170"/><line x1="0" y1="1260" x2="1080" y2="1260"/><line x1="0" y1="1350" x2="1080" y2="1350"/><line x1="0" y1="1440" x2="1080" y2="1440"/><line x1="0" y1="1530" x2="1080" y2="1530"/><line x1="0" y1="1620" x2="1080" y2="1620"/><line x1="0" y1="1710" x2="1080" y2="1710"/><line x1="0" y1="1800" x2="1080" y2="1800"/><line x1="0" y1="1890" x2="1080" y2="1890"/></g>
+  <circle cx="950" cy="230" r="453" fill="url(#orbGold)"/>
+  <circle cx="64" cy="1536" r="496" fill="url(#orbBlue)"/>
+  <g transform="translate(474.0 300) scale(0.257812)">
+    <rect width="512" height="512" rx="116" fill="#16376f"/>
+    <path d="M138 372C206 372 244 206 374 156" fill="none" stroke="url(#route)"
+          stroke-width="30" stroke-linecap="round"/>
+    <circle cx="138" cy="372" r="27" fill="#8fbaff"/>
+    <circle cx="374" cy="156" r="38" fill="#ffd700"/>
+    <circle cx="374" cy="156" r="15" fill="#071531"/>
+  </g>
+  <text x="540" y="516" text-anchor="middle" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="54" font-weight="700" letter-spacing="-1.4"><tspan fill="#ffd700">V&amp;P</tspan><tspan fill="#ffffff" dx="11">UkraLink</tspan></text>
+  <text x="540" y="566" text-anchor="middle" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="23" font-weight="500" letter-spacing="3.4" fill="#8fbaff">UKRAINE VISA CONSULTANTS</text>
+  <rect x="96" y="760" width="888" height="560" rx="28" fill="#ffffff" opacity="0.035" stroke="#8fbaff" stroke-opacity="0.2" stroke-width="2" stroke-dasharray="14 12"/>
+  <text x="540" y="1050" text-anchor="middle" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="34" font-weight="500" fill="#9db0d0">Add your headline here</text>
+  <text x="540" y="1100" text-anchor="middle" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="26" font-weight="400" fill="#9db0d0" opacity="0.7">(this dashed box is a guide — delete it)</text>
+  <text x="540" y="1700" text-anchor="middle" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="31" font-weight="700" fill="#ffd700">Book a consultation</text>
+  <text x="540" y="1752" text-anchor="middle" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="28" font-weight="500" fill="#8fbaff">visa-consultancy.onrender.com</text>
+</svg>
+</div>
+  <div class="meta">
+    <div><strong>story-template</strong><small>1080 x 1920</small></div>
+    <button data-name="story-template" data-w="1080" data-h="1920">Download PNG</button>
+  </div>
+  <script type="text/plain" class="src"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1920" width="1080" height="1920" role="img" aria-label="V&amp;P UkraLink story template">
+  <title>V&amp;P UkraLink — story template</title>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0.6" y2="1">
+      <stop offset="0" stop-color="#0f2550"/>
+      <stop offset="1" stop-color="#071531"/>
+    </linearGradient>
+    <linearGradient id="route" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0" stop-color="#4d8dff"/>
+      <stop offset="0.55" stop-color="#e6b422"/>
+      <stop offset="1" stop-color="#ffd700"/>
+    </linearGradient>
+    <radialGradient id="orbGold" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#ffd700" stop-opacity="0.20"/>
+      <stop offset="1" stop-color="#ffd700" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="orbBlue" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#4d8dff" stop-opacity="0.26"/>
+      <stop offset="1" stop-color="#4d8dff" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1080" height="1920" fill="url(#bg)"/>
+  <g stroke="#8fbaff" stroke-width="1" opacity="0.055"><line x1="0" y1="0" x2="0" y2="1920"/><line x1="90" y1="0" x2="90" y2="1920"/><line x1="180" y1="0" x2="180" y2="1920"/><line x1="270" y1="0" x2="270" y2="1920"/><line x1="360" y1="0" x2="360" y2="1920"/><line x1="450" y1="0" x2="450" y2="1920"/><line x1="540" y1="0" x2="540" y2="1920"/><line x1="630" y1="0" x2="630" y2="1920"/><line x1="720" y1="0" x2="720" y2="1920"/><line x1="810" y1="0" x2="810" y2="1920"/><line x1="900" y1="0" x2="900" y2="1920"/><line x1="990" y1="0" x2="990" y2="1920"/><line x1="1080" y1="0" x2="1080" y2="1920"/><line x1="0" y1="0" x2="1080" y2="0"/><line x1="0" y1="90" x2="1080" y2="90"/><line x1="0" y1="180" x2="1080" y2="180"/><line x1="0" y1="270" x2="1080" y2="270"/><line x1="0" y1="360" x2="1080" y2="360"/><line x1="0" y1="450" x2="1080" y2="450"/><line x1="0" y1="540" x2="1080" y2="540"/><line x1="0" y1="630" x2="1080" y2="630"/><line x1="0" y1="720" x2="1080" y2="720"/><line x1="0" y1="810" x2="1080" y2="810"/><line x1="0" y1="900" x2="1080" y2="900"/><line x1="0" y1="990" x2="1080" y2="990"/><line x1="0" y1="1080" x2="1080" y2="1080"/><line x1="0" y1="1170" x2="1080" y2="1170"/><line x1="0" y1="1260" x2="1080" y2="1260"/><line x1="0" y1="1350" x2="1080" y2="1350"/><line x1="0" y1="1440" x2="1080" y2="1440"/><line x1="0" y1="1530" x2="1080" y2="1530"/><line x1="0" y1="1620" x2="1080" y2="1620"/><line x1="0" y1="1710" x2="1080" y2="1710"/><line x1="0" y1="1800" x2="1080" y2="1800"/><line x1="0" y1="1890" x2="1080" y2="1890"/></g>
+  <circle cx="950" cy="230" r="453" fill="url(#orbGold)"/>
+  <circle cx="64" cy="1536" r="496" fill="url(#orbBlue)"/>
+  <g transform="translate(474.0 300) scale(0.257812)">
+    <rect width="512" height="512" rx="116" fill="#16376f"/>
+    <path d="M138 372C206 372 244 206 374 156" fill="none" stroke="url(#route)"
+          stroke-width="30" stroke-linecap="round"/>
+    <circle cx="138" cy="372" r="27" fill="#8fbaff"/>
+    <circle cx="374" cy="156" r="38" fill="#ffd700"/>
+    <circle cx="374" cy="156" r="15" fill="#071531"/>
+  </g>
+  <text x="540" y="516" text-anchor="middle" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="54" font-weight="700" letter-spacing="-1.4"><tspan fill="#ffd700">V&amp;P</tspan><tspan fill="#ffffff" dx="11">UkraLink</tspan></text>
+  <text x="540" y="566" text-anchor="middle" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="23" font-weight="500" letter-spacing="3.4" fill="#8fbaff">UKRAINE VISA CONSULTANTS</text>
+  <rect x="96" y="760" width="888" height="560" rx="28" fill="#ffffff" opacity="0.035" stroke="#8fbaff" stroke-opacity="0.2" stroke-width="2" stroke-dasharray="14 12"/>
+  <text x="540" y="1050" text-anchor="middle" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="34" font-weight="500" fill="#9db0d0">Add your headline here</text>
+  <text x="540" y="1100" text-anchor="middle" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="26" font-weight="400" fill="#9db0d0" opacity="0.7">(this dashed box is a guide — delete it)</text>
+  <text x="540" y="1700" text-anchor="middle" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="31" font-weight="700" fill="#ffd700">Book a consultation</text>
+  <text x="540" y="1752" text-anchor="middle" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="28" font-weight="500" fill="#8fbaff">visa-consultancy.onrender.com</text>
+</svg>
+</script>
+</article>
+<article class="card">
+  <div class="preview"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 320" width="520" height="320"
+     role="img" aria-label="V&amp;P UkraLink — Ukraine visa and immigration consultants">
+  <title>V&amp;P UkraLink</title>
+  <defs>
+    <linearGradient id="badge" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#16376f"/>
+      <stop offset="1" stop-color="#071531"/>
+    </linearGradient>
+    <linearGradient id="path" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0" stop-color="#4d8dff"/>
+      <stop offset="0.55" stop-color="#e6b422"/>
+      <stop offset="1" stop-color="#ffd700"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Mark, centred -->
+  <g transform="translate(180 8) scale(0.3125)">
+    <rect width="512" height="512" rx="116" fill="url(#badge)"/>
+    <path d="M0 116A116 116 0 0 1 116 0h140L0 256Z" fill="#ffffff" opacity="0.05"/>
+    <path d="M138 372C206 372 244 206 374 156" fill="none" stroke="url(#path)"
+          stroke-width="30" stroke-linecap="round"/>
+    <circle cx="138" cy="372" r="27" fill="#8fbaff"/>
+    <circle cx="374" cy="156" r="38" fill="#ffd700"/>
+    <circle cx="374" cy="156" r="15" fill="#071531"/>
+  </g>
+
+  <text x="260" y="248" text-anchor="middle"
+        font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif"
+        font-size="54" font-weight="700" letter-spacing="-1.4">
+    <tspan fill="#ffd700">V&amp;P</tspan><tspan fill="#0b1f4d" dx="11">UkraLink</tspan>
+  </text>
+
+  <text x="260" y="286" text-anchor="middle"
+        font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif"
+        font-size="18" font-weight="500" letter-spacing="3" fill="#4d5f80">
+    UKRAINE VISA CONSULTANTS
+  </text>
+</svg>
+</div>
+  <div class="meta">
+    <div><strong>logo-stacked</strong><small>520 x 320</small></div>
+    <button data-name="logo-stacked" data-w="520" data-h="320">Download PNG</button>
+  </div>
+  <script type="text/plain" class="src"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 320" width="520" height="320"
+     role="img" aria-label="V&amp;P UkraLink — Ukraine visa and immigration consultants">
+  <title>V&amp;P UkraLink</title>
+  <defs>
+    <linearGradient id="badge" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#16376f"/>
+      <stop offset="1" stop-color="#071531"/>
+    </linearGradient>
+    <linearGradient id="path" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0" stop-color="#4d8dff"/>
+      <stop offset="0.55" stop-color="#e6b422"/>
+      <stop offset="1" stop-color="#ffd700"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Mark, centred -->
+  <g transform="translate(180 8) scale(0.3125)">
+    <rect width="512" height="512" rx="116" fill="url(#badge)"/>
+    <path d="M0 116A116 116 0 0 1 116 0h140L0 256Z" fill="#ffffff" opacity="0.05"/>
+    <path d="M138 372C206 372 244 206 374 156" fill="none" stroke="url(#path)"
+          stroke-width="30" stroke-linecap="round"/>
+    <circle cx="138" cy="372" r="27" fill="#8fbaff"/>
+    <circle cx="374" cy="156" r="38" fill="#ffd700"/>
+    <circle cx="374" cy="156" r="15" fill="#071531"/>
+  </g>
+
+  <text x="260" y="248" text-anchor="middle"
+        font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif"
+        font-size="54" font-weight="700" letter-spacing="-1.4">
+    <tspan fill="#ffd700">V&amp;P</tspan><tspan fill="#0b1f4d" dx="11">UkraLink</tspan>
+  </text>
+
+  <text x="260" y="286" text-anchor="middle"
+        font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif"
+        font-size="18" font-weight="500" letter-spacing="3" fill="#4d5f80">
+    UKRAINE VISA CONSULTANTS
+  </text>
+</svg>
+</script>
+</article>
+<article class="card">
+  <div class="preview"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 160" width="620" height="160"
+     role="img" aria-label="V&amp;P UkraLink — Ukraine visa and immigration consultants">
+  <title>V&amp;P UkraLink</title>
+  <defs>
+    <linearGradient id="badge" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#16376f"/>
+      <stop offset="1" stop-color="#071531"/>
+    </linearGradient>
+    <linearGradient id="path" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0" stop-color="#4d8dff"/>
+      <stop offset="0.55" stop-color="#e6b422"/>
+      <stop offset="1" stop-color="#ffd700"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Mark -->
+  <g transform="translate(0 24) scale(0.21875)">
+    <rect width="512" height="512" rx="116" fill="url(#badge)"/>
+    <path d="M0 116A116 116 0 0 1 116 0h140L0 256Z" fill="#ffffff" opacity="0.05"/>
+    <path d="M138 372C206 372 244 206 374 156" fill="none" stroke="url(#path)"
+          stroke-width="30" stroke-linecap="round"/>
+    <circle cx="138" cy="372" r="27" fill="#8fbaff"/>
+    <circle cx="374" cy="156" r="38" fill="#ffd700"/>
+    <circle cx="374" cy="156" r="15" fill="#071531"/>
+  </g>
+
+  <!-- Wordmark -->
+  <text x="142" y="86" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif"
+        font-size="56" font-weight="700" letter-spacing="-1.4">
+    <tspan fill="#ffd700">V&amp;P</tspan><tspan fill="#0b1f4d" dx="12">UkraLink</tspan>
+  </text>
+
+  <!-- Tagline -->
+  <text x="144" y="122" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif"
+        font-size="19" font-weight="500" letter-spacing="2.6" fill="#4d5f80">
+    UKRAINE VISA CONSULTANTS
+  </text>
+</svg>
+</div>
+  <div class="meta">
+    <div><strong>logo-horizontal</strong><small>620 x 160</small></div>
+    <button data-name="logo-horizontal" data-w="620" data-h="160">Download PNG</button>
+  </div>
+  <script type="text/plain" class="src"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 160" width="620" height="160"
+     role="img" aria-label="V&amp;P UkraLink — Ukraine visa and immigration consultants">
+  <title>V&amp;P UkraLink</title>
+  <defs>
+    <linearGradient id="badge" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#16376f"/>
+      <stop offset="1" stop-color="#071531"/>
+    </linearGradient>
+    <linearGradient id="path" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0" stop-color="#4d8dff"/>
+      <stop offset="0.55" stop-color="#e6b422"/>
+      <stop offset="1" stop-color="#ffd700"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Mark -->
+  <g transform="translate(0 24) scale(0.21875)">
+    <rect width="512" height="512" rx="116" fill="url(#badge)"/>
+    <path d="M0 116A116 116 0 0 1 116 0h140L0 256Z" fill="#ffffff" opacity="0.05"/>
+    <path d="M138 372C206 372 244 206 374 156" fill="none" stroke="url(#path)"
+          stroke-width="30" stroke-linecap="round"/>
+    <circle cx="138" cy="372" r="27" fill="#8fbaff"/>
+    <circle cx="374" cy="156" r="38" fill="#ffd700"/>
+    <circle cx="374" cy="156" r="15" fill="#071531"/>
+  </g>
+
+  <!-- Wordmark -->
+  <text x="142" y="86" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif"
+        font-size="56" font-weight="700" letter-spacing="-1.4">
+    <tspan fill="#ffd700">V&amp;P</tspan><tspan fill="#0b1f4d" dx="12">UkraLink</tspan>
+  </text>
+
+  <!-- Tagline -->
+  <text x="144" y="122" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif"
+        font-size="19" font-weight="500" letter-spacing="2.6" fill="#4d5f80">
+    UKRAINE VISA CONSULTANTS
+  </text>
+</svg>
+</script>
+</article>
+<article class="card">
+  <div class="preview"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512"
+     role="img" aria-label="V&amp;P UkraLink icon">
+  <title>V&amp;P UkraLink</title>
+  <defs>
+    <linearGradient id="badge" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#16376f"/>
+      <stop offset="1" stop-color="#071531"/>
+    </linearGradient>
+    <linearGradient id="path" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0" stop-color="#4d8dff"/>
+      <stop offset="0.55" stop-color="#e6b422"/>
+      <stop offset="1" stop-color="#ffd700"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Badge -->
+  <rect width="512" height="512" rx="116" fill="url(#badge)"/>
+
+  <!-- Soft top-left sheen -->
+  <path d="M0 116A116 116 0 0 1 116 0h140L0 256Z" fill="#ffffff" opacity="0.05"/>
+
+  <!-- The link: a route rising from origin to destination -->
+  <path d="M138 372C206 372 244 206 374 156" fill="none" stroke="url(#path)"
+        stroke-width="30" stroke-linecap="round"/>
+
+  <!-- Origin marker (departure) -->
+  <circle cx="138" cy="372" r="27" fill="#8fbaff"/>
+
+  <!-- Destination marker (arrival) -->
+  <circle cx="374" cy="156" r="38" fill="#ffd700"/>
+  <circle cx="374" cy="156" r="15" fill="#071531"/>
+</svg>
+</div>
+  <div class="meta">
+    <div><strong>logo-icon</strong><small>512 x 512</small></div>
+    <button data-name="logo-icon" data-w="512" data-h="512">Download PNG</button>
+  </div>
+  <script type="text/plain" class="src"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512"
+     role="img" aria-label="V&amp;P UkraLink icon">
+  <title>V&amp;P UkraLink</title>
+  <defs>
+    <linearGradient id="badge" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#16376f"/>
+      <stop offset="1" stop-color="#071531"/>
+    </linearGradient>
+    <linearGradient id="path" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0" stop-color="#4d8dff"/>
+      <stop offset="0.55" stop-color="#e6b422"/>
+      <stop offset="1" stop-color="#ffd700"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Badge -->
+  <rect width="512" height="512" rx="116" fill="url(#badge)"/>
+
+  <!-- Soft top-left sheen -->
+  <path d="M0 116A116 116 0 0 1 116 0h140L0 256Z" fill="#ffffff" opacity="0.05"/>
+
+  <!-- The link: a route rising from origin to destination -->
+  <path d="M138 372C206 372 244 206 374 156" fill="none" stroke="url(#path)"
+        stroke-width="30" stroke-linecap="round"/>
+
+  <!-- Origin marker (departure) -->
+  <circle cx="138" cy="372" r="27" fill="#8fbaff"/>
+
+  <!-- Destination marker (arrival) -->
+  <circle cx="374" cy="156" r="38" fill="#ffd700"/>
+  <circle cx="374" cy="156" r="15" fill="#071531"/>
+</svg>
+</script>
+</article>
+<article class="card">
+  <div class="preview"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 160" width="620" height="160"
+     role="img" aria-label="V&amp;P UkraLink">
+  <title>V&amp;P UkraLink — single colour, for dark backgrounds</title>
+  <defs>
+    <mask id="knockout">
+      <rect width="512" height="512" fill="#ffffff"/>
+      <path d="M138 372C206 372 244 206 374 156" fill="none" stroke="#000000"
+            stroke-width="30" stroke-linecap="round"/>
+      <circle cx="138" cy="372" r="27" fill="#000000"/>
+      <circle cx="374" cy="156" r="38" fill="#000000"/>
+      <circle cx="374" cy="156" r="15" fill="#ffffff"/>
+    </mask>
+  </defs>
+
+  <g transform="translate(0 24) scale(0.21875)">
+    <rect width="512" height="512" rx="116" fill="#ffffff" mask="url(#knockout)"/>
+  </g>
+
+  <text x="142" y="86" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif"
+        font-size="56" font-weight="700" letter-spacing="-1.4" fill="#ffffff">
+    V&amp;P UkraLink
+  </text>
+  <text x="144" y="122" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif"
+        font-size="19" font-weight="500" letter-spacing="2.6" fill="#ffffff" opacity="0.7">
+    UKRAINE VISA CONSULTANTS
+  </text>
+</svg>
+</div>
+  <div class="meta">
+    <div><strong>logo-mono-light</strong><small>620 x 160</small></div>
+    <button data-name="logo-mono-light" data-w="620" data-h="160">Download PNG</button>
+  </div>
+  <script type="text/plain" class="src"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 160" width="620" height="160"
+     role="img" aria-label="V&amp;P UkraLink">
+  <title>V&amp;P UkraLink — single colour, for dark backgrounds</title>
+  <defs>
+    <mask id="knockout">
+      <rect width="512" height="512" fill="#ffffff"/>
+      <path d="M138 372C206 372 244 206 374 156" fill="none" stroke="#000000"
+            stroke-width="30" stroke-linecap="round"/>
+      <circle cx="138" cy="372" r="27" fill="#000000"/>
+      <circle cx="374" cy="156" r="38" fill="#000000"/>
+      <circle cx="374" cy="156" r="15" fill="#ffffff"/>
+    </mask>
+  </defs>
+
+  <g transform="translate(0 24) scale(0.21875)">
+    <rect width="512" height="512" rx="116" fill="#ffffff" mask="url(#knockout)"/>
+  </g>
+
+  <text x="142" y="86" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif"
+        font-size="56" font-weight="700" letter-spacing="-1.4" fill="#ffffff">
+    V&amp;P UkraLink
+  </text>
+  <text x="144" y="122" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif"
+        font-size="19" font-weight="500" letter-spacing="2.6" fill="#ffffff" opacity="0.7">
+    UKRAINE VISA CONSULTANTS
+  </text>
+</svg>
+</script>
+</article>
+<article class="card">
+  <div class="preview"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 160" width="620" height="160"
+     role="img" aria-label="V&amp;P UkraLink">
+  <title>V&amp;P UkraLink — single colour, for light backgrounds</title>
+  <defs>
+    <!-- White shows the badge, black knocks the route back out of it, so the
+         whole mark renders in exactly one colour. -->
+    <mask id="knockout">
+      <rect width="512" height="512" fill="#ffffff"/>
+      <path d="M138 372C206 372 244 206 374 156" fill="none" stroke="#000000"
+            stroke-width="30" stroke-linecap="round"/>
+      <circle cx="138" cy="372" r="27" fill="#000000"/>
+      <circle cx="374" cy="156" r="38" fill="#000000"/>
+      <circle cx="374" cy="156" r="15" fill="#ffffff"/>
+    </mask>
+  </defs>
+
+  <g transform="translate(0 24) scale(0.21875)">
+    <rect width="512" height="512" rx="116" fill="#0b1f4d" mask="url(#knockout)"/>
+  </g>
+
+  <text x="142" y="86" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif"
+        font-size="56" font-weight="700" letter-spacing="-1.4" fill="#0b1f4d">
+    V&amp;P UkraLink
+  </text>
+  <text x="144" y="122" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif"
+        font-size="19" font-weight="500" letter-spacing="2.6" fill="#0b1f4d" opacity="0.66">
+    UKRAINE VISA CONSULTANTS
+  </text>
+</svg>
+</div>
+  <div class="meta">
+    <div><strong>logo-mono-dark</strong><small>620 x 160</small></div>
+    <button data-name="logo-mono-dark" data-w="620" data-h="160">Download PNG</button>
+  </div>
+  <script type="text/plain" class="src"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 160" width="620" height="160"
+     role="img" aria-label="V&amp;P UkraLink">
+  <title>V&amp;P UkraLink — single colour, for light backgrounds</title>
+  <defs>
+    <!-- White shows the badge, black knocks the route back out of it, so the
+         whole mark renders in exactly one colour. -->
+    <mask id="knockout">
+      <rect width="512" height="512" fill="#ffffff"/>
+      <path d="M138 372C206 372 244 206 374 156" fill="none" stroke="#000000"
+            stroke-width="30" stroke-linecap="round"/>
+      <circle cx="138" cy="372" r="27" fill="#000000"/>
+      <circle cx="374" cy="156" r="38" fill="#000000"/>
+      <circle cx="374" cy="156" r="15" fill="#ffffff"/>
+    </mask>
+  </defs>
+
+  <g transform="translate(0 24) scale(0.21875)">
+    <rect width="512" height="512" rx="116" fill="#0b1f4d" mask="url(#knockout)"/>
+  </g>
+
+  <text x="142" y="86" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif"
+        font-size="56" font-weight="700" letter-spacing="-1.4" fill="#0b1f4d">
+    V&amp;P UkraLink
+  </text>
+  <text x="144" y="122" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif"
+        font-size="19" font-weight="500" letter-spacing="2.6" fill="#0b1f4d" opacity="0.66">
+    UKRAINE VISA CONSULTANTS
+  </text>
+</svg>
+</script>
+</article>
+</div>
+
+<div id="log"></div>
+
+<script>
+(function () {
+  const log = document.getElementById('log');
+  const scaleSel = document.getElementById('scale');
+
+  function render(svgText, w, h, scale, mime) {
+    return new Promise(function (resolve, reject) {
+      const blob = new Blob([svgText], { type: 'image/svg+xml;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const img = new Image();
+      img.onload = function () {
+        const canvas = document.createElement('canvas');
+        canvas.width = w * scale;
+        canvas.height = h * scale;
+        const ctx = canvas.getContext('2d');
+        // JPG has no alpha, so lay down the brand background first.
+        if (mime === 'image/jpeg') {
+          ctx.fillStyle = '#071531';
+          ctx.fillRect(0, 0, canvas.width, canvas.height);
+        }
+        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+        URL.revokeObjectURL(url);
+        canvas.toBlob(function (out) {
+          out ? resolve(out) : reject(new Error('encode failed'));
+        }, mime, 0.94);
+      };
+      img.onerror = function () {
+        URL.revokeObjectURL(url);
+        reject(new Error('could not rasterise the SVG'));
+      };
+      img.src = url;
+    });
+  }
+
+  function save(blob, filename) {
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 1000);
+  }
+
+  async function exportCard(card, mime) {
+    const button = card.querySelector('button');
+    const svgText = card.querySelector('script.src').textContent;
+    const name = button.dataset.name;
+    const w = +button.dataset.w, h = +button.dataset.h;
+    const scale = +scaleSel.value;
+    const ext = mime === 'image/jpeg' ? 'jpg' : 'png';
+    const blob = await render(svgText, w, h, scale, mime);
+    save(blob, name + '@' + scale + 'x.' + ext);
+    return name;
+  }
+
+  document.querySelectorAll('.card button').forEach(function (button) {
+    button.addEventListener('click', async function () {
+      const card = button.closest('.card');
+      const original = button.textContent;
+      button.textContent = 'Rendering...';
+      button.disabled = true;
+      try {
+        const name = await exportCard(card, 'image/png');
+        log.textContent = 'Saved ' + name + '.';
+      } catch (err) {
+        log.textContent = 'Failed: ' + err.message;
+      }
+      button.textContent = original;
+      button.disabled = false;
+    });
+  });
+
+  async function downloadAll(mime) {
+    const cards = Array.from(document.querySelectorAll('.card'));
+    for (let i = 0; i < cards.length; i++) {
+      log.textContent = 'Rendering ' + (i + 1) + ' of ' + cards.length + '...';
+      try {
+        await exportCard(cards[i], mime);
+      } catch (err) {
+        log.textContent = 'Failed on file ' + (i + 1) + ': ' + err.message;
+        return;
+      }
+      // Browsers throttle rapid successive downloads.
+      await new Promise(function (r) { setTimeout(r, 420); });
+    }
+    log.textContent = 'Done — saved ' + cards.length + ' files to your downloads folder.';
+  }
+
+  document.getElementById('all').addEventListener('click', function () {
+    downloadAll('image/png');
+  });
+  document.getElementById('allJpg').addEventListener('click', function () {
+    downloadAll('image/jpeg');
+  });
+})();
+</script>
+</body>
+</html>

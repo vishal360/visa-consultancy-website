@@ -22,17 +22,24 @@
   <div class="shell site-header__inner">
     <a class="logo" href="#top" aria-label="{{ brand_name }} home">
       <span class="logo__mark" aria-hidden="true">
-        <svg viewBox="0 0 32 32" width="32" height="32" role="presentation">
-          <rect width="32" height="32" rx="9" fill="url(#lg)"/>
-          <path d="M8 19.5h16M8 19.5c0-5 3.6-9 8-9s8 4 8 9" stroke="#0b1f4d"
-                stroke-width="2.1" stroke-linecap="round" fill="none"/>
-          <circle cx="16" cy="9" r="2.1" fill="#0b1f4d"/>
+        <svg viewBox="0 0 512 512" width="34" height="34" role="presentation">
           <defs>
-            <linearGradient id="lg" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0" stop-color="#ffd700"/>
-              <stop offset="1" stop-color="#4d9fff"/>
+            <linearGradient id="lgBadge" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#16376f"/>
+              <stop offset="1" stop-color="#071531"/>
+            </linearGradient>
+            <linearGradient id="lgRoute" x1="0" y1="1" x2="1" y2="0">
+              <stop offset="0" stop-color="#4d8dff"/>
+              <stop offset="0.55" stop-color="#e6b422"/>
+              <stop offset="1" stop-color="#ffd700"/>
             </linearGradient>
           </defs>
+          <rect width="512" height="512" rx="116" fill="url(#lgBadge)"/>
+          <path d="M138 372C206 372 244 206 374 156" fill="none"
+                stroke="url(#lgRoute)" stroke-width="30" stroke-linecap="round"/>
+          <circle cx="138" cy="372" r="27" fill="#8fbaff"/>
+          <circle cx="374" cy="156" r="38" fill="#ffd700"/>
+          <circle cx="374" cy="156" r="15" fill="#071531"/>
         </svg>
       </span>
       <span class="logo__text">
